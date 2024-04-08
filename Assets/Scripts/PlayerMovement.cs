@@ -31,11 +31,14 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 _moveDirection;
     private Rigidbody _rb;
+    private Animator _animator;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _rb.freezeRotation = true;
+
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -60,8 +63,6 @@ public class PlayerMovement : MonoBehaviour
     {
         _horizontalInput = Input.GetAxisRaw("Horizontal");
         _verticalInput = Input.GetAxisRaw("Vertical");
-        
-        // Debug.Log($"space - {Input.GetKey(jumpKey)} ready - {_readyToJump} grounded - {_grounded}");
 
         if (Input.GetKey(jumpKey) && _readyToJump && _grounded)
         {
@@ -77,8 +78,20 @@ public class PlayerMovement : MonoBehaviour
     {
         _moveDirection = orientation.forward * _verticalInput + orientation.right * _horizontalInput;
         
+        if (_verticalInput < -0.01) 
+            _animator.SetFloat("walkSpeed", -1);
+        else
+            _animator.SetFloat("walkSpeed", 1);
+        
+        if (Math.Abs(_verticalInput) > 0.01 || Math.Abs(_horizontalInput) > 0.01)
+            _animator.SetBool("walk", true);
+        else
+            _animator.SetBool("walk", false);
+        
         if (_grounded)
+        {
             _rb.AddForce(_moveDirection * (moveSpeed * 10f), ForceMode.Force);
+        }
         
         else if (!_grounded)
             _rb.AddForce(_moveDirection * (moveSpeed * 10f * airMultiplier), ForceMode.Force);

@@ -47,7 +47,7 @@ public class ThirdPersonCam : MonoBehaviour
         {
             Vector3 dirToCombatLookAt = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
             orientation.forward = dirToCombatLookAt.normalized;
-
+            
             playerObj.forward = dirToCombatLookAt.normalized;
         }
     }
