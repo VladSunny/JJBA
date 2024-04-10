@@ -13,13 +13,18 @@ namespace JJBA.Movement
         public float groundDrag = 5f;
         public float jumpForce = 12f;
         public float airMultiplier = 0.4f;
+        public float rotationSpeed = 10f;
+        public float tiltAngle = 45f;
 
         [Header("Ground Check")]
         public float playerHeight = 2f;
         public LayerMask whatIsGround;
         private bool _grounded;
 
-        [Header("Dependencies")] public Transform orientation;
+        [Header("Dependencies")]
+        public Transform orientation;
+        
+        
         private Vector3 _moveDirection;
         private Rigidbody _rb;
 
@@ -70,6 +75,5 @@ namespace JJBA.Movement
                 _rb.velocity = new Vector3(limitedVel.x, _rb.velocity.y, limitedVel.z);
             }
         }
-
     }
 }

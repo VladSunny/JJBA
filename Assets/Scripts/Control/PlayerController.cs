@@ -14,16 +14,12 @@ namespace JJBA.Control
         [Header("Jump")]
         public float jumpCooldown = 0.25f;
         private bool _readyToJump = true;
-
-        [Header("Keybinds")]
-        public KeyCode jumpKey = KeyCode.Space;
         
         private PlayerInput _playerInput;
         private Animator _animator;
         private Mover _mover;
         
         private InputAction _moveAction;
-        private InputAction _lookAction;
         private InputAction _jumpAction;
 
         private void Start()
@@ -34,7 +30,6 @@ namespace JJBA.Control
             _playerInput = GetComponent<PlayerInput>();
             
             _moveAction = _playerInput.actions["Movement"];
-            _lookAction = _playerInput.actions["Look"];
             _jumpAction = _playerInput.actions["Jump"];
         }
 
@@ -50,7 +45,7 @@ namespace JJBA.Control
 
         private void MyInput()
         {
-            if (Input.GetKey(jumpKey) && _readyToJump)
+            if (_jumpAction.triggered && _readyToJump)
             {
                 if (_mover != null)
                 {
