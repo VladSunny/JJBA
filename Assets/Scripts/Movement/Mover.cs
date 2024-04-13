@@ -13,8 +13,6 @@ namespace JJBA.Movement
         public float groundDrag = 5f;
         public float jumpForce = 12f;
         public float airMultiplier = 0.4f;
-        public float rotationSpeed = 10f;
-        public float tiltAngle = 45f;
 
         [Header("Ground Check")]
         public float playerHeight = 2f;
@@ -61,8 +59,11 @@ namespace JJBA.Movement
         
         public void Jump()
         {
-            _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
-            _rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            if (_grounded)
+            {
+                _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
+                _rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            }
         }
         
         private void SpeedControl()
@@ -74,6 +75,11 @@ namespace JJBA.Movement
                 Vector3 limitedVel = flatVel.normalized * moveSpeed;
                 _rb.velocity = new Vector3(limitedVel.x, _rb.velocity.y, limitedVel.z);
             }
+        }
+
+        public bool isGrounded()
+        {
+            return _grounded;
         }
     }
 }

@@ -6,14 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a7edc5b8-721e-41c9-acbe-e33282908b15" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JJBA/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JJBA/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Animations/PlayerAnimationController.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Animations/PlayerAnimationController.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Control/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Control/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/ThirdPersonCam.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/ThirdPersonCam.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Movement/Mover.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Movement/Mover.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Test.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Test/PlayerController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Test/PlayerController.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +56,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/Builds/NewInputSystemBuild/NewInputSystemBuild.x86_64" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Builds/NewAnimationsBuild/JJBA.x86_64" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Builds/NewPlayerModelBuild" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -122,6 +118,7 @@
       <workItem from="1712729250759" duration="12000" />
       <workItem from="1712744205918" duration="758000" />
       <workItem from="1712752398608" duration="2153000" />
+      <workItem from="1713039319679" duration="1034000" />
     </task>
     <servers />
   </component>

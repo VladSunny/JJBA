@@ -36,6 +36,11 @@ namespace JJBA.Control
         private void Update()
         {
             MyInput();
+
+            if (!_mover.isGrounded())
+                _animator.SetBool("falling", true);
+            else 
+                _animator.SetBool("falling", false);
         }
 
         private void FixedUpdate()
@@ -52,6 +57,7 @@ namespace JJBA.Control
                     _mover.Jump();
                     _readyToJump = false;
                     Invoke(nameof(ResetJump), jumpCooldown);
+                    _animator.SetTrigger("jump");
                 }
             }
         }
