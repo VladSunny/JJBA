@@ -67,6 +67,8 @@ namespace JJBA.Control
             Vector2 input = _moveAction.ReadValue<Vector2>();
             if (_mover) _mover.MovePlayer(input.y, input.x);
             
+            _animator.SetFloat("turn", input.x);
+            
             if (input.y < -0.01)
                 _animator.SetFloat("walkSpeed", -1);
             else
