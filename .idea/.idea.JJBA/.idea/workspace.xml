@@ -5,22 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7edc5b8-721e-41c9-acbe-e33282908b15" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Animations.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Animations/Armature_Falling.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Animations/Armature_Falling.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Animations/Armature_Idle.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Animations/Armature_Idle.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Animations/Armature_Jump.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Animations/Armature_Jump.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Animations/Armature_TPose.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Animations/Armature_TPose.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Animations/Armature_Walking.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Animations/Armature_Walking.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Animations/PlayerAnimationController.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Animations/PlayerAnimationController.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Animator/PlayerAnimationController.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Animator/PlayerAnimationController.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Control/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Control/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stuff/WoodyCharacter16.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Stuff/WoodyCharacter16.fbx.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Stuff/WoodyCharacter20.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Stuff/WoodyCharacter20.fbx.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +56,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/Builds/NewAnimationsBuild/JJBA.x86_64" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Builds/Linux/CoolBuild2/JJBA.x86_64" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Builds/NewPlayerModelBuild" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -131,6 +120,7 @@
       <workItem from="1712752398608" duration="2153000" />
       <workItem from="1713039319679" duration="1034000" />
       <workItem from="1713192173876" duration="828000" />
+      <workItem from="1713263807896" duration="729000" />
     </task>
     <servers />
   </component>

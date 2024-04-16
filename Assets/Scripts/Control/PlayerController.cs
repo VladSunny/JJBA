@@ -22,6 +22,10 @@ namespace JJBA.Control
         private InputAction _moveAction;
         private InputAction _jumpAction;
 
+        private float _turn;
+        private Vector2 _input;
+        public float turnSpeed = 0.5f;
+
         private void Start()
         {
             _animator = GetComponentInChildren<Animator>();
@@ -31,6 +35,8 @@ namespace JJBA.Control
             
             _moveAction = _playerInput.actions["Movement"];
             _jumpAction = _playerInput.actions["Jump"];
+
+            _turn = 0;
         }
 
         private void Update()
@@ -41,6 +47,8 @@ namespace JJBA.Control
                 _animator.SetBool("falling", true);
             else 
                 _animator.SetBool("falling", false);
+
+            _turn = Mathf.Lerp(_turn, _input.x, turnSpeed * Time.deltaTime);
         }
 
         private void FixedUpdate()
@@ -64,17 +72,18 @@ namespace JJBA.Control
 
         private void MovePlayer()
         {
-            Vector2 input = _moveAction.ReadValue<Vector2>();
-            if (_mover) _mover.MovePlayer(input.y, input.x);
+            _input = _moveAction.ReadValue<Vector2>();
             
-            _animator.SetFloat("turn", input.x);
+            if (_mover) _mover.MovePlayer(_input.y, _input.x);
             
-            if (input.y < -0.01)
+            _animator.SetFloat("turn", _turn);
+            
+            if (_input.y < -0.01)
                 _animator.SetFloat("walkSpeed", -1);
             else
                 _animator.SetFloat("walkSpeed", 1);
 
-            if (Math.Abs(input.y) > 0.01 || Math.Abs(input.x) > 0.01)
+            if (Math.Abs(_input.y) > 0.01 || Math.Abs(_input.x) > 0.01)
                 _animator.SetBool("walk", true);
             else
                 _animator.SetBool("walk", false);
