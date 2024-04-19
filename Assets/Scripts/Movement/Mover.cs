@@ -6,6 +6,7 @@ using UnityEngine;
 namespace JJBA.Movement
 {
     [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(BoxCollider))]
     public class Mover : MonoBehaviour
     {
         [Header("Movement")]
@@ -18,6 +19,7 @@ namespace JJBA.Movement
         public float playerHeight = 2f;
         public LayerMask whatIsGround;
         private bool _grounded;
+        private bool _boxGrounded;
 
         [Header("Dependencies")]
         public Transform orientation;
@@ -34,7 +36,7 @@ namespace JJBA.Movement
 
         private void Update()
         {
-            _grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+            _grounded = CheckGround() || _boxGrounded;
 
             if (_grounded)
                 _rb.drag = groundDrag;
@@ -42,6 +44,27 @@ namespace JJBA.Movement
                 _rb.drag = 0;
             
             SpeedControl();
+        }
+
+        private bool CheckGround()
+        {
+            return Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        }
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (((1 << other.gameObject.layer) & whatIsGround) != 0)
+            {
+                _boxGrounded = true;
+            }
+        }
+        
+        private void OnTriggerExit(Collider other)
+        {
+            if (((1 << other.gameObject.layer) & whatIsGround) != 0)
+            {
+                _boxGrounded = false;
+            }
         }
 
         public void MovePlayer(float vertical, float horizontal)
