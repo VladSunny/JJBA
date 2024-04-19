@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 487725199327233589}
   - component: {fileID: 3701657728055151783}
   - component: {fileID: 5951649332799741484}
+  - component: {fileID: 2878293699062720407}
+  - component: {fileID: 2929247383364565904}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -77,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpCooldown: 1.5
+  turnSpeed: 5
 --- !u!114 &3701657728055151783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,8 +96,6 @@ MonoBehaviour:
   groundDrag: 5
   jumpForce: 7
   airMultiplier: 0.4
-  rotationSpeed: 10
-  tiltAngle: 45
   playerHeight: 1.5
   whatIsGround:
     serializedVersion: 2
@@ -130,6 +131,44 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerMovement
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2878293699062720407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461053245331682738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6fd89e68b4d37240a56827afd0e7255, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  debugDamage: 10
+  debugHeal: 5
+  decreaseHealth: 49
+  increaseHealth: 50
+  health: 0
+--- !u!114 &2929247383364565904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461053245331682738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2537d03b1a88447abfd4966a6059a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterTransform: {fileID: 7089813876926635962}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  drawDebugBoxInEditor: 1
+  debugPunch: 1
+  punchKey: 323
+  debugDraw: 1
 --- !u!1 &1851364260543901302
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +213,7 @@ GameObject:
   - component: {fileID: 8721309200509572107}
   m_Layer: 0
   m_Name: PlayerObj
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -323,7 +362,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4771121879458666104}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 3cb5e74dd7a72fb85ba59dd95a935544, type: 3}
   m_Controller: {fileID: 9100000, guid: 5da291907461e78ed9226e8c8f9efdc9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
