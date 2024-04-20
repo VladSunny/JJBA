@@ -70,7 +70,6 @@ namespace JJBA.Core
         {
             if (debugPunch && Input.GetKeyDown(punchKey))
             {
-                Debug.Log("Punch");
                 CreateHitBox(Vector3.forward * 1f, new Vector3(1f, 1f, 1f), (collider) =>
                 {
                     Debug.Log(collider);

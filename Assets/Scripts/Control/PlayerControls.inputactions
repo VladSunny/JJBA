@@ -2,7 +2,7 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "PlayerMovement",
+            "name": "DefaultMap",
             "id": "80d1b7c4-df82-431d-a8f1-5ad7923a036d",
             "actions": [
                 {
@@ -27,6 +27,15 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "b68c31e2-f4af-47e6-aaa8-0aa11d2754cf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BasePunch",
+                    "type": "Button",
+                    "id": "5a5e2d55-3a66-45d3-8458-5033d30d6971",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -185,6 +194,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f208df18-5f55-4a4d-898f-f1ac9933d783",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BasePunch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "48944122-0766-4125-94d7-a4b67e0c6962",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BasePunch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
