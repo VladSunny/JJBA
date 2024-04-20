@@ -20,6 +20,7 @@ namespace JJBA.Combat
         void Start()
         {
             _animator = GetComponentInChildren<Animator>();
+            _dynamicHitBox = GetComponentInChildren<DynamicHitBox>();
         }
 
         public void BasePunch()

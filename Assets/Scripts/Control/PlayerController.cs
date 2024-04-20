@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using JJBA.Movement;
+using JJBA.Combat;
 using UnityEngine.InputSystem;
 
 namespace JJBA.Control
 {
     [RequireComponent(typeof(PlayerInput))]
+    [RequireComponent (typeof(Fighter))]
     public class PlayerController : MonoBehaviour
     {
         [Header("Jump")]
@@ -18,9 +20,11 @@ namespace JJBA.Control
         private PlayerInput _playerInput;
         private Animator _animator;
         private Mover _mover;
+        private Fighter _fighter;
         
         private InputAction _moveAction;
         private InputAction _jumpAction;
+        private InputAction _basePunchAction;
 
         private float _turn;
         private Vector2 _input;
@@ -31,16 +35,19 @@ namespace JJBA.Control
         private static readonly int Turn = Animator.StringToHash("turn");
         private static readonly int WalkSpeed = Animator.StringToHash("walkSpeed");
         private static readonly int Walk = Animator.StringToHash("walk");
+        private static readonly int BasePunch = Animator.StringToHash("basePunch");
 
         private void Start()
         {
             _animator = GetComponentInChildren<Animator>();
             _mover = GetComponent<Mover>();
+            _fighter = GetComponent<Fighter>();
             
             _playerInput = GetComponent<PlayerInput>();
             
             _moveAction = _playerInput.actions["Movement"];
             _jumpAction = _playerInput.actions["Jump"];
+            _basePunchAction = _playerInput.actions["BasePunch"];
 
             _turn = 0;
         }
@@ -73,6 +80,10 @@ namespace JJBA.Control
                     Invoke(nameof(ResetJump), jumpCooldown);
                     _animator.SetTrigger(Jump);
                 }
+            }
+            if (_basePunchAction.triggered)
+            {
+                _fighter.BasePunch();
             }
         }
 

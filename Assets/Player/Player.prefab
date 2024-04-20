@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2878293699062720407}
   - component: {fileID: 2929247383364565904}
   - component: {fileID: 2032473796409773762}
+  - component: {fileID: 559091471505643483}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -93,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51a9143896b348acbbc9e3346a587b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 4
   groundDrag: 5
   jumpForce: 7
   airMultiplier: 0.4
@@ -129,7 +130,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: PlayerMovement
+  m_DefaultActionMap: DefaultMap
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &2878293699062720407
@@ -165,11 +166,11 @@ MonoBehaviour:
   characterTransform: {fileID: 7089813876926635962}
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8
   drawDebugBoxInEditor: 1
-  debugPunch: 1
+  debugPunch: 0
   punchKey: 323
-  debugDraw: 1
+  debugDraw: 0
 --- !u!65 &2032473796409773762
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -191,6 +192,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8, y: 0.5, z: 0.8}
   m_Center: {x: 0, y: -0.7, z: 0}
+--- !u!114 &559091471505643483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461053245331682738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b361703384c12009b68a1f3d4083645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawHitBox: 0
 --- !u!1 &1851364260543901302
 GameObject:
   m_ObjectHideFlags: 0
