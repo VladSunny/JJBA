@@ -35,7 +35,6 @@ namespace JJBA.Control
         private static readonly int Turn = Animator.StringToHash("turn");
         private static readonly int WalkSpeed = Animator.StringToHash("walkSpeed");
         private static readonly int Walk = Animator.StringToHash("walk");
-        private static readonly int BasePunch = Animator.StringToHash("basePunch");
 
         private void Start()
         {

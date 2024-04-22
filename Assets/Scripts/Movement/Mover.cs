@@ -23,14 +23,23 @@ namespace JJBA.Movement
 
         [Header("Dependencies")]
         public Transform orientation;
-        
-        
+
+        // AV - animator value
+        /*private static readonly int FallingAV = Animator.StringToHash("falling");
+        private static readonly int JumpAV = Animator.StringToHash("jump");
+        private static readonly int TurnAV = Animator.StringToHash("turn");
+        private static readonly int WalkSpeedAV = Animator.StringToHash("walkSpeed");
+        private static readonly int WalkAV = Animator.StringToHash("walk");*/
+
         private Vector3 _moveDirection;
         private Rigidbody _rb;
+        private Animator _animator;
 
         void Start()
         {
             _rb = GetComponent<Rigidbody>();
+            _animator = GetComponentInChildren<Animator>();
+
             _rb.freezeRotation = true;
         }
 
@@ -39,10 +48,15 @@ namespace JJBA.Movement
             _grounded = CheckGround() || _boxGrounded;
 
             if (_grounded)
+            {
                 _rb.drag = groundDrag;
+                // _animator.SetBool(FallingAV, false);
+            }
             else
+            {
                 _rb.drag = 0;
-            
+                // _animator.SetBool(FallingAV, true);
+            }
             SpeedControl();
         }
 
