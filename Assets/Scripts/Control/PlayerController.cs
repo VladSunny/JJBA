@@ -11,10 +11,11 @@ namespace JJBA.Control
 {
     [RequireComponent(typeof(PlayerInput))]
     [RequireComponent (typeof(Fighter))]
+    [RequireComponent (typeof(Mover))]
     public class PlayerController : MonoBehaviour
     {
         [Header("Jump")]
-        public float jumpCooldown = 0.25f;
+        [SerializeField] private float jumpCooldown = 0.25f;
         private bool _readyToJump = true;
         
         private PlayerInput _playerInput;
@@ -29,12 +30,6 @@ namespace JJBA.Control
         private float _turn;
         private Vector2 _input;
         public float turnSpeed = 0.5f;
-        
-        private static readonly int Falling = Animator.StringToHash("falling");
-        private static readonly int Jump = Animator.StringToHash("jump");
-        private static readonly int Turn = Animator.StringToHash("turn");
-        private static readonly int WalkSpeed = Animator.StringToHash("walkSpeed");
-        private static readonly int Walk = Animator.StringToHash("walk");
 
         private void Start()
         {
@@ -55,11 +50,6 @@ namespace JJBA.Control
         {
             MyInput();
 
-            if (!_mover.isGrounded())
-                _animator.SetBool(Falling, true);
-            else 
-                _animator.SetBool(Falling, false);
-
             _turn = Mathf.Lerp(_turn, _input.x, turnSpeed * Time.deltaTime);
         }
 
@@ -77,7 +67,6 @@ namespace JJBA.Control
                     _mover.Jump();
                     _readyToJump = false;
                     Invoke(nameof(ResetJump), jumpCooldown);
-                    _animator.SetTrigger(Jump);
                 }
             }
             if (_basePunchAction.triggered)
@@ -89,20 +78,7 @@ namespace JJBA.Control
         private void MovePlayer()
         {
             _input = _moveAction.ReadValue<Vector2>();
-            
-            if (_mover) _mover.MovePlayer(_input.y, _input.x);
-            
-            _animator.SetFloat(Turn, _turn);
-            
-            if (_input.y < -0.01)
-                _animator.SetFloat(WalkSpeed, -1);
-            else
-                _animator.SetFloat(WalkSpeed, 1);
-
-            if (Math.Abs(_input.y) > 0.01 || Math.Abs(_input.x) > 0.01)
-                _animator.SetBool(Walk, true);
-            else
-                _animator.SetBool(Walk, false);
+            _mover.MovePlayer(_input.y, _input.x);
         }
 
         private void ResetJump()

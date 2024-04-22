@@ -10,14 +10,15 @@ namespace JJBA.Movement
     public class Mover : MonoBehaviour
     {
         [Header("Movement")]
-        public float moveSpeed = 7f;
-        public float groundDrag = 5f;
-        public float jumpForce = 12f;
-        public float airMultiplier = 0.4f;
+        [SerializeField] private float moveSpeed = 7f;
+        [SerializeField] private float groundDrag = 5f;
+        [SerializeField] private float jumpForce = 12f;
+        [SerializeField] private float airMultiplier = 0.4f;
+        [SerializeField] private float turnSpeed = 5f;
 
         [Header("Ground Check")]
-        public float playerHeight = 2f;
-        public LayerMask whatIsGround;
+        [SerializeField] private float playerHeight = 2f;
+        [SerializeField] private LayerMask whatIsGround;
         private bool _grounded;
         private bool _boxGrounded;
 
@@ -25,15 +26,18 @@ namespace JJBA.Movement
         public Transform orientation;
 
         // AV - animator value
-        /*private static readonly int FallingAV = Animator.StringToHash("falling");
+        private static readonly int FallingAV = Animator.StringToHash("falling");
         private static readonly int JumpAV = Animator.StringToHash("jump");
         private static readonly int TurnAV = Animator.StringToHash("turn");
         private static readonly int WalkSpeedAV = Animator.StringToHash("walkSpeed");
-        private static readonly int WalkAV = Animator.StringToHash("walk");*/
+        private static readonly int WalkAV = Animator.StringToHash("walk");
 
         private Vector3 _moveDirection;
         private Rigidbody _rb;
         private Animator _animator;
+
+        private float _turn;
+        private float _lastHorizontal;
 
         void Start()
         {
@@ -50,13 +54,16 @@ namespace JJBA.Movement
             if (_grounded)
             {
                 _rb.drag = groundDrag;
-                // _animator.SetBool(FallingAV, false);
+                _animator.SetBool(FallingAV, false);
             }
             else
             {
                 _rb.drag = 0;
-                // _animator.SetBool(FallingAV, true);
+                _animator.SetBool(FallingAV, true);
             }
+
+            _turn = Mathf.Lerp(_turn, _lastHorizontal, turnSpeed * Time.deltaTime);
+
             SpeedControl();
         }
 
@@ -83,11 +90,24 @@ namespace JJBA.Movement
 
         public void MovePlayer(float vertical, float horizontal)
         {
+            _lastHorizontal = horizontal;
             _moveDirection = orientation.forward * vertical + orientation.right * horizontal;
 
             if (_grounded)
             {
                 _rb.AddForce(_moveDirection * (moveSpeed * 10f), ForceMode.Force);
+
+                _animator.SetFloat(TurnAV, _turn);
+
+                if (vertical < -0.01)
+                    _animator.SetFloat(WalkSpeedAV, -1);
+                else
+                    _animator.SetFloat(WalkSpeedAV, 1);
+
+                if (Math.Abs(vertical) > 0.01 || Math.Abs(horizontal) > 0.01)
+                    _animator.SetBool(WalkAV, true);
+                else
+                    _animator.SetBool(WalkAV, false);
             }
 
             else if (!_grounded)
@@ -96,6 +116,7 @@ namespace JJBA.Movement
         
         public void Jump()
         {
+            _animator.SetTrigger(JumpAV);
             if (_grounded)
             {
                 _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
