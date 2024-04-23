@@ -19,21 +19,16 @@ namespace JJBA.Control
         private bool _readyToJump = true;
         
         private PlayerInput _playerInput;
-        private Animator _animator;
         private Mover _mover;
         private Fighter _fighter;
         
         private InputAction _moveAction;
         private InputAction _jumpAction;
         private InputAction _basePunchAction;
-
-        private float _turn;
         private Vector2 _input;
-        public float turnSpeed = 0.5f;
 
         private void Start()
         {
-            _animator = GetComponentInChildren<Animator>();
             _mover = GetComponent<Mover>();
             _fighter = GetComponent<Fighter>();
             
@@ -42,15 +37,11 @@ namespace JJBA.Control
             _moveAction = _playerInput.actions["Movement"];
             _jumpAction = _playerInput.actions["Jump"];
             _basePunchAction = _playerInput.actions["BasePunch"];
-
-            _turn = 0;
         }
 
         private void Update()
         {
             MyInput();
-
-            _turn = Mathf.Lerp(_turn, _input.x, turnSpeed * Time.deltaTime);
         }
 
         private void FixedUpdate()

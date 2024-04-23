@@ -48,7 +48,7 @@ namespace JJBA.Movement
         }
 
         private void Update()
-        {
+        {   
             _grounded = CheckGround() || _boxGrounded;
 
             if (_grounded)
@@ -62,6 +62,7 @@ namespace JJBA.Movement
                 _animator.SetBool(FallingAV, true);
             }
 
+            Debug.Log(_lastHorizontal);
             _turn = Mathf.Lerp(_turn, _lastHorizontal, turnSpeed * Time.deltaTime);
 
             SpeedControl();
@@ -93,11 +94,11 @@ namespace JJBA.Movement
             _lastHorizontal = horizontal;
             _moveDirection = orientation.forward * vertical + orientation.right * horizontal;
 
+            _animator.SetFloat(TurnAV, _turn);
+
             if (_grounded)
             {
                 _rb.AddForce(_moveDirection * (moveSpeed * 10f), ForceMode.Force);
-
-                _animator.SetFloat(TurnAV, _turn);
 
                 if (vertical < -0.01)
                     _animator.SetFloat(WalkSpeedAV, -1);
