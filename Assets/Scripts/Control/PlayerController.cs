@@ -10,17 +10,14 @@ using UnityEngine.InputSystem;
 namespace JJBA.Control
 {
     [RequireComponent(typeof(PlayerInput))]
-    [RequireComponent (typeof(Fighter))]
+    [RequireComponent (typeof(CharacterFighter))]
     [RequireComponent (typeof(Mover))]
     public class PlayerController : MonoBehaviour
     {
-        [Header("Jump")]
-        [SerializeField] private float jumpCooldown = 0.25f;
-        private bool _readyToJump = true;
         
         private PlayerInput _playerInput;
         private Mover _mover;
-        private Fighter _fighter;
+        private CharacterFighter _fighter;
         
         private InputAction _moveAction;
         private InputAction _jumpAction;
@@ -30,7 +27,7 @@ namespace JJBA.Control
         private void Start()
         {
             _mover = GetComponent<Mover>();
-            _fighter = GetComponent<Fighter>();
+            _fighter = GetComponent<CharacterFighter>();
             
             _playerInput = GetComponent<PlayerInput>();
             
@@ -51,14 +48,9 @@ namespace JJBA.Control
 
         private void MyInput()
         {
-            if (_jumpAction.triggered && _readyToJump)
+            if (_jumpAction.triggered)
             {
-                if (_mover != null)
-                {
-                    _mover.Jump();
-                    _readyToJump = false;
-                    Invoke(nameof(ResetJump), jumpCooldown);
-                }
+                _mover.Jump();
             }
             if (_basePunchAction.triggered)
             {
@@ -70,11 +62,6 @@ namespace JJBA.Control
         {
             _input = _moveAction.ReadValue<Vector2>();
             _mover.MovePlayer(_input.y, _input.x);
-        }
-
-        private void ResetJump()
-        {
-            _readyToJump = true;
         }
     }
 }

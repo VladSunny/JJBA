@@ -16,6 +16,10 @@ namespace JJBA.Movement
         [SerializeField] private float airMultiplier = 0.4f;
         [SerializeField] private float turnSpeed = 5f;
 
+        [Header("Jump")]
+        [SerializeField] private float jumpCooldown = 0.25f;
+        private bool _readyToJump = true;
+
         [Header("Ground Check")]
         [SerializeField] private float playerHeight = 2f;
         [SerializeField] private LayerMask whatIsGround;
@@ -62,31 +66,9 @@ namespace JJBA.Movement
                 _animator.SetBool(FallingAV, true);
             }
 
-            Debug.Log(_lastHorizontal);
             _turn = Mathf.Lerp(_turn, _lastHorizontal, turnSpeed * Time.deltaTime);
 
             SpeedControl();
-        }
-
-        private bool CheckGround()
-        {
-            return Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
-        }
-        
-        private void OnTriggerEnter(Collider other)
-        {
-            if (((1 << other.gameObject.layer) & whatIsGround) != 0)
-            {
-                _boxGrounded = true;
-            }
-        }
-        
-        private void OnTriggerExit(Collider other)
-        {
-            if (((1 << other.gameObject.layer) & whatIsGround) != 0)
-            {
-                _boxGrounded = false;
-            }
         }
 
         public void MovePlayer(float vertical, float horizontal)
@@ -117,14 +99,24 @@ namespace JJBA.Movement
         
         public void Jump()
         {
-            _animator.SetTrigger(JumpAV);
+            if (!_readyToJump) return;
+
             if (_grounded)
             {
+                _animator.SetTrigger(JumpAV);
                 _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
                 _rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+                _readyToJump = false;
+                Invoke(nameof(ResetJump), jumpCooldown);
             }
         }
-        
+
+        public bool isGrounded()
+        {
+            return _grounded;
+        }
+
         private void SpeedControl()
         {
             Vector3 flatVel = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
@@ -136,9 +128,30 @@ namespace JJBA.Movement
             }
         }
 
-        public bool isGrounded()
+        private void ResetJump()
         {
-            return _grounded;
+            _readyToJump = true;
+        }
+        
+         private bool CheckGround()
+        {
+            return Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        }
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (((1 << other.gameObject.layer) & whatIsGround) != 0)
+            {
+                _boxGrounded = true;
+            }
+        }
+        
+        private void OnTriggerExit(Collider other)
+        {
+            if (((1 << other.gameObject.layer) & whatIsGround) != 0)
+            {
+                _boxGrounded = false;
+            }
         }
     }
 }
