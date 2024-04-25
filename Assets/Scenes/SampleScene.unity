@@ -606,6 +606,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 401897707908908567, guid: 9e2c7cc52ea4a2c4dafcf51619247823, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4487207373681482167, guid: 9e2c7cc52ea4a2c4dafcf51619247823, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -4018,14 +4022,6 @@ PrefabInstance:
     - target: {fileID: 461053245331682738, guid: 1e5cfedb56769ac2daf198338d8f0148, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 559091471505643483, guid: 1e5cfedb56769ac2daf198338d8f0148, type: 3}
-      propertyPath: basePunchCooldown
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 559091471505643483, guid: 1e5cfedb56769ac2daf198338d8f0148, type: 3}
-      propertyPath: basePunchComboTime
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7576032334534356615, guid: 1e5cfedb56769ac2daf198338d8f0148, type: 3}
       propertyPath: m_LocalPosition.x

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using JJBA.Core;
 using JJBA.Combat.Events;
+using JJBA.Combat;
 
 namespace JJBA.Combat
 {
@@ -32,7 +33,9 @@ namespace JJBA.Combat
         private DynamicHitBox _dynamicHitBox;
         private Animator _animator;
         private StandlessEvents _standlessEvents;
-        private static readonly int Punch = Animator.StringToHash("basePunch");
+
+        private static readonly int BasePunchesNumberAV = Animator.StringToHash("basePunchesNumber");
+        private static readonly int PunchAV = Animator.StringToHash("basePunch");
 
         void Start()
         {
@@ -64,7 +67,9 @@ namespace JJBA.Combat
         {
             if (!_readyToPunch) return;
 
-            _animator.SetTrigger(Punch);
+            _animator.SetFloat(BasePunchesNumberAV, (float)(_basePunchCounter % 2));
+
+            _animator.SetTrigger(PunchAV);
 
             if (_basePunchComboTimer < basePunchComboTime)
             {
@@ -89,6 +94,9 @@ namespace JJBA.Combat
             _dynamicHitBox.CreateHitBox(Vector3.forward * 1f, new Vector3(1f, 1f, 1f), (collider) =>
             {
                 Debug.Log(collider);
+                
+                if (collider.transform.GetComponent<Health>() != null && collider.transform != this.transform)
+                    collider.transform.GetComponent<Health>().Damage(10f);
             }, drawHitBox);
         }
 
