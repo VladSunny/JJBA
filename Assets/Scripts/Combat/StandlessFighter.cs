@@ -11,37 +11,42 @@ using JJBA.Combat;
 namespace JJBA.Combat
 {
     [RequireComponent(typeof(DynamicHitBox))]
+    [RequireComponent(typeof(Rigidbody))]
 
-    public class CharacterFighter : MonoBehaviour
+    public class StandlessFighter : MonoBehaviour
     {
-        [Header("Standless Combat")]
+        [Header("Base Punches settings")]
         [SerializeField] private float basePunchCooldown = 0.5f;
         [SerializeField] private float basePunchComboCooldown = 2f;
         [SerializeField] private float basePunchComboTime = 1f;
         [SerializeField] private int basePunchesNumber = 5;
-        [SerializeField] private float basePunchStrong = 20f;
+        [SerializeField] private float basePunchForce = 20f;
+        [SerializeField] private float basePunchMovementForce = 10f;
 
+        [Header("Dependencies")]
+        public Transform characterTransform;
+
+        [Header("Debug")]
+        [SerializeField] private bool drawHitBox;
         [SerializeField]
         [SeeOnly]
         private int _basePunchCounter = 0;
 
-        private float _basePunchComboTimer = 0f;
-        private bool _readyToPunch = true;
-        
-
-        [Header("Debug")]
-        [SerializeField] private bool drawHitBox;
-        
         private DynamicHitBox _dynamicHitBox;
         private Animator _animator;
+        private Rigidbody _rigidbody;
         private StandlessEvents _standlessEvents;
 
         private static readonly int BasePunchesNumberAV = Animator.StringToHash("basePunchesNumber");
         private static readonly int PunchAV = Animator.StringToHash("basePunch");
 
+        private float _basePunchComboTimer = 0f;
+        private bool _readyToPunch = true;
+
         void Start()
         {
             _animator = GetComponentInChildren<Animator>();
+            _rigidbody = GetComponent<Rigidbody>();
             _dynamicHitBox = GetComponentInChildren<DynamicHitBox>();
             _standlessEvents = GetComponentInChildren<StandlessEvents>();
 
@@ -106,7 +111,9 @@ namespace JJBA.Combat
                     collider.transform.GetComponent<Health>().Damage(10f);
 
                 if (enemyRigidbody != null)
-                    enemyRigidbody.AddForce(_dynamicHitBox.GetCharacterTransform().forward * basePunchStrong, ForceMode.Impulse);
+                    enemyRigidbody.AddForce(characterTransform.forward * basePunchForce, ForceMode.Impulse);
+
+                _rigidbody.AddForce(characterTransform.forward * basePunchMovementForce, ForceMode.Impulse);
 
             }, drawHitBox);
         }
