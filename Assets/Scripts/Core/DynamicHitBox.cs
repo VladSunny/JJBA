@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-using JJBA.Combat;
-
 namespace JJBA.Core
 {
     public class DynamicHitBox : MonoBehaviour
@@ -92,5 +90,7 @@ namespace JJBA.Core
                 DebugDrawBox(boxPosition, boxSize, boxRotation, Color.blue, 0);
             }
         }
+
+        public Transform GetCharacterTransform() { return characterTransform; }
     }
 }

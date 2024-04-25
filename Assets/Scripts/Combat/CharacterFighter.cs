@@ -11,6 +11,7 @@ using JJBA.Combat;
 namespace JJBA.Combat
 {
     [RequireComponent(typeof(DynamicHitBox))]
+
     public class CharacterFighter : MonoBehaviour
     {
         [Header("Standless Combat")]
@@ -18,6 +19,7 @@ namespace JJBA.Combat
         [SerializeField] private float basePunchComboCooldown = 2f;
         [SerializeField] private float basePunchComboTime = 1f;
         [SerializeField] private int basePunchesNumber = 5;
+        [SerializeField] private float basePunchStrong = 20f;
 
         [SerializeField]
         [SeeOnly]
@@ -93,10 +95,19 @@ namespace JJBA.Combat
         private void DoPunch() {
             _dynamicHitBox.CreateHitBox(Vector3.forward * 1f, new Vector3(1f, 1f, 1f), (collider) =>
             {
+                if (collider.transform == this.transform) return;
+
                 Debug.Log(collider);
-                
-                if (collider.transform.GetComponent<Health>() != null && collider.transform != this.transform)
+
+                Health enemyHealth = collider.transform.GetComponent<Health>();
+                Rigidbody enemyRigidbody = collider.transform.GetComponent<Rigidbody>();
+
+                if (enemyHealth != null)
                     collider.transform.GetComponent<Health>().Damage(10f);
+
+                if (enemyRigidbody != null)
+                    enemyRigidbody.AddForce(_dynamicHitBox.GetCharacterTransform().forward * basePunchStrong, ForceMode.Impulse);
+
             }, drawHitBox);
         }
 
