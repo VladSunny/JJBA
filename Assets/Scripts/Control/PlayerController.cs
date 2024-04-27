@@ -22,6 +22,7 @@ namespace JJBA.Control
         private InputAction _moveAction;
         private InputAction _jumpAction;
         private InputAction _basePunchAction;
+        private InputAction _runningAction;
         private Vector2 _input;
 
         private void Start()
@@ -34,6 +35,7 @@ namespace JJBA.Control
             _moveAction = _playerInput.actions["Movement"];
             _jumpAction = _playerInput.actions["Jump"];
             _basePunchAction = _playerInput.actions["BasePunch"];
+            _runningAction = _playerInput.actions["Run"];
         }
 
         private void Update()
@@ -48,6 +50,10 @@ namespace JJBA.Control
 
         private void MyInput()
         {
+            if (_runningAction.triggered)
+            {
+                _mover.SetRunning(!_mover.IsRunning());
+            }
             if (_jumpAction.triggered)
             {
                 _mover.Jump();

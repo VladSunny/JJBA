@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using JJBA.Core;
 using JJBA.Combat.Events;
-using JJBA.Combat;
+using JJBA.Movement;
 
 namespace JJBA.Combat
 {
@@ -22,6 +22,7 @@ namespace JJBA.Combat
         [SerializeField] private int basePunchesNumber = 5;
         [SerializeField] private float basePunchForce = 20f;
         [SerializeField] private float basePunchMovementForce = 10f;
+        [SerializeField] private bool stopRunning = true;
 
         [Header("Dependencies")]
         public Transform characterTransform;
@@ -36,6 +37,7 @@ namespace JJBA.Combat
         private Animator _animator;
         private Rigidbody _rigidbody;
         private StandlessEvents _standlessEvents;
+        private Mover _mover;
 
         private static readonly int BasePunchesNumberAV = Animator.StringToHash("basePunchesNumber");
         private static readonly int PunchAV = Animator.StringToHash("basePunch");
@@ -49,6 +51,7 @@ namespace JJBA.Combat
             _rigidbody = GetComponent<Rigidbody>();
             _dynamicHitBox = GetComponentInChildren<DynamicHitBox>();
             _standlessEvents = GetComponentInChildren<StandlessEvents>();
+            _mover = GetComponent<Mover>();
 
             _standlessEvents.onBasePunch.AddListener(DoPunch);
         }
@@ -73,6 +76,8 @@ namespace JJBA.Combat
         public void BasePunch()
         {
             if (!_readyToPunch) return;
+
+            if (_mover != null && stopRunning) _mover.SetRunning(false);
 
             _animator.SetFloat(BasePunchesNumberAV, (float)(_basePunchCounter % 2));
 

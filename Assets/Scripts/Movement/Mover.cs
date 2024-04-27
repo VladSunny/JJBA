@@ -13,8 +13,8 @@ namespace JJBA.Movement
         [SerializeField] private float moveSpeed = 7f;
         [SerializeField] private float groundDrag = 5f;
         [SerializeField] private float turnSpeed = 5f;
-
         [SerializeField] private float runMultiplier = 2f;
+        [SerializeField] private float smoothingFactor = 0.5f;
 
         [Header("Jump")]
         [SerializeField] private float jumpCooldown = 0.25f;
@@ -45,8 +45,24 @@ namespace JJBA.Movement
 
         private float _turn;
         private float _lastHorizontal;
-
         private bool _isRunning = false;
+        private Vector3 moveForce;
+        private float _runningState = 0f;
+
+        public void SetRunning(bool running)
+        {
+            _isRunning = running;
+        }
+
+        public bool IsRunning()
+        {
+            return _isRunning;
+        }
+
+        public bool IsGrounded()
+        {
+            return _grounded;
+        }
 
         void Start()
         {
@@ -57,7 +73,7 @@ namespace JJBA.Movement
         }
 
         private void Update()
-        {   
+        {
             _grounded = CheckGround() || _boxGrounded;
 
             if (_grounded)
@@ -71,7 +87,15 @@ namespace JJBA.Movement
                 _animator.SetBool(FallingAV, true);
             }
 
+            // _animator.SetBool(RunAV, _isRunning);
+            _animator.SetFloat(RunAV, _runningState);
+
             _turn = Mathf.Lerp(_turn, _lastHorizontal, turnSpeed * Time.deltaTime);
+            
+            if (_isRunning)
+                _runningState = Mathf.Lerp(_runningState, 1f, smoothingFactor * Time.deltaTime);
+            else
+                _runningState = Mathf.Lerp(_runningState, 0f, smoothingFactor * Time.deltaTime);
 
             SpeedControl();
         }
@@ -83,12 +107,11 @@ namespace JJBA.Movement
 
             _animator.SetFloat(TurnAV, _turn);
 
+            moveForce = _moveDirection * (moveSpeed * 10f);
+
             if (_grounded)
             {
-                Vector3 moveForce = _moveDirection * (moveSpeed * 10f);
-                
                 if (_isRunning) moveForce *= runMultiplier;
-
                 _rb.AddForce(moveForce, ForceMode.Force);
 
                 if (vertical < -0.01)
@@ -103,7 +126,7 @@ namespace JJBA.Movement
             }
 
             else if (!_grounded)
-                _rb.AddForce(_moveDirection * (moveSpeed * 10f * airMultiplier), ForceMode.Force);
+                _rb.AddForce(moveForce * airMultiplier, ForceMode.Force);
         }
         
         public void Jump()
@@ -119,11 +142,6 @@ namespace JJBA.Movement
                 _readyToJump = false;
                 Invoke(nameof(ResetJump), jumpCooldown);
             }
-        }
-
-        public bool isGrounded()
-        {
-            return _grounded;
         }
 
         private void SpeedControl()
@@ -142,7 +160,7 @@ namespace JJBA.Movement
             _readyToJump = true;
         }
         
-         private bool CheckGround()
+        private bool CheckGround()
         {
             return Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
         }
