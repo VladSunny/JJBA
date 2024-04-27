@@ -12,12 +12,14 @@ namespace JJBA.Movement
         [Header("Movement")]
         [SerializeField] private float moveSpeed = 7f;
         [SerializeField] private float groundDrag = 5f;
-        [SerializeField] private float jumpForce = 12f;
-        [SerializeField] private float airMultiplier = 0.4f;
         [SerializeField] private float turnSpeed = 5f;
+
+        [SerializeField] private float runMultiplier = 2f;
 
         [Header("Jump")]
         [SerializeField] private float jumpCooldown = 0.25f;
+        [SerializeField] private float jumpForce = 12f;
+        [SerializeField] private float airMultiplier = 0.4f;
         private bool _readyToJump = true;
 
         [Header("Ground Check")]
@@ -35,6 +37,7 @@ namespace JJBA.Movement
         private static readonly int TurnAV = Animator.StringToHash("turn");
         private static readonly int WalkSpeedAV = Animator.StringToHash("walkSpeed");
         private static readonly int WalkAV = Animator.StringToHash("walk");
+        private static readonly int RunAV = Animator.StringToHash("isRunning");
 
         private Vector3 _moveDirection;
         private Rigidbody _rb;
@@ -42,6 +45,8 @@ namespace JJBA.Movement
 
         private float _turn;
         private float _lastHorizontal;
+
+        private bool _isRunning = false;
 
         void Start()
         {
@@ -80,7 +85,11 @@ namespace JJBA.Movement
 
             if (_grounded)
             {
-                _rb.AddForce(_moveDirection * (moveSpeed * 10f), ForceMode.Force);
+                Vector3 moveForce = _moveDirection * (moveSpeed * 10f);
+                
+                if (_isRunning) moveForce *= runMultiplier;
+
+                _rb.AddForce(moveForce, ForceMode.Force);
 
                 if (vertical < -0.01)
                     _animator.SetFloat(WalkSpeedAV, -1);
