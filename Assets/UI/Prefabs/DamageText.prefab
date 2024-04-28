@@ -170,8 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d1daa7eb960ce8096985ad4f0de82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomizePositionFrom: {x: -1, y: -1, z: 0}
-  randomizePositionTo: {x: 1, y: 1, z: 0}
+  randomizePositionFrom: {x: -1, y: 0.3, z: -0.5}
+  randomizePositionTo: {x: 1, y: 1.5, z: 0.5}
 --- !u!1183024399 &1411565956735358814
 LookAtConstraint:
   m_ObjectHideFlags: 0

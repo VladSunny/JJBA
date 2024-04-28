@@ -38,8 +38,7 @@ namespace JJBA.Core
         }
 
 
-        private void DebugDrawBox(Vector3 position, Vector3 boxSize, Quaternion orientation, Color color,
-            float duration)
+        private void DebugDrawBox(Vector3 position, Vector3 boxSize, Quaternion orientation, Color color, float duration)
         {
             Vector3 halfBoxSize = boxSize / 2.0f;
 
