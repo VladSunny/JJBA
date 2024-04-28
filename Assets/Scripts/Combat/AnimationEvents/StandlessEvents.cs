@@ -8,7 +8,7 @@ namespace JJBA.Combat.Events {
     {
         public UnityEvent onBasePunch;
 
-        void BasePunch() {
+        public void BasePunch() {
             onBasePunch.Invoke();
         }
     }

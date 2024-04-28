@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2032473796409773762}
   - component: {fileID: 559091471505643483}
   - component: {fileID: 3342817729863405261}
+  - component: {fileID: 2719060600135760079}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -95,10 +96,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2.37
   groundDrag: 5
+  turnSpeed: 5
+  runMultiplier: 5
+  smoothingFactor: 4
+  jumpCooldown: 0.25
   jumpForce: 7
   airMultiplier: 0.4
-  turnSpeed: 5
-  jumpCooldown: 0.25
   playerHeight: 1.5
   whatIsGround:
     serializedVersion: 2
@@ -146,7 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6fd89e68b4d37240a56827afd0e7255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onChangeHealth:
+  onHealthDamaged:
+    m_PersistentCalls:
+      m_Calls: []
+  onHealthHealed:
     m_PersistentCalls:
       m_Calls: []
   maxHealth: 100
@@ -212,8 +218,12 @@ MonoBehaviour:
   basePunchComboCooldown: 2
   basePunchComboTime: 3
   basePunchesNumber: 5
-  _basePunchCounter: 0
+  basePunchForce: 5
+  basePunchMovementForce: 0
+  stopRunning: 1
+  characterTransform: {fileID: 7089813876926635962}
   drawHitBox: 1
+  _basePunchCounter: 0
 --- !u!136 &3342817729863405261
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -237,6 +247,19 @@ CapsuleCollider:
   m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2719060600135760079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461053245331682738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a98d7942ca571d7a32232dde006b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textPopupPrefab: {fileID: 4255436815127969719, guid: 2f98d01073d3d1ec6b7e9891231ce263, type: 3}
 --- !u!1 &1851364260543901302
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6254828434534869561}
   m_Layer: 0
-  m_Name: PlayerObj
+  m_Name: CharacterObj
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

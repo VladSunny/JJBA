@@ -103,9 +103,10 @@ namespace JJBA.Combat
         }
 
         private void DoPunch() {
+            Debug.Log("Punching");
             _dynamicHitBox.CreateHitBox(Vector3.forward * 1f, new Vector3(1f, 1f, 1f), (collider) =>
             {
-                if (collider.transform == this.transform) return;
+                if (collider.transform == this.transform || !(collider is CapsuleCollider capsuleCollider)) return;
 
                 Debug.Log(collider);
 

@@ -5,11 +5,13 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 namespace JJBA.Combat
 {
     public class Health : MonoBehaviour
     {
-        public UnityEvent onChangeHealth;
+        public UnityEvent<float> onHealthDamaged;
+        public UnityEvent<float> onHealthHealed;
 
         [Header("Settings")]
         [SerializeField] private float maxHealth = 100f;
@@ -43,14 +45,15 @@ namespace JJBA.Combat
 
         public void Damage(float damage)
         {
+            Debug.Log("Damaged by: " + damage);
             health = Mathf.Max(0, health - damage);
-            onChangeHealth.Invoke();
+            onHealthDamaged.Invoke(damage);
         }
 
         public void Heal(float heal)
         {
             health = Mathf.Min(health + heal, maxHealth);
-            onChangeHealth.Invoke();
+            onHealthHealed.Invoke(heal);
         }
     }
 }

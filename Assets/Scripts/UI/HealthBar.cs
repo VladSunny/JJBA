@@ -18,8 +18,9 @@ namespace JJBA.UI
         public Image backHealthBar;
 
         private void Start()
-        {
-            healthComponent.onChangeHealth.AddListener(HealthChanged);
+        {     
+            healthComponent.onHealthDamaged.AddListener(HealthChanged);
+            healthComponent.onHealthHealed.AddListener(HealthChanged);
         }
 
         private void Update()
@@ -53,7 +54,7 @@ namespace JJBA.UI
             }
         }
 
-        private void HealthChanged()
+        private void HealthChanged(float damage)
         {
             _lerpTimer = 0f;
         }
