@@ -21,7 +21,6 @@ namespace JJBA.Combat
         [SerializeField] private float basePunchComboTime = 1f;
         [SerializeField] private int basePunchesNumber = 5;
         [SerializeField] private float basePunchForce = 20f;
-        [SerializeField] private float basePunchMovementForce = 10f;
         [SerializeField] private bool stopRunning = true;
 
         [Header("Dependencies")]
@@ -119,9 +118,6 @@ namespace JJBA.Combat
 
                 if (enemyRigidbody != null)
                     enemyRigidbody.AddForce(characterTransform.forward * basePunchForce, ForceMode.Impulse);
-
-                _rigidbody.AddForce(characterTransform.forward * basePunchMovementForce, ForceMode.Impulse);
-
             }, drawHitBox);
         }
 
