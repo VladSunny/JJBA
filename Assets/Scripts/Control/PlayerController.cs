@@ -10,15 +10,15 @@ using UnityEngine.InputSystem;
 namespace JJBA.Control
 {
     [RequireComponent(typeof(PlayerInput))]
-    [RequireComponent (typeof(StandlessFighter))]
-    [RequireComponent (typeof(Mover))]
+    [RequireComponent(typeof(StandlessFighter))]
+    [RequireComponent(typeof(Mover))]
     public class PlayerController : MonoBehaviour
     {
-        
+
         private PlayerInput _playerInput;
         private Mover _mover;
         private StandlessFighter _fighter;
-        
+
         private InputAction _moveAction;
         private InputAction _jumpAction;
         private InputAction _basePunchAction;
@@ -29,9 +29,8 @@ namespace JJBA.Control
         {
             _mover = GetComponent<Mover>();
             _fighter = GetComponent<StandlessFighter>();
-            
             _playerInput = GetComponent<PlayerInput>();
-            
+
             _moveAction = _playerInput.actions["Movement"];
             _jumpAction = _playerInput.actions["Jump"];
             _basePunchAction = _playerInput.actions["BasePunch"];

@@ -56,7 +56,8 @@ namespace JJBA.Combat
             _standlessEvents.onBasePunch.AddListener(DoPunch);
         }
 
-        private void Update() {
+        private void Update()
+        {
             if (_basePunchCounter > 0)
             {
                 if (_basePunchComboTimer <= basePunchComboTime + 0.1f)
@@ -102,8 +103,8 @@ namespace JJBA.Combat
             }
         }
 
-        private void DoPunch() {
-            Debug.Log("Punching");
+        private void DoPunch()
+        {
             _dynamicHitBox.CreateHitBox(Vector3.forward * 1f, new Vector3(1f, 1f, 1f), (collider) =>
             {
                 if (collider.transform == this.transform || !(collider is CapsuleCollider capsuleCollider)) return;
@@ -124,7 +125,8 @@ namespace JJBA.Combat
             }, drawHitBox);
         }
 
-        private void ResetPunch() {
+        private void ResetPunch()
+        {
             _readyToPunch = true;
         }
     }

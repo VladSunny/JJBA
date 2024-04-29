@@ -23,8 +23,6 @@ namespace JJBA.UI
 
         public void createPopup(float damage)
         {
-            Debug.Log("Popup: " + damage);
-
             if (damagePopupPrefab == null)
             {
                 Debug.LogError("No text popup prefab set on ShowDamagePopup");

@@ -13,14 +13,16 @@ namespace JJBA.UI
 
         [SerializeField] private float chipSpeed = 2f;
         [SerializeField] private Health healthComponent;
+        [SerializeField] private bool destroyAfterDying = true;
 
         public Image frontHealthBar;
         public Image backHealthBar;
 
         private void Start()
-        {     
+        {
             healthComponent.onHealthDamaged.AddListener(HealthChanged);
             healthComponent.onHealthHealed.AddListener(HealthChanged);
+            healthComponent.onDied.AddListener(Dissapear);
         }
 
         private void Update()
@@ -57,6 +59,11 @@ namespace JJBA.UI
         private void HealthChanged(float damage)
         {
             _lerpTimer = 0f;
+        }
+
+        private void Dissapear()
+        {
+            if (destroyAfterDying) Destroy(gameObject);
         }
     }
 };

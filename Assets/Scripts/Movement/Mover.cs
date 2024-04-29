@@ -7,6 +7,7 @@ namespace JJBA.Movement
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(BoxCollider))]
+    [RequireComponent(typeof(CapsuleCollider))]
     public class Mover : MonoBehaviour
     {
         [Header("Movement")]
@@ -87,11 +88,10 @@ namespace JJBA.Movement
                 _animator.SetBool(FallingAV, true);
             }
 
-            // _animator.SetBool(RunAV, _isRunning);
             _animator.SetFloat(RunAV, _runningState);
 
             _turn = Mathf.Lerp(_turn, _lastHorizontal, turnSpeed * Time.deltaTime);
-            
+
             if (_isRunning)
                 _runningState = Mathf.Lerp(_runningState, 1f, smoothingFactor * Time.deltaTime);
             else
@@ -128,7 +128,7 @@ namespace JJBA.Movement
             else if (!_grounded)
                 _rb.AddForce(moveForce * airMultiplier, ForceMode.Force);
         }
-        
+
         public void Jump()
         {
             if (!_readyToJump) return;
@@ -159,12 +159,12 @@ namespace JJBA.Movement
         {
             _readyToJump = true;
         }
-        
+
         private bool CheckGround()
         {
             return Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
         }
-        
+
         private void OnTriggerEnter(Collider other)
         {
             if (((1 << other.gameObject.layer) & whatIsGround) != 0)
@@ -172,7 +172,7 @@ namespace JJBA.Movement
                 _boxGrounded = true;
             }
         }
-        
+
         private void OnTriggerExit(Collider other)
         {
             if (((1 << other.gameObject.layer) & whatIsGround) != 0)

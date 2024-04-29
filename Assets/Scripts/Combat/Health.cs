@@ -12,6 +12,7 @@ namespace JJBA.Combat
     {
         public UnityEvent<float> onHealthDamaged;
         public UnityEvent<float> onHealthHealed;
+        public UnityEvent onDied;
 
         [Header("Settings")]
         [SerializeField] private float maxHealth = 100f;
@@ -21,7 +22,7 @@ namespace JJBA.Combat
         [SerializeField] private float debugHeal = 5f;
         [SerializeField] private KeyCode decreaseHealth = KeyCode.Alpha1;
         [SerializeField] private KeyCode increaseHealth = KeyCode.Alpha2;
-        
+
         [Header("Health")]
         [SerializeField]
         [SeeOnly]
@@ -38,22 +39,28 @@ namespace JJBA.Combat
         private void Update()
         {
             if (Input.GetKeyDown(decreaseHealth))
-                this.Damage(debugDamage);
+                Damage(debugDamage);
             if (Input.GetKeyDown(increaseHealth))
-                this.Heal(debugHeal);
+                Heal(debugHeal);
         }
 
         public void Damage(float damage)
         {
-            Debug.Log("Damaged by: " + damage);
             health = Mathf.Max(0, health - damage);
             onHealthDamaged.Invoke(damage);
+
+            if (health <= 0) Die();
         }
 
         public void Heal(float heal)
         {
             health = Mathf.Min(health + heal, maxHealth);
             onHealthHealed.Invoke(heal);
+        }
+
+        private void Die()
+        {
+            onDied.Invoke();
         }
     }
 }
