@@ -39,7 +39,7 @@ namespace JJBA.Control
         
         private void Start()
         {
-            Initialize();
+            // Initialize();
         }
 
         private void Update()

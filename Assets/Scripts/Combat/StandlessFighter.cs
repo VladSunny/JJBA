@@ -56,7 +56,7 @@ namespace JJBA.Combat
 
         void Start()
         {
-            Initialize();
+            // Initialize();
         }
 
         private void Update()

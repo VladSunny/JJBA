@@ -74,7 +74,7 @@ namespace JJBA.Movement
 
         void Start()
         {
-            Initialize();
+            // Initialize();
         }
 
         private void Update()

@@ -11,7 +11,7 @@ namespace JJBA.Ragdoll
         private List<Rigidbody> rigidbodies;
         private List<Collider> colliders;
 
-        void Start()
+        void Awake()
         {
             rigidbodies = new List<Rigidbody>(GetComponentsInChildren<Rigidbody>());
             colliders = new List<Collider>(GetComponentsInChildren<Collider>());

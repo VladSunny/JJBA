@@ -21,6 +21,8 @@ namespace JJBA.Ragdoll
 
         public void Initialize()
         {
+            Debug.Log("RagdollSystem.Initialize()");
+
             _characterCollider = GetComponent<CapsuleCollider>();
             _characterRigidbody = GetComponent<Rigidbody>();
             _animator = GetComponentInChildren<Animator>();
@@ -35,11 +37,6 @@ namespace JJBA.Ragdoll
 
             _ragdollHandler.Disable();
             if (_health != null) _health.onDied.AddListener(Fall);
-        }
-
-        void Start()
-        {
-            Initialize();
         }
 
 
