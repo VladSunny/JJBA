@@ -10,6 +10,13 @@ namespace JJBA.Ragdoll
 
     public class RagdollSystem : MonoBehaviour
     {
+        [Header ("Dependencies")]
+        [SerializeField] private Transform _hipsBone;
+
+        [Header ("Debug Keys")]
+        [SerializeField] private KeyCode _fallKey = KeyCode.R;
+        [SerializeField] private KeyCode _standKey = KeyCode.T;
+
         private RagdollHandler _ragdollHandler;
         private CapsuleCollider _characterCollider;
         private Rigidbody _characterRigidbody;
@@ -21,12 +28,12 @@ namespace JJBA.Ragdoll
 
         public void Initialize()
         {
-            Debug.Log("RagdollSystem.Initialize()");
-
             _characterCollider = GetComponent<CapsuleCollider>();
             _characterRigidbody = GetComponent<Rigidbody>();
             _animator = GetComponentInChildren<Animator>();
             _health = GetComponent<Health>();
+
+            Debug.Log(_hipsBone);
 
             _ragdollHandler = GetComponentInChildren<RagdollHandler>();
             if (_ragdollHandler == null)
@@ -39,6 +46,11 @@ namespace JJBA.Ragdoll
             if (_health != null) _health.onDied.AddListener(Fall);
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(_fallKey)) Fall();
+            if (Input.GetKeyDown(_standKey)) Stand();
+        }
 
         public void Fall()
         {
@@ -49,6 +61,22 @@ namespace JJBA.Ragdoll
             if (_animator != null) _animator.enabled = false;
 
             _ragdollHandler.Enable();
+        }
+
+        public void Stand()
+        {
+            isFall = false;
+
+            _ragdollHandler.Disable();
+
+            _characterCollider.enabled = true;
+            _characterRigidbody.isKinematic = false;
+            if (_animator != null) _animator.enabled = true;
+        }
+
+        private void AdjustToHipsPosition()
+        {
+            transform.position = _hipsBone.position;
         }
     }
 
