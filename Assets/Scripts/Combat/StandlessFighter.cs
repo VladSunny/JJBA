@@ -44,15 +44,19 @@ namespace JJBA.Combat
         private float _basePunchComboTimer = 0f;
         private bool _readyToPunch = true;
 
-        void Start()
+        public void Initialize()
         {
             _animator = GetComponentInChildren<Animator>();
             _rigidbody = GetComponent<Rigidbody>();
             _dynamicHitBox = GetComponentInChildren<DynamicHitBox>();
             _standlessEvents = GetComponentInChildren<StandlessEvents>();
             _mover = GetComponent<Mover>();
-
             _standlessEvents.onBasePunch.AddListener(DoPunch);
+        }
+
+        void Start()
+        {
+            Initialize();
         }
 
         private void Update()

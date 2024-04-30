@@ -28,12 +28,18 @@ namespace JJBA.Combat
         [SeeOnly]
         private float health;
 
-        public float GetHealth() { return health; }
-        public float GetMaxHealth() { return maxHealth; }
+        public float GetHealth() => health;
+        public float GetMaxHealth() => maxHealth;
+
+
+        public void Initialize()
+        {
+            health = maxHealth;
+        }
 
         private void Start()
         {
-            health = maxHealth;
+            Initialize();
         }
 
         private void Update()

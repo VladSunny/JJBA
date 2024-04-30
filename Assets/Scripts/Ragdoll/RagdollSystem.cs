@@ -19,7 +19,7 @@ namespace JJBA.Ragdoll
 
         public bool IsFall() { return isFall; }
 
-        void Start()
+        public void Initialize()
         {
             _characterCollider = GetComponent<CapsuleCollider>();
             _characterRigidbody = GetComponent<Rigidbody>();
@@ -35,6 +35,11 @@ namespace JJBA.Ragdoll
 
             _ragdollHandler.Disable();
             if (_health != null) _health.onDied.AddListener(Fall);
+        }
+
+        void Start()
+        {
+            Initialize();
         }
 
 

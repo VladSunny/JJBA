@@ -25,7 +25,7 @@ namespace JJBA.Control
         private InputAction _runningAction;
         private Vector2 _input;
 
-        private void Start()
+        public void Initialize()
         {
             _mover = GetComponent<Mover>();
             _fighter = GetComponent<StandlessFighter>();
@@ -35,6 +35,11 @@ namespace JJBA.Control
             _jumpAction = _playerInput.actions["Jump"];
             _basePunchAction = _playerInput.actions["BasePunch"];
             _runningAction = _playerInput.actions["Run"];
+        }
+        
+        private void Start()
+        {
+            Initialize();
         }
 
         private void Update()

@@ -65,12 +65,16 @@ namespace JJBA.Movement
             return _grounded;
         }
 
-        void Start()
+        public void Initialize()
         {
             _rb = GetComponent<Rigidbody>();
             _animator = GetComponentInChildren<Animator>();
-
             _rb.freezeRotation = true;
+        }
+
+        void Start()
+        {
+            Initialize();
         }
 
         private void Update()
