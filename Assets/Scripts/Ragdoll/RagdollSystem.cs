@@ -10,6 +10,8 @@ namespace JJBA.Ragdoll
 
     public class RagdollSystem : MonoBehaviour
     {
+        [SerializeField] private float standDelay = 0.1f;
+
         [Header("Dependencies")]
         public Transform hipsBone;
         [SerializeField] private LayerMask groundLayer;
@@ -17,7 +19,6 @@ namespace JJBA.Ragdoll
         [Header("Debug Keys")]
         [SerializeField] private KeyCode _fallKey = KeyCode.R;
         [SerializeField] private KeyCode _standKey = KeyCode.T;
-        [SerializeField] private KeyCode _testKey = KeyCode.Y;
 
         private RagdollHandler _ragdollHandler;
         private CapsuleCollider _characterCollider;
@@ -50,14 +51,6 @@ namespace JJBA.Ragdoll
         {
             if (Input.GetKeyDown(_fallKey)) Fall();
             if (Input.GetKeyDown(_standKey)) Stand();
-            if (Input.GetKeyDown(_testKey))
-            {
-                _ragdollHandler.Disable();
-                _characterCollider.enabled = true;
-                _characterRigidbody.isKinematic = false;
-                if (_animator != null) _animator.enabled = true;
-                isFall = false;
-            }
         }
 
         public void Fall()
@@ -77,7 +70,7 @@ namespace JJBA.Ragdoll
 
             isFall = false;
 
-            Invoke(nameof(ActivateCharacter), 0.1f);
+            Invoke(nameof(ActivateCharacter), standDelay);
 
         }
 

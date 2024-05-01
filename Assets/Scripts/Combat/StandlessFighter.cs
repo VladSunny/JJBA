@@ -16,6 +16,7 @@ namespace JJBA.Combat
     public class StandlessFighter : MonoBehaviour
     {
         [Header("Base Punches settings")]
+        [SerializeField] private float basePunchDamage = 30f;
         [SerializeField] private float basePunchCooldown = 0.5f;
         [SerializeField] private float basePunchComboCooldown = 2f;
         [SerializeField] private float basePunchComboTime = 1f;
@@ -118,7 +119,7 @@ namespace JJBA.Combat
                 Rigidbody enemyRigidbody = collider.transform.GetComponent<Rigidbody>();
 
                 if (enemyHealth != null)
-                    collider.transform.GetComponent<Health>().Damage(10f);
+                    collider.transform.GetComponent<Health>().Damage(basePunchDamage);
 
                 if (enemyRigidbody != null)
                     enemyRigidbody.AddForce(characterTransform.forward * basePunchForce, ForceMode.Impulse);

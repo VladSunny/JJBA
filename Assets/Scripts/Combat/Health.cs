@@ -52,6 +52,8 @@ namespace JJBA.Combat
 
         public void Damage(float damage)
         {
+            if (health <= 0) return;
+
             health = Mathf.Max(0, health - damage);
             onHealthDamaged.Invoke(damage);
 
