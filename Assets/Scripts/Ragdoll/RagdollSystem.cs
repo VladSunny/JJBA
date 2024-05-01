@@ -10,12 +10,14 @@ namespace JJBA.Ragdoll
 
     public class RagdollSystem : MonoBehaviour
     {
-        [Header ("Dependencies")]
-        [SerializeField] private Transform _hipsBone;
+        [Header("Dependencies")]
+        public Transform hipsBone;
+        [SerializeField] private LayerMask groundLayer;
 
-        [Header ("Debug Keys")]
+        [Header("Debug Keys")]
         [SerializeField] private KeyCode _fallKey = KeyCode.R;
         [SerializeField] private KeyCode _standKey = KeyCode.T;
+        [SerializeField] private KeyCode _testKey = KeyCode.Y;
 
         private RagdollHandler _ragdollHandler;
         private CapsuleCollider _characterCollider;
@@ -33,8 +35,6 @@ namespace JJBA.Ragdoll
             _animator = GetComponentInChildren<Animator>();
             _health = GetComponent<Health>();
 
-            Debug.Log(_hipsBone);
-
             _ragdollHandler = GetComponentInChildren<RagdollHandler>();
             if (_ragdollHandler == null)
             {
@@ -50,34 +50,78 @@ namespace JJBA.Ragdoll
         {
             if (Input.GetKeyDown(_fallKey)) Fall();
             if (Input.GetKeyDown(_standKey)) Stand();
+            if (Input.GetKeyDown(_testKey))
+            {
+                _ragdollHandler.Disable();
+                _characterCollider.enabled = true;
+                _characterRigidbody.isKinematic = false;
+                if (_animator != null) _animator.enabled = true;
+                isFall = false;
+            }
         }
 
         public void Fall()
         {
-            isFall = true;
-
             _characterCollider.enabled = false;
             _characterRigidbody.isKinematic = true;
             if (_animator != null) _animator.enabled = false;
 
             _ragdollHandler.Enable();
+
+            isFall = true;
         }
 
         public void Stand()
         {
+            AdjustPositionToHipsBone();
+
             isFall = false;
 
-            _ragdollHandler.Disable();
+            Invoke(nameof(ActivateCharacter), 0.1f);
 
+        }
+
+        private void ActivateCharacter()
+        {
+            _ragdollHandler.Disable();
             _characterCollider.enabled = true;
             _characterRigidbody.isKinematic = false;
             if (_animator != null) _animator.enabled = true;
         }
 
-        private void AdjustToHipsPosition()
+        private void AdjustPositionToHipsBone()
         {
-            transform.position = _hipsBone.position;
+            Vector3 initHipsPosition = hipsBone.position;
+            transform.position = initHipsPosition;
+
+            hipsBone.position = initHipsPosition;
         }
+
+        private void AdjustRotationToHipsBone()
+        {
+            Vector3 initHipsPosition = hipsBone.position;
+            Quaternion initHipsRotation = hipsBone.rotation;
+
+            Vector3 directionForRotate = -hipsBone.up;
+            directionForRotate.y = 0;
+
+            Quaternion correctionRotation = Quaternion.FromToRotation(transform.forward, directionForRotate.normalized);
+            transform.rotation *= correctionRotation;
+
+            hipsBone.position = initHipsPosition;
+            hipsBone.rotation = initHipsRotation;
+        }
+
+        // private void AdjustPositionRelativeGround()
+        // {
+        //     Debug.Log("AdjustPositionRelativeGround");
+        //     if (Physics.Raycast(transform.position - new Vector3(0, 0.5f, 0), Vector3.down, out RaycastHit hit, 0.8f, groundLayer))
+        //     {
+        //         Debug.Log("AdjustPositionRelativeGround: " + hit.point);
+        //         Debug.DrawLine(transform.position - new Vector3(0, 1f, 0), hit.point, Color.green, 5f);
+        //         transform.position = new Vector3(transform.position.x, hit.point.y + 0.5f, transform.position.z);
+        //     }
+        // }
     }
 
 }

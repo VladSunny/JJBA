@@ -186,6 +186,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8528014f39a3ee478f83712788ecd75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hipsBone: {fileID: 5793952708284477574}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  _fallKey: 114
+  _standKey: 116
 --- !u!114 &559091471505643483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,6 +820,11 @@ MonoBehaviour:
   onBasePunch:
     m_PersistentCalls:
       m_Calls: []
+--- !u!4 &5793952708284477574 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7617213786398307586, guid: f0031c9044e696a46bfb9299a130ed40, type: 3}
+  m_PrefabInstance: {fileID: 4169637121861076356}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6231187599704882259 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8044597463886445015, guid: f0031c9044e696a46bfb9299a130ed40, type: 3}
