@@ -64,7 +64,7 @@ namespace JJBA.Combat
         {
             if (_basePunchCounter > 0)
             {
-                if (_basePunchComboTimer <= basePunchComboTime + 0.1f)
+                if (_basePunchComboTimer <= basePunchComboTime)
                 {
                     _basePunchComboTimer += Time.deltaTime;
                 }
