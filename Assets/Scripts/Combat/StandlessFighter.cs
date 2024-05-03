@@ -16,13 +16,7 @@ namespace JJBA.Combat
     public class StandlessFighter : MonoBehaviour
     {
         [Header("Base Punches settings")]
-        [SerializeField] private float basePunchDamage = 30f;
-        [SerializeField] private float basePunchCooldown = 0.5f;
-        [SerializeField] private float basePunchComboCooldown = 2f;
-        [SerializeField] private float basePunchComboTime = 1f;
-        [SerializeField] private int basePunchesNumber = 5;
-        [SerializeField] private float basePunchForce = 20f;
-        [SerializeField] private bool stopRunning = true;
+        [SerializeField] private BasePunchesConfig basePunchesConfig;
 
         [Header("Dependencies")]
         public Transform characterTransform;
@@ -64,7 +58,7 @@ namespace JJBA.Combat
         {
             if (_basePunchCounter > 0)
             {
-                if (_basePunchComboTimer <= basePunchComboTime)
+                if (_basePunchComboTimer <= basePunchesConfig.basePunchComboTime)
                 {
                     _basePunchComboTimer += Time.deltaTime;
                 }
@@ -73,7 +67,7 @@ namespace JJBA.Combat
                     _basePunchCounter = 0;
                     _basePunchComboTimer = 0f;
                     _readyToPunch = false;
-                    Invoke(nameof(ResetPunch), basePunchComboCooldown);
+                    Invoke(nameof(ResetPunch), basePunchesConfig.basePunchComboCooldown);
                 }
             }
         }
@@ -82,13 +76,13 @@ namespace JJBA.Combat
         {
             if (!_readyToPunch) return;
 
-            if (_mover != null && stopRunning) _mover.SetRunning(false);
+            if (_mover != null && basePunchesConfig.stopRunning) _mover.SetRunning(false);
 
             _animator.SetFloat(BasePunchesNumberAV, (float)(_basePunchCounter % 2));
 
             _animator.SetTrigger(PunchAV);
 
-            if (_basePunchComboTimer < basePunchComboTime)
+            if (_basePunchComboTimer < basePunchesConfig.basePunchComboTime)
             {
                 _basePunchCounter++;
                 _basePunchComboTimer = 0f;
@@ -96,14 +90,14 @@ namespace JJBA.Combat
 
             _readyToPunch = false;
 
-            if (_basePunchCounter >= basePunchesNumber)
+            if (_basePunchCounter >= basePunchesConfig.basePunchesNumber)
             {
                 _basePunchCounter = 0;
-                Invoke(nameof(ResetPunch), basePunchComboCooldown);
+                Invoke(nameof(ResetPunch), basePunchesConfig.basePunchComboCooldown);
             }
             else
             {
-                Invoke(nameof(ResetPunch), basePunchCooldown);
+                Invoke(nameof(ResetPunch), basePunchesConfig.basePunchCooldown);
             }
         }
 
@@ -111,7 +105,8 @@ namespace JJBA.Combat
         {
             _dynamicHitBox.CreateHitBox(Vector3.forward * 1f, new Vector3(1f, 1f, 1f), (collider) =>
             {
-                if (collider.transform == this.transform || !(collider is CapsuleCollider capsuleCollider)) return;
+                if (collider.transform == this.transform || !(collider is CapsuleCollider capsuleCollider))
+                 return;
 
                 Debug.Log(collider);
 
@@ -119,10 +114,12 @@ namespace JJBA.Combat
                 Rigidbody enemyRigidbody = collider.transform.GetComponent<Rigidbody>();
 
                 if (enemyHealth != null)
-                    collider.transform.GetComponent<Health>().Damage(basePunchDamage);
+                    collider.transform.GetComponent<Health>().Damage(basePunchesConfig.basePunchDamage);
 
                 if (enemyRigidbody != null)
-                    enemyRigidbody.AddForce(characterTransform.forward * basePunchForce, ForceMode.Impulse);
+                    enemyRigidbody.AddForce(
+                        characterTransform.forward * basePunchesConfig.basePunchForce,
+                        ForceMode.Impulse);
             }, drawHitBox);
         }
 
@@ -132,3 +129,4 @@ namespace JJBA.Combat
         }
     }
 }
+
