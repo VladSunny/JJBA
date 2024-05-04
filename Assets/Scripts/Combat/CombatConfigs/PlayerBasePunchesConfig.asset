@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerBasePunchesConfig
   m_EditorClassIdentifier: 
   basePunchDamage: 15
-  basePunchCooldown: 1
+  basePunchCooldown: 0.6
   basePunchComboCooldown: 2
   basePunchComboTime: 3
   basePunchesNumber: 5

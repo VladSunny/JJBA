@@ -90,15 +90,6 @@ namespace JJBA.Combat
 
             _readyToPunch = false;
 
-            if (_basePunchCounter >= basePunchesConfig.basePunchesNumber)
-            {
-                _basePunchCounter = 0;
-                Invoke(nameof(ResetPunch), basePunchesConfig.basePunchComboCooldown);
-            }
-            else
-            {
-                Invoke(nameof(ResetPunch), basePunchesConfig.basePunchCooldown);
-            }
         }
 
         private void DoPunch()
@@ -121,6 +112,16 @@ namespace JJBA.Combat
                         characterTransform.forward * basePunchesConfig.basePunchForce,
                         ForceMode.Impulse);
             }, drawHitBox);
+
+            if (_basePunchCounter >= basePunchesConfig.basePunchesNumber)
+            {
+                _basePunchCounter = 0;
+                Invoke(nameof(ResetPunch), basePunchesConfig.basePunchComboCooldown);
+            }
+            else
+            {
+                Invoke(nameof(ResetPunch), basePunchesConfig.basePunchCooldown);
+            }
         }
 
         private void ResetPunch()
