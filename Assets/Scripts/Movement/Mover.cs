@@ -33,12 +33,12 @@ namespace JJBA.Movement
         public Transform orientation;
 
         // AV - animator value
-        private static readonly int FallingAV = Animator.StringToHash("falling");
-        private static readonly int JumpAV = Animator.StringToHash("jump");
-        private static readonly int TurnAV = Animator.StringToHash("turn");
-        private static readonly int WalkSpeedAV = Animator.StringToHash("walkSpeed");
-        private static readonly int WalkAV = Animator.StringToHash("walk");
-        private static readonly int RunAV = Animator.StringToHash("isRunning");
+        private static readonly int fallingAV = Animator.StringToHash("falling");
+        private static readonly int jumpAV = Animator.StringToHash("jump");
+        private static readonly int turnAV = Animator.StringToHash("turn");
+        private static readonly int walkSpeedAV = Animator.StringToHash("walkSpeed");
+        private static readonly int walkAV = Animator.StringToHash("walk");
+        private static readonly int runAV = Animator.StringToHash("isRunning");
 
         private Vector3 _moveDirection;
         private Rigidbody _rb;
@@ -84,15 +84,15 @@ namespace JJBA.Movement
             if (_grounded)
             {
                 _rb.drag = groundDrag;
-                _animator.SetBool(FallingAV, false);
+                _animator.SetBool(fallingAV, false);
             }
             else
             {
                 _rb.drag = 0;
-                _animator.SetBool(FallingAV, true);
+                _animator.SetBool(fallingAV, true);
             }
 
-            _animator.SetFloat(RunAV, _runningState);
+            _animator.SetFloat(runAV, _runningState);
 
             _turn = Mathf.Lerp(_turn, _lastHorizontal, turnSpeed * Time.deltaTime);
 
@@ -109,7 +109,7 @@ namespace JJBA.Movement
             _lastHorizontal = horizontal;
             _moveDirection = orientation.forward * vertical + orientation.right * horizontal;
 
-            _animator.SetFloat(TurnAV, _turn);
+            _animator.SetFloat(turnAV, _turn);
 
             moveForce = _moveDirection * (moveSpeed * 10f);
 
@@ -119,14 +119,14 @@ namespace JJBA.Movement
                 _rb.AddForce(moveForce, ForceMode.Force);
 
                 if (vertical < -0.01)
-                    _animator.SetFloat(WalkSpeedAV, -1);
+                    _animator.SetFloat(walkSpeedAV, -1);
                 else
-                    _animator.SetFloat(WalkSpeedAV, 1);
+                    _animator.SetFloat(walkSpeedAV, 1);
 
                 if (Math.Abs(vertical) > 0.01 || Math.Abs(horizontal) > 0.01)
-                    _animator.SetBool(WalkAV, true);
+                    _animator.SetBool(walkAV, true);
                 else
-                    _animator.SetBool(WalkAV, false);
+                    _animator.SetBool(walkAV, false);
             }
 
             else if (!_grounded)
@@ -139,7 +139,7 @@ namespace JJBA.Movement
 
             if (_grounded)
             {
-                _animator.SetTrigger(JumpAV);
+                _animator.SetTrigger(jumpAV);
                 _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
                 _rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
 

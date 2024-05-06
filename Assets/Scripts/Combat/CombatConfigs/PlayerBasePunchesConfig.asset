@@ -17,5 +17,5 @@ MonoBehaviour:
   basePunchComboCooldown: 2
   basePunchComboTime: 3
   basePunchesNumber: 5
-  basePunchForce: 20
+  basePunchForce: 10
   stopRunning: 1

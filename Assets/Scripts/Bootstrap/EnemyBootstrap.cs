@@ -13,6 +13,7 @@ namespace JJBA.Bootstrap
     [RequireComponent(typeof(Health))]
     [RequireComponent(typeof(Mover))]
     [RequireComponent(typeof(StandlessFighter))]
+    [RequireComponent(typeof(HitHandler))]
 
     public class EnemyBootstrap : MonoBehaviour
     {
@@ -20,6 +21,7 @@ namespace JJBA.Bootstrap
         {
             GetComponent<RagdollSystem>().Initialize();
             GetComponent<Health>().Initialize();
+            GetComponent<HitHandler>().Initialize();
             GetComponent<Mover>().Initialize();
             GetComponent<StandlessFighter>().Initialize();
         }

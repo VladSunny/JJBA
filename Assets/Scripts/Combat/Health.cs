@@ -28,8 +28,6 @@ namespace JJBA.Combat
         [SeeOnly]
         private float health;
 
-        private Animator _animator;
-
         public float GetHealth() => health;
         public float GetMaxHealth() => maxHealth;
 
@@ -37,7 +35,6 @@ namespace JJBA.Combat
         public void Initialize()
         {
             health = maxHealth;
-            _animator = GetComponentInChildren<Animator>();
         }
 
         private void Update()
@@ -52,7 +49,6 @@ namespace JJBA.Combat
         {
             if (health <= 0) return;
 
-            _animator.SetTrigger("damaged");
             health = Mathf.Max(0, health - damage);
             onHealthDamaged.Invoke(damage);
 

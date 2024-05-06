@@ -33,8 +33,8 @@ namespace JJBA.Combat
         private StandlessEvents _standlessEvents;
         private Mover _mover;
 
-        private static readonly int BasePunchesNumberAV = Animator.StringToHash("basePunchesNumber");
-        private static readonly int PunchAV = Animator.StringToHash("basePunch");
+        private static readonly int basePunchesNumberAV = Animator.StringToHash("basePunchesNumber");
+        private static readonly int punchAV = Animator.StringToHash("basePunch");
 
         private float _basePunchComboTimer = 0f;
         private bool _readyToPunch = true;
@@ -47,11 +47,6 @@ namespace JJBA.Combat
             _standlessEvents = GetComponentInChildren<StandlessEvents>();
             _mover = GetComponent<Mover>();
             _standlessEvents.onBasePunch.AddListener(DoPunch);
-        }
-
-        void Start()
-        {
-            // Initialize();
         }
 
         private void Update()
@@ -78,9 +73,9 @@ namespace JJBA.Combat
 
             if (_mover != null && basePunchesConfig.stopRunning) _mover.SetRunning(false);
 
-            _animator.SetFloat(BasePunchesNumberAV, (float)(_basePunchCounter % 2));
+            _animator.SetFloat(basePunchesNumberAV, (float)(_basePunchCounter % 2));
 
-            _animator.SetTrigger(PunchAV);
+            _animator.SetTrigger(punchAV);
 
             if (_basePunchComboTimer < basePunchesConfig.basePunchComboTime)
             {
