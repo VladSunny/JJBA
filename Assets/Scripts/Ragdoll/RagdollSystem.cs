@@ -11,7 +11,7 @@ namespace JJBA.Ragdoll
 
     public class RagdollSystem : MonoBehaviour
     {
-        [Header ("Settings")]
+        [Header("Settings")]
         [SerializeField] private float standDelay = 2f;
 
         [Header("Dependencies")]
@@ -56,15 +56,13 @@ namespace JJBA.Ragdoll
 
         private void Update()
         {
-            Debug.Log(_hipsGroundCheck.IsGrounded());
-
             if (!_hipsGroundCheck.IsGrounded() || !isFall || _health.IsDead()) standTimer = 0f;
 
             if (isFall)
             {
                 if (_hipsGroundCheck.IsGrounded())
                     standTimer += Time.deltaTime;
-                
+
                 if (standTimer >= standDelay) Stand();
             }
 

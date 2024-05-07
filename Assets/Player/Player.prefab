@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 487725199327233589}
   - component: {fileID: 4540500637797582810}
   - component: {fileID: 320110782394874824}
+  - component: {fileID: 6415432060698994959}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -266,10 +267,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c320169ee36354ebca39b93bf09c6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  safeFallDistance: 5
+  safeFallDistance: 2
   maxFallDistance: 20
-  maxDamage: 50
+  maxDamage: 100
+  minFallSpeed: 5
+  damageMultiplier: 1.5
+  ground:
+    serializedVersion: 2
+    m_Bits: 8
   groundCheck: {fileID: 1304130375863908739}
+  hipsBone: {fileID: 5793952708284477574}
 --- !u!114 &320110782394874824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,6 +289,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa59f552e2aff7cb48e73ccaad629dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6415432060698994959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461053245331682738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a98d7942ca571d7a32232dde006b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagePopupPrefab: {fileID: 4255436815127969719, guid: 2f98d01073d3d1ec6b7e9891231ce263, type: 3}
+  drawGizmos: 0
 --- !u!1 &1851364260543901302
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,6 +373,9 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 8
+  onCollision:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4446158910187973138
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,6 +915,9 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 8
+  onCollision:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1936705987111565764 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2539195709616815168, guid: f0031c9044e696a46bfb9299a130ed40, type: 3}

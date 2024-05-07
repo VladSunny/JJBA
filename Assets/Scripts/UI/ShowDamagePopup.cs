@@ -15,7 +15,7 @@ namespace JJBA.UI
 
         private Health _health;
 
-        private void Start()
+        public void Initialize()
         {
             _health = GetComponent<Health>();
             _health.onHealthDamaged.AddListener(createPopup);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace JJBA.Core
 {
@@ -9,11 +10,14 @@ namespace JJBA.Core
         [SerializeField] private LayerMask ground;
         private int groundCollisions = 0;
 
+        public UnityEvent<Collider> onCollision;
+
         public bool IsGrounded() { return groundCollisions > 0; }
 
 
         private void OnTriggerEnter(Collider other)
         {
+            onCollision.Invoke(other);
             if (((1 << other.gameObject.layer) & ground) != 0)
             {
                 groundCollisions++;
@@ -28,5 +32,5 @@ namespace JJBA.Core
             }
         }
 
-    }   
+    }
 }

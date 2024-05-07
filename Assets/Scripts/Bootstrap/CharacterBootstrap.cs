@@ -5,7 +5,7 @@ using UnityEngine;
 using JJBA.Combat;
 using JJBA.Movement;
 using JJBA.Ragdoll;
-using UnityEngine.VFX;
+using JJBA.UI;
 
 namespace JJBA.Bootstrap
 {
@@ -14,6 +14,8 @@ namespace JJBA.Bootstrap
     [RequireComponent(typeof(Mover))]
     [RequireComponent(typeof(StandlessFighter))]
     [RequireComponent(typeof(HitHandler))]
+    [RequireComponent(typeof(FallDamage))]
+    [RequireComponent(typeof(ShowDamagePopup))]
 
     public class CharacterBootstrap : MonoBehaviour
     {
@@ -21,6 +23,8 @@ namespace JJBA.Bootstrap
         {
             GetComponent<RagdollSystem>().Initialize();
             GetComponent<Health>().Initialize();
+            GetComponent<FallDamage>().Initialize();
+            GetComponent<ShowDamagePopup>().Initialize();
             GetComponent<HitHandler>().Initialize();
             GetComponent<Mover>().Initialize();
             GetComponent<StandlessFighter>().Initialize();
