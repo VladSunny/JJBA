@@ -9,22 +9,13 @@ using JJBA.Control;
 
 namespace JJBA.Bootstrap
 {
-    [RequireComponent(typeof(RagdollSystem))]
-    [RequireComponent(typeof(Health))]
-    [RequireComponent(typeof(Mover))]
-    [RequireComponent(typeof(StandlessFighter))]
     [RequireComponent(typeof(PlayerController))]
-    [RequireComponent(typeof(HitHandler))]
 
-    public class PlayerBootstrap : MonoBehaviour
+    public class PlayerBootstrap : CharacterBootstrap
     {
-        private void Start()
+        protected override void Start()
         {
-            GetComponent<RagdollSystem>().Initialize();
-            GetComponent<Health>().Initialize();
-            GetComponent<HitHandler>().Initialize();
-            GetComponent<Mover>().Initialize();
-            GetComponent<StandlessFighter>().Initialize();
+            base.Start();
             GetComponent<PlayerController>().Initialize();
         }
     }   
