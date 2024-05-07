@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using JJBA.Movement;
+using JJBA.Core;
 namespace JJBA.Combat
 {
     [RequireComponent(typeof(Health))]
-    [RequireComponent(typeof(Mover))]
 
     public class FallDamage : MonoBehaviour
     {
@@ -14,6 +14,9 @@ namespace JJBA.Combat
         [SerializeField] private float safeFallDistance = 5f;
         [SerializeField] private float maxFallDistance = 20f;
         [SerializeField] private int maxDamage = 50;
+
+        [Header("Dependencies")]
+        [SerializeField] private GroundCheck groundCheck;
 
         private Vector3 _lastGroundedPosition;
         private bool _isFalling = false;
@@ -29,8 +32,7 @@ namespace JJBA.Combat
 
         void Update()
         {
-
-            if (_mover.IsGrounded())
+            if (groundCheck)
             {
                 if (_isFalling)
                 {

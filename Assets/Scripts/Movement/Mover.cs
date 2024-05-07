@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JJBA.Core;
 using UnityEngine;
 
 namespace JJBA.Movement
 {
     [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(BoxCollider))]
     [RequireComponent(typeof(CapsuleCollider))]
     public class Mover : MonoBehaviour
     {
@@ -23,14 +23,9 @@ namespace JJBA.Movement
         [SerializeField] private float airMultiplier = 0.4f;
         private bool _readyToJump = true;
 
-        [Header("Ground Check")]
-        [SerializeField] private float playerHeight = 2f;
-        [SerializeField] private LayerMask whatIsGround;
-        private bool _grounded;
-        private bool _boxGrounded;
-
         [Header("Dependencies")]
         public Transform orientation;
+        [SerializeField] private GroundCheck groundCheck;
 
         // AV - animator value
         private static readonly int fallingAV = Animator.StringToHash("falling");
@@ -60,11 +55,6 @@ namespace JJBA.Movement
             return _isRunning;
         }
 
-        public bool IsGrounded()
-        {
-            return _grounded;
-        }
-
         public void Initialize()
         {
             _rb = GetComponent<Rigidbody>();
@@ -72,16 +62,9 @@ namespace JJBA.Movement
             _rb.freezeRotation = true;
         }
 
-        void Start()
-        {
-            // Initialize();
-        }
-
         private void Update()
         {
-            _grounded = CheckGround() || _boxGrounded;
-
-            if (_grounded)
+            if (groundCheck.IsGrounded())
             {
                 _rb.drag = groundDrag;
                 _animator.SetBool(fallingAV, false);
@@ -113,7 +96,7 @@ namespace JJBA.Movement
 
             moveForce = _moveDirection * (moveSpeed * 10f);
 
-            if (_grounded)
+            if (groundCheck.IsGrounded())
             {
                 if (_isRunning) moveForce *= runMultiplier;
                 _rb.AddForce(moveForce, ForceMode.Force);
@@ -129,7 +112,7 @@ namespace JJBA.Movement
                     _animator.SetBool(walkAV, false);
             }
 
-            else if (!_grounded)
+            else if (!groundCheck.IsGrounded())
                 _rb.AddForce(moveForce * airMultiplier, ForceMode.Force);
         }
 
@@ -137,7 +120,7 @@ namespace JJBA.Movement
         {
             if (!_readyToJump) return;
 
-            if (_grounded)
+            if (groundCheck.IsGrounded())
             {
                 _animator.SetTrigger(jumpAV);
                 _rb.velocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
@@ -162,27 +145,6 @@ namespace JJBA.Movement
         private void ResetJump()
         {
             _readyToJump = true;
-        }
-
-        private bool CheckGround()
-        {
-            return Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (((1 << other.gameObject.layer) & whatIsGround) != 0)
-            {
-                _boxGrounded = true;
-            }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (((1 << other.gameObject.layer) & whatIsGround) != 0)
-            {
-                _boxGrounded = false;
-            }
         }
     }
 }
