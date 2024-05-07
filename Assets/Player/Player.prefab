@@ -166,13 +166,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8528014f39a3ee478f83712788ecd75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standDelay: 0.1
+  standDelay: 2
   hipsBone: {fileID: 5793952708284477574}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   _fallKey: 114
   _standKey: 116
+  standTimer: 0
 --- !u!114 &559091471505643483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -845,6 +846,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3651778965598180077, guid: f0031c9044e696a46bfb9299a130ed40, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5132163616031330142}
+    - targetCorrespondingSourceObject: {fileID: 3651778965598180077, guid: f0031c9044e696a46bfb9299a130ed40, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3653560789779469495}
   m_SourcePrefab: {fileID: 100100000, guid: f0031c9044e696a46bfb9299a130ed40, type: 3}
 --- !u!1 &824228284114327401 stripped
 GameObject:
@@ -872,6 +876,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.01, y: 0.02, z: 0.01}
   m_Center: {x: 0, y: 0.00084999774, z: -1.1641532e-10}
+--- !u!114 &3653560789779469495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824228284114327401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e9b2845b386d041c88b2abfd4ab028a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ground:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &1936705987111565764 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2539195709616815168, guid: f0031c9044e696a46bfb9299a130ed40, type: 3}

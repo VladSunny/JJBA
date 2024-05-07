@@ -7,22 +7,26 @@ namespace JJBA.Core
     public class GroundCheck : MonoBehaviour
     {
         [SerializeField] private LayerMask ground;
-        private bool grounded = false;
+        private int groundCollisions = 0;
 
-        public bool IsGrounded() { return grounded; }
+        public bool IsGrounded() { return groundCollisions > 0; }
 
-        private void OnTriggerEnter(Collider other) {
+
+        private void OnTriggerEnter(Collider other)
+        {
             if (((1 << other.gameObject.layer) & ground) != 0)
             {
-                grounded = true;
+                groundCollisions++;
             }
         }
 
-        private void OnTriggerExit(Collider other) {
+        private void OnTriggerExit(Collider other)
+        {
             if (((1 << other.gameObject.layer) & ground) != 0)
             {
-                grounded = false;
+                groundCollisions--;
             }
         }
+
     }   
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using JJBA.Combat;
+using JJBA.Core;
 namespace JJBA.Ragdoll
 {
     [RequireComponent(typeof(CapsuleCollider))]
@@ -10,7 +11,8 @@ namespace JJBA.Ragdoll
 
     public class RagdollSystem : MonoBehaviour
     {
-        [SerializeField] private float standDelay = 0.1f;
+        [Header ("Settings")]
+        [SerializeField] private float standDelay = 2f;
 
         [Header("Dependencies")]
         public Transform hipsBone;
@@ -25,7 +27,11 @@ namespace JJBA.Ragdoll
         private Rigidbody _characterRigidbody;
         private Animator _animator;
         private Health _health;
+        private GroundCheck _hipsGroundCheck;
+
         private bool isFall = false;
+        private float activateCharacterDelay = 0.2f;
+        [SerializeField] private float standTimer = 0f;
 
         public bool IsFall() { return isFall; }
 
@@ -35,6 +41,7 @@ namespace JJBA.Ragdoll
             _characterRigidbody = GetComponent<Rigidbody>();
             _animator = GetComponentInChildren<Animator>();
             _health = GetComponent<Health>();
+            _hipsGroundCheck = hipsBone.GetComponent<GroundCheck>();
 
             _ragdollHandler = GetComponentInChildren<RagdollHandler>();
             if (_ragdollHandler == null)
@@ -49,6 +56,18 @@ namespace JJBA.Ragdoll
 
         private void Update()
         {
+            Debug.Log(_hipsGroundCheck.IsGrounded());
+
+            if (!_hipsGroundCheck.IsGrounded() || !isFall || _health.IsDead()) standTimer = 0f;
+
+            if (isFall)
+            {
+                if (_hipsGroundCheck.IsGrounded())
+                    standTimer += Time.deltaTime;
+                
+                if (standTimer >= standDelay) Stand();
+            }
+
             if (Input.GetKeyDown(_fallKey)) Fall();
             if (Input.GetKeyDown(_standKey)) Stand();
         }
@@ -70,7 +89,7 @@ namespace JJBA.Ragdoll
 
             isFall = false;
 
-            Invoke(nameof(ActivateCharacter), standDelay);
+            Invoke(nameof(ActivateCharacter), activateCharacterDelay);
 
         }
 
@@ -104,17 +123,6 @@ namespace JJBA.Ragdoll
             hipsBone.position = initHipsPosition;
             hipsBone.rotation = initHipsRotation;
         }
-
-        // private void AdjustPositionRelativeGround()
-        // {
-        //     Debug.Log("AdjustPositionRelativeGround");
-        //     if (Physics.Raycast(transform.position - new Vector3(0, 0.5f, 0), Vector3.down, out RaycastHit hit, 0.8f, groundLayer))
-        //     {
-        //         Debug.Log("AdjustPositionRelativeGround: " + hit.point);
-        //         Debug.DrawLine(transform.position - new Vector3(0, 1f, 0), hit.point, Color.green, 5f);
-        //         transform.position = new Vector3(transform.position.x, hit.point.y + 0.5f, transform.position.z);
-        //     }
-        // }
     }
 
 }

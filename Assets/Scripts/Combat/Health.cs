@@ -27,9 +27,11 @@ namespace JJBA.Combat
         [SerializeField]
         [SeeOnly]
         private float health;
+        private bool isDead = false;
 
         public float GetHealth() => health;
         public float GetMaxHealth() => maxHealth;
+        public bool IsDead() => isDead;
 
 
         public void Initialize()
@@ -64,6 +66,7 @@ namespace JJBA.Combat
         private void Die()
         {
             onDied.Invoke();
+            isDead = true;
         }
     }
 }

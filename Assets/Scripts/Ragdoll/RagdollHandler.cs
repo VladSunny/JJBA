@@ -32,7 +32,7 @@ namespace JJBA.Ragdoll
                 rb.isKinematic = true;
 
             foreach (Collider col in colliders)
-                col.enabled = false;
+                if (!col.isTrigger) col.enabled = false;
         }
     }
 }
