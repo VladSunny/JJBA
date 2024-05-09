@@ -56,7 +56,8 @@ namespace JJBA.Ragdoll
 
         private void Update()
         {
-            if (!_hipsGroundCheck.IsGrounded() || !isFall || _health.IsDead()) standTimer = 0f;
+            if (!_hipsGroundCheck.IsGrounded() || !isFall || _health.IsDead())
+             standTimer = 0f;
 
             if (isFall)
             {

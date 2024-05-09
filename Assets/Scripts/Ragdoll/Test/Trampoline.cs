@@ -15,7 +15,7 @@ namespace JJBA.Ragdoll.Test
             if (((1 << collision.gameObject.layer) & creature) == 0) return;
             GameObject character = collision.gameObject;
             
-            RagdollSystem characterRagdollSystem = character.GetComponent<RagdollSystem>();
+            RagdollSystem characterRagdollSystem = character.GetComponentInParent<RagdollSystem>();
             characterRagdollSystem.Fall();
             
             Rigidbody hipsRb = characterRagdollSystem.hipsBone.GetComponent<Rigidbody>();
