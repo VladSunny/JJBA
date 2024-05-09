@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657832, g: 0.49641222, b: 0.57481664, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2025,7 +2025,7 @@ GameObject:
   - component: {fileID: 697168609}
   - component: {fileID: 697168608}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: BackgroundMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2043,7 +2043,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4b7591b5386906b8db8d6b51b8b5d92f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2323,7 +2323,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 718240638}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2233192, y: 0.000000016771839, z: -0.0000000038425148, w: 0.9747454}
+  m_LocalRotation: {x: 0.2233192, y: -0.000000016771839, z: 0.0000000038425148, w: 0.9747454}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2983,7 +2983,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20928478, y: 0.03303051, z: -0.007073558, w: 0.97727114}
+  m_LocalRotation: {x: 0.20928478, y: 0.03303051, z: -0.0070735584, w: 0.97727114}
   m_LocalPosition: {x: 0, y: 3.903543, z: -3.5309715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3339,7 +3339,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162621862}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.19713193, y: 0.03311577, z: -0.0066627995, w: 0.97979486}
+  m_LocalRotation: {x: 0.19713193, y: 0.03311578, z: -0.0066628014, w: 0.97979486}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4259,7 +4259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2009985980}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.26340038, y: -0.000000016598765, z: 0.0000000045321666, w: 0.96468663}
+  m_LocalRotation: {x: 0.26340038, y: 0.000000016598765, z: -0.0000000045321666, w: 0.96468663}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
