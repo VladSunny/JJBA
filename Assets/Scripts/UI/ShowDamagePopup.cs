@@ -29,10 +29,11 @@ namespace JJBA.UI
                 return;
             }
 
-            ConstraintSource source = new ConstraintSource { sourceTransform = Camera.main.transform, weight = 1f };
+            float roundedDamage = Mathf.Round(damage * 10f) / 10f;
 
+            ConstraintSource source = new ConstraintSource { sourceTransform = Camera.main.transform, weight = 1f };
             GameObject popup = Instantiate(damagePopupPrefab, Vector3.zero, Quaternion.identity);
-            popup.GetComponent<DamagePopup>().Setup(damage);
+            popup.GetComponent<DamagePopup>().Setup(roundedDamage);
             popup.GetComponent<LookAtConstraint>().AddSource(source);
             popup.transform.SetParent(transform, false);
         }
