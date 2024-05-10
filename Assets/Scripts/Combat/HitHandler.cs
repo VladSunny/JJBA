@@ -22,12 +22,18 @@ namespace JJBA.Combat
             _audioManager = GetComponentInChildren<AudioManager>();
 
             _health.onHealthDamaged.AddListener(Hitted);
+            _health.onDied.AddListener(OnDeath);
         }
 
         private void Hitted(float damage)
         {
             _animator.SetTrigger(damagedAV);
             _audioManager.Play("Hitted_" + Random.Range(1, 4));
+        }
+
+        private void OnDeath()
+        {
+            _audioManager.Play("Death");
         }
     }
 }
