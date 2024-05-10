@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using JJBA.Core;
 using JJBA.Combat.Events;
 using JJBA.Movement;
+using JJBA.Audio;
 
 namespace JJBA.Combat
 {
@@ -31,6 +32,7 @@ namespace JJBA.Combat
         private Animator _animator;
         private Rigidbody _rigidbody;
         private StandlessEvents _standlessEvents;
+        private AudioManager _audioManager;
         private Mover _mover;
 
         private static readonly int basePunchesNumberAV = Animator.StringToHash("basePunchesNumber");
@@ -47,6 +49,7 @@ namespace JJBA.Combat
             _standlessEvents = GetComponentInChildren<StandlessEvents>();
             _mover = GetComponent<Mover>();
             _standlessEvents.onBasePunch.AddListener(DoPunch);
+            _audioManager = GetComponentInChildren<AudioManager>();
         }
 
         private void Update()
@@ -77,6 +80,8 @@ namespace JJBA.Combat
 
             _animator.SetTrigger(punchAV);
 
+            _audioManager.Play("BasePunch_" + (_basePunchCounter % 2 + 1));
+
             if (_basePunchComboTimer < basePunchesConfig.basePunchComboTime)
             {
                 _basePunchCounter++;
@@ -92,7 +97,7 @@ namespace JJBA.Combat
             _dynamicHitBox.CreateHitBox(Vector3.forward * 1f, new Vector3(1f, 1f, 1f), (collider) =>
             {
                 if (collider.transform == this.transform || !(collider is CapsuleCollider capsuleCollider))
-                 return;
+                    return;
 
                 Debug.Log(collider);
 

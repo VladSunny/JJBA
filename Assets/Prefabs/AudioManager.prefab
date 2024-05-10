@@ -44,10 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259f265768f69852d9e9e81608f78d92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - name: Death
-    clip: {fileID: 8300000, guid: 7cbd6cd765888ff418d01d98bd1ce9c2, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
+  sounds: []
