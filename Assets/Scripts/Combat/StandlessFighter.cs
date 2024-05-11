@@ -99,7 +99,7 @@ namespace JJBA.Combat
                 if (collider.transform == this.transform || !(collider is CapsuleCollider capsuleCollider))
                     return;
 
-                Debug.Log(collider);
+                // Debug.Log(collider);
 
                 Health enemyHealth = collider.transform.GetComponent<Health>();
                 Rigidbody enemyRigidbody = collider.transform.GetComponent<Rigidbody>();
@@ -114,11 +114,6 @@ namespace JJBA.Combat
 
                 if (enemyHealth != null)
                     collider.transform.GetComponent<Health>().GetDamage(damage);
-
-                // if (enemyRigidbody != null)
-                //     enemyRigidbody.AddForce(
-                //         characterTransform.forward * basePunchesConfig.basePunchForce,
-                //         ForceMode.Impulse);
             }, drawHitBox);
 
             if (_basePunchCounter >= basePunchesConfig.basePunchesNumber)

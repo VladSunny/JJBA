@@ -20,13 +20,13 @@ namespace JJBA.VFX
             }
         }
 
-        public void Play(string name, Vector3 rotation = default, Vector3 positionOffset = default)
+        public void Play(string name, Vector3 forward = default, Vector3 positionOffset = default)
         {
             foreach (ParticleEffect pe in particleEffect)
             {
                 if (pe.name == name)
                 {
-                    pe.instance.transform.rotation = Quaternion.Euler(rotation);
+                    pe.instance.transform.forward = forward;
                     pe.instance.transform.position = pe.parent.position + positionOffset;
 
                     foreach (ParticleSystem ps in pe.instance.GetComponentsInChildren<ParticleSystem>())
