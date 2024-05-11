@@ -21,7 +21,7 @@ namespace JJBA.UI
             _health.onHealthDamaged.AddListener(createPopup);
         }
 
-        public void createPopup(float damage)
+        public void createPopup(Damage damage)
         {
             if (damagePopupPrefab == null)
             {
@@ -29,7 +29,7 @@ namespace JJBA.UI
                 return;
             }
 
-            float roundedDamage = Mathf.Round(damage * 10f) / 10f;
+            float roundedDamage = Mathf.Round(damage.damageValue * 10f) / 10f;
 
             ConstraintSource source = new ConstraintSource { sourceTransform = Camera.main.transform, weight = 1f };
             GameObject popup = Instantiate(damagePopupPrefab, Vector3.zero, Quaternion.identity);

@@ -56,7 +56,15 @@ namespace JJBA.Combat
                     {
                         float damagePercent = Mathf.Clamp01((fallDistance - safeFallDistance) / (maxFallDistance - safeFallDistance));
                         int damage = Mathf.RoundToInt(damagePercent * maxDamage);
-                        _healthComponent.Damage(damage);
+
+                        Damage fallDamage = new()
+                        {
+                            damageValue = damage,
+                            type = DamageType.NONE
+                        };
+
+
+                        _healthComponent.GetDamage(fallDamage);
                     }
 
                     _isFalling = false;
@@ -86,7 +94,15 @@ namespace JJBA.Combat
                 if (fallSpeed > minFallSpeed)
                 {
                     float damage = (fallSpeed - minFallSpeed) * damageMultiplier;
-                    _healthComponent.Damage(damage);
+
+                    Damage fallDamage = new()
+                    {
+                        damageValue = damage,
+                        type = DamageType.NONE,
+                        forse = Vector3.down * fallSpeed
+                    };
+
+                    _healthComponent.GetDamage(fallDamage);
                 }
             }
         }

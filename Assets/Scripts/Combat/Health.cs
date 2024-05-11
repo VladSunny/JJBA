@@ -10,7 +10,7 @@ namespace JJBA.Combat
 {
     public class Health : MonoBehaviour
     {
-        public UnityEvent<float> onHealthDamaged;
+        public UnityEvent<Damage> onHealthDamaged;
         public UnityEvent<float> onHealthHealed;
         public UnityEvent onDied;
 
@@ -41,17 +41,22 @@ namespace JJBA.Combat
 
         private void Update()
         {
+            Damage testDamage = new()
+            {
+                damageValue = debugDamage,
+            };
+
             if (Input.GetKeyDown(decreaseHealth))
-                Damage(debugDamage);
+                GetDamage(testDamage);
             if (Input.GetKeyDown(increaseHealth))
                 Heal(debugHeal);
         }
 
-        public void Damage(float damage)
+        public void GetDamage(Damage damage)
         {
             if (health <= 0) return;
 
-            health = Mathf.Max(0, health - damage);
+            health = Mathf.Max(0, health - damage.damageValue);
             onHealthDamaged.Invoke(damage);
 
             if (health <= 0) Die();

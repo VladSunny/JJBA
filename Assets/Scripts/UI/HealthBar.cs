@@ -20,8 +20,8 @@ namespace JJBA.UI
 
         private void Start()
         {
-            healthComponent.onHealthDamaged.AddListener(HealthChanged);
-            healthComponent.onHealthHealed.AddListener(HealthChanged);
+            healthComponent.onHealthDamaged.AddListener(HealthDamaged);
+            healthComponent.onHealthHealed.AddListener(HealthHealed);
             healthComponent.onDied.AddListener(Dissapear);
         }
 
@@ -56,10 +56,8 @@ namespace JJBA.UI
             }
         }
 
-        private void HealthChanged(float damage)
-        {
-            _lerpTimer = 0f;
-        }
+        private void HealthDamaged(Damage damage) => _lerpTimer = 0f;
+        private void HealthHealed(float heal) => _lerpTimer = 0f;
 
         private void Dissapear()
         {
