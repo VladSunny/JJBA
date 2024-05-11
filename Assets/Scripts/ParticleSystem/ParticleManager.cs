@@ -7,24 +7,32 @@ namespace JJBA.VFX
     public class ParticleManager : MonoBehaviour
     {
         public ParticleEffect[] particleEffect;
+        [SerializeField] private bool debugKeys = false;
+        [SerializeField] private string debugPlayName;
 
         private void Awake()
         {
             foreach (ParticleEffect pe in particleEffect)
             {
                 GameObject instance = Instantiate(pe.particleEffect, pe.parent);
+                instance.transform.position = pe.parent.position;
                 pe.instance = instance;
             }
         }
 
-        public void Play(string name)
+        public void Play(string name, Vector3 rotation = default, Vector3 positionOffset = default)
         {
             foreach (ParticleEffect pe in particleEffect)
             {
                 if (pe.name == name)
                 {
+                    pe.instance.transform.rotation = Quaternion.Euler(rotation);
+                    pe.instance.transform.position = pe.parent.position + positionOffset;
+
                     foreach (ParticleSystem ps in pe.instance.GetComponentsInChildren<ParticleSystem>())
+                    {
                         ps.Play();
+                    }
 
                     break;
                 }
@@ -47,11 +55,14 @@ namespace JJBA.VFX
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.P))
-                Play("Burst");
+            if (debugKeys)
+            {
+                if (Input.GetKeyDown(KeyCode.P))
+                    Play(debugPlayName);
 
-            if (Input.GetKeyDown(KeyCode.O))
-                Stop("Burst");
+                if (Input.GetKeyDown(KeyCode.O))
+                    Stop(debugPlayName);
+            }
         }
     }
 }
