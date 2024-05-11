@@ -7,7 +7,11 @@ namespace JJBA.VFX
     [System.Serializable]
     public class ParticleEffect
     {
-        // public ParticleSystem particleSystem;
+        public string name;
+        public GameObject particleEffect;
+        public Transform parent;
 
+        [HideInInspector]
+        public GameObject instance;
     }
 }
