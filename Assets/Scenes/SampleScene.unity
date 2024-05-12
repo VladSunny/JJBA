@@ -2296,7 +2296,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 718240638}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2233192, y: 0.000000016771839, z: -0.0000000038425148, w: 0.9747454}
+  m_LocalRotation: {x: 0.2233192, y: -0.000000016771839, z: 0.0000000038425148, w: 0.9747454}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3312,7 +3312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162621862}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.19713193, y: 0.033115786, z: -0.0066628014, w: 0.97979486}
+  m_LocalRotation: {x: 0.19713193, y: 0.03311578, z: -0.0066628014, w: 0.97979486}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3453,7 +3453,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392305400}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17688006, y: 0.03324616, z: -0.005978312, w: 0.9836526}
+  m_LocalRotation: {x: 0.17688006, y: 0.0332462, z: -0.0059783184, w: 0.9836526}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4237,7 +4237,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2009985980}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.26340038, y: -0.000000016598765, z: 0.0000000045321666, w: 0.96468663}
+  m_LocalRotation: {x: 0.26340038, y: 0.000000016598765, z: -0.0000000045321666, w: 0.96468663}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4743,30 +4743,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4247243215155190850, guid: 1e5cfedb56769ac2daf198338d8f0148, type: 3}
-      propertyPath: debugKeys
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247243215155190850, guid: 1e5cfedb56769ac2daf198338d8f0148, type: 3}
-      propertyPath: debugPlayName
-      value: Falled
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247243215155190850, guid: 1e5cfedb56769ac2daf198338d8f0148, type: 3}
-      propertyPath: particleEffect.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247243215155190850, guid: 1e5cfedb56769ac2daf198338d8f0148, type: 3}
-      propertyPath: particleEffect.Array.data[1].name
-      value: Slapped
-      objectReference: {fileID: 0}
-    - target: {fileID: 4247243215155190850, guid: 1e5cfedb56769ac2daf198338d8f0148, type: 3}
-      propertyPath: particleEffect.Array.data[1].parent
-      value: 
-      objectReference: {fileID: 250535942}
-    - target: {fileID: 4247243215155190850, guid: 1e5cfedb56769ac2daf198338d8f0148, type: 3}
-      propertyPath: particleEffect.Array.data[1].particleEffect
-      value: 
-      objectReference: {fileID: 339552629180192583, guid: 56494d9a144bc384e91976b403432e3d, type: 3}
     - target: {fileID: 7576032334534356615, guid: 1e5cfedb56769ac2daf198338d8f0148, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
