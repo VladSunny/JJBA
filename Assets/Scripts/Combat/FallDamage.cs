@@ -98,8 +98,8 @@ namespace JJBA.Combat
                     Damage fallDamage = new()
                     {
                         damageValue = damage,
-                        type = DamageType.NONE,
-                        forse = Vector3.down * fallSpeed
+                        type = DamageType.SLAP,
+                        forse = Vector3.down * fallSpeed,
                     };
 
                     _healthComponent.GetDamage(fallDamage);

@@ -49,8 +49,12 @@ MonoBehaviour:
     particleEffect: {fileID: 999047008132917885, guid: 16055bec98f0e88418521ac3dedc8671, type: 3}
     parent: {fileID: 5793952708284477574}
     instance: {fileID: 0}
+  - name: Slapped
+    particleEffect: {fileID: 339552629180192583, guid: 56494d9a144bc384e91976b403432e3d, type: 3}
+    parent: {fileID: 5793952708284477574}
+    instance: {fileID: 0}
   debugKeys: 1
-  debugPlayName: Hitted
+  debugPlayName: Falled
 --- !u!1 &461053245331682738
 GameObject:
   m_ObjectHideFlags: 0

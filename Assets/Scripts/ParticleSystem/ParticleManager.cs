@@ -14,7 +14,7 @@ namespace JJBA.VFX
         {
             foreach (ParticleEffect pe in particleEffect)
             {
-                GameObject instance = Instantiate(pe.particleEffect, pe.parent);
+                GameObject instance = Instantiate(pe.particleEffect);
                 instance.transform.position = pe.parent.position;
                 pe.instance = instance;
             }
@@ -28,12 +28,7 @@ namespace JJBA.VFX
                 {
                     pe.instance.transform.forward = forward;
                     pe.instance.transform.position = pe.parent.position + positionOffset;
-
-                    foreach (ParticleSystem ps in pe.instance.GetComponentsInChildren<ParticleSystem>())
-                    {
-                        ps.Play();
-                    }
-
+                    pe.instance.GetComponent<ParticleSystem>().Play();
                     break;
                 }
             }
@@ -45,9 +40,7 @@ namespace JJBA.VFX
             {
                 if (pe.name == name)
                 {
-                    foreach (ParticleSystem ps in pe.instance.GetComponentsInChildren<ParticleSystem>())
-                        ps.Stop();
-
+                    pe.instance.GetComponent<ParticleSystem>().Stop();
                     break;
                 }
             }

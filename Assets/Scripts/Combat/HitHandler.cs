@@ -42,7 +42,12 @@ namespace JJBA.Combat
                 _particleManager.Play("Hitted", damage.forse.normalized);
             }
 
-            if (damage.type == DamageType.BASE || damage.type == DamageType.NONE)
+            if (damage.type == DamageType.SLAP)
+            {
+                _particleManager.Play("Slapped", Vector3.up);
+            }
+
+            if (damage.type == DamageType.BASE || damage.type == DamageType.NONE || damage.type == DamageType.SLAP)
             {
                 _audioManager.Play("Hitted_" + Random.Range(1, 4));
             }

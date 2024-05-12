@@ -5,6 +5,7 @@ namespace JJBA.Combat
     public enum DamageType
     {
         NONE,
+        SLAP,
         BASE
     }
 
