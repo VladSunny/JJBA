@@ -99,6 +99,7 @@ namespace JJBA.Movement
             if (groundCheck.IsGrounded())
             {
                 if (_isRunning) moveForce *= runMultiplier;
+
                 _rb.AddForce(moveForce, ForceMode.Force);
 
                 if (vertical < -0.01)
@@ -133,7 +134,12 @@ namespace JJBA.Movement
 
         private void SpeedControl()
         {
-            Vector3 flatVel = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
+            Vector3 flatVel;
+            // Vector3 flatVel = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
+            if (groundCheck.IsGrounded())
+                flatVel = new Vector3(_rb.velocity.x, _rb.velocity.y, _rb.velocity.z);
+            else
+                flatVel = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
 
             if (flatVel.magnitude > moveSpeed)
             {
