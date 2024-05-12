@@ -13,6 +13,8 @@ namespace JJBA.Combat
 
     public class HitHandler : MonoBehaviour
     {
+        [SerializeField] private float strongSlapSpeed = 13f;
+
         private static readonly int damagedAV = Animator.StringToHash("damaged");
 
         private Health _health;
@@ -37,6 +39,7 @@ namespace JJBA.Combat
         {
             if (damage.type == DamageType.BASE)
             {
+                _audioManager.Play("Hitted_" + Random.Range(1, 4));
                 _animator.SetTrigger(damagedAV);
                 _rb.AddForce(damage.forse, ForceMode.Impulse);
                 _particleManager.Play("Hitted", damage.forse.normalized);
@@ -44,10 +47,12 @@ namespace JJBA.Combat
 
             if (damage.type == DamageType.SLAP)
             {
-                _particleManager.Play("Slapped", Vector3.up);
+                _audioManager.Play("Hitted_" + Random.Range(1, 4));
+                if (damage.forse.magnitude >= strongSlapSpeed)
+                    _particleManager.Play("Slapped", Vector3.up, new Vector3(0, 0.2f, 0));
             }
 
-            if (damage.type == DamageType.BASE || damage.type == DamageType.NONE || damage.type == DamageType.SLAP)
+            if (damage.type == DamageType.NONE)
             {
                 _audioManager.Play("Hitted_" + Random.Range(1, 4));
             }
