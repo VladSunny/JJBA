@@ -18,6 +18,7 @@ namespace JJBA.Combat
         [SerializeField] private float minFallSpeed = 10f;
         [SerializeField] private float damageMultiplier = 1.0f;
         [SerializeField] private float fallDamageDelay = 0.5f;
+        [SerializeField] private float fallDamageCooldown = 0.5f;
 
         [Header("Dependencies")]
         [SerializeField] private LayerMask ground;
@@ -30,6 +31,7 @@ namespace JJBA.Combat
         private RagdollSystem _ragdollSystem;
         private GroundCheck _hipsBoneGroundCheck;
         private float _fallDamageTimer = 0f;
+        private float _fallDamageCooldownTimer = 0f;
 
         public void Initialize()
         {
@@ -45,7 +47,8 @@ namespace JJBA.Combat
         void Update()
         {
             if (!_ragdollSystem.IsFall()) NotRagdollFallDamage();
-            _fallDamageTimer += Time.deltaTime;
+            if (_fallDamageTimer < fallDamageDelay + 1f) _fallDamageTimer += Time.deltaTime;
+            if (_fallDamageCooldownTimer < fallDamageCooldown + 1f) _fallDamageCooldownTimer += Time.deltaTime;
         }
 
         private void NotRagdollFallDamage()
@@ -86,7 +89,7 @@ namespace JJBA.Combat
 
         private void OnHipsCollision(Collider other)
         {
-            if (!_ragdollSystem.IsFall() || _fallDamageTimer < fallDamageDelay) return;
+            if (!_ragdollSystem.IsFall() || _fallDamageTimer < fallDamageDelay || _fallDamageCooldownTimer < fallDamageCooldown) return;
 
             if (((1 << other.gameObject.layer) & ground) != 0)
             {
@@ -107,6 +110,7 @@ namespace JJBA.Combat
                     };
 
                     _healthComponent.GetDamage(fallDamage);
+                    _fallDamageCooldownTimer = 0f;
                 }
             }
         }
