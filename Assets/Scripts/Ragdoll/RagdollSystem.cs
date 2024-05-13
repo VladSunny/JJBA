@@ -4,6 +4,7 @@ using UnityEngine;
 
 using JJBA.Combat;
 using JJBA.Core;
+using UnityEngine.Events;
 namespace JJBA.Ragdoll
 {
     [RequireComponent(typeof(CapsuleCollider))]
@@ -21,6 +22,8 @@ namespace JJBA.Ragdoll
         [Header("Debug Keys")]
         [SerializeField] private KeyCode _fallKey = KeyCode.R;
         [SerializeField] private KeyCode _standKey = KeyCode.T;
+
+        [HideInInspector] public UnityEvent fallEvent;
 
         private RagdollHandler _ragdollHandler;
         private CapsuleCollider _characterCollider;
@@ -73,6 +76,8 @@ namespace JJBA.Ragdoll
 
         public void Fall()
         {
+            fallEvent.Invoke();
+            
             _characterCollider.enabled = false;
             _characterRigidbody.isKinematic = true;
             if (_animator != null) _animator.enabled = false;
