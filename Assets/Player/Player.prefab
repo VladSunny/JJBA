@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 18204750017158165}
   - component: {fileID: 4247243215155190850}
+  - component: {fileID: 4161446316595034911}
   m_Layer: 6
   m_Name: EffectsManager
   m_TagString: Untagged
@@ -53,8 +54,27 @@ MonoBehaviour:
     particleEffect: {fileID: 339552629180192583, guid: 56494d9a144bc384e91976b403432e3d, type: 3}
     parent: {fileID: 5793952708284477574}
     instance: {fileID: 0}
-  debugKeys: 1
+  debugKeys: 0
   debugPlayName: Falled
+--- !u!114 &4161446316595034911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59226227367640075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c04e676fe456da4cbd68594e53290d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decalEffect:
+  - name: FallCrack
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 8
+    decal: {fileID: 2633617311187097677, guid: 928d52de7a7ff9a5091b048dc92e2c70, type: 3}
+  hitDistance: 10
 --- !u!1 &461053245331682738
 GameObject:
   m_ObjectHideFlags: 0
