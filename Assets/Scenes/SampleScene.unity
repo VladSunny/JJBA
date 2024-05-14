@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657832, g: 0.49641222, b: 0.57481664, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1314,7 +1314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435145463}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.24337748, y: -0.000000018658882, z: 0.0000000046819295, w: 0.96993166}
+  m_LocalRotation: {x: 0.24337748, y: 0.000000018658882, z: -0.0000000046819295, w: 0.96993166}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3688,6 +3688,30 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 2035764724}
+--- !u!1 &1419373148 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 59226227367640075, guid: 1e5cfedb56769ac2daf198338d8f0148, type: 3}
+  m_PrefabInstance: {fileID: 7100666901935731046}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1419373151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419373148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c04e676fe456da4cbd68594e53290d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decalEffect:
+  - name: FallCrack
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 8
+    decal: {fileID: 2633617311187097677, guid: 928d52de7a7ff9a5091b048dc92e2c70, type: 3}
+  hitDistance: 10
 --- !u!1 &1469239316
 GameObject:
   m_ObjectHideFlags: 0
@@ -4685,7 +4709,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2009985980}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.26340038, y: 0.000000016598765, z: -0.0000000045321666, w: 0.96468663}
+  m_LocalRotation: {x: 0.26340038, y: -0.000000016598765, z: 0.0000000045321666, w: 0.96468663}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5191,6 +5215,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4247243215155190850, guid: 1e5cfedb56769ac2daf198338d8f0148, type: 3}
+      propertyPath: debugKeys
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7576032334534356615, guid: 1e5cfedb56769ac2daf198338d8f0148, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5238,6 +5266,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 461053245331682738, guid: 1e5cfedb56769ac2daf198338d8f0148, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7100666901935731069}
+    - targetCorrespondingSourceObject: {fileID: 59226227367640075, guid: 1e5cfedb56769ac2daf198338d8f0148, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1419373151}
   m_SourcePrefab: {fileID: 100100000, guid: 1e5cfedb56769ac2daf198338d8f0148, type: 3}
 --- !u!114 &7100666901935731047 stripped
 MonoBehaviour:

@@ -5,6 +5,7 @@ using UnityEngine;
 using JJBA.Audio;
 using JJBA.VFX;
 using JJBA.Ragdoll;
+
 namespace JJBA.Combat
 {
     [RequireComponent(typeof(Health))]
@@ -21,6 +22,7 @@ namespace JJBA.Combat
         private Rigidbody _rb;
         private AudioManager _audioManager;
         private ParticleManager _particleManager;
+        private DecalManager _decalManager;
         private RagdollSystem _ragdollSystem;
 
         private Rigidbody _hipsRb;
@@ -30,6 +32,7 @@ namespace JJBA.Combat
             _health = GetComponent<Health>();
             _animator = GetComponentInChildren<Animator>();
             _audioManager = GetComponentInChildren<AudioManager>();
+            _decalManager = GetComponentInChildren<DecalManager>();
             _particleManager = GetComponentInChildren<ParticleManager>();
             _rb = GetComponent<Rigidbody>();
             _ragdollSystem = GetComponent<RagdollSystem>();
@@ -62,7 +65,10 @@ namespace JJBA.Combat
             {
                 _audioManager.Play("Hitted_" + Random.Range(1, 4));
                 if (damage.forse.magnitude >= strongSlapSpeed)
+                {
                     _particleManager.Play("Slapped", Vector3.up, new Vector3(0, 0.2f, 0));
+                    _decalManager.SprayDecal("FallCrack", damage.forse.normalized, _ragdollSystem.hipsBone.position);
+                }
             }
 
             if (damage.type == DamageType.NONE)

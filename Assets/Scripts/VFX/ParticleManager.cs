@@ -6,7 +6,7 @@ namespace JJBA.VFX
 {
     public class ParticleManager : MonoBehaviour
     {
-        public ParticleEffect[] particleEffect;
+        [SerializeField] private ParticleEffect[] particleEffect;
         [SerializeField] private bool debugKeys = false;
         [SerializeField] private string debugPlayName;
 

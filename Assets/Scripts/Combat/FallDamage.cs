@@ -106,7 +106,7 @@ namespace JJBA.Combat
                     {
                         damageValue = damage,
                         type = DamageType.SLAP,
-                        forse = Vector3.down * fallSpeed,
+                        forse = hipsBoneRb.velocity,
                     };
 
                     _healthComponent.GetDamage(fallDamage);
