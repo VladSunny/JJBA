@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa26ab6dae59bcec6a43b6dfa2f3e023, type: 3}
   m_Name: PlayerBasePunchesConfig
   m_EditorClassIdentifier: 
-  basePunchDamage: 15
-  basePunchCooldown: 0.6
+  basePunchDamage: 10
+  finisherBasePunchDamage: 15
+  basePunchCooldown: 0.5
   basePunchComboCooldown: 2
   basePunchComboTime: 3
-  basePunchesNumber: 5
+  basePunchesNumber: 4
   basePunchForce: 5
+  finisherBasePunchForce: 5
   stopRunning: 1

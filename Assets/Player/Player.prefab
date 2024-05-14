@@ -109,7 +109,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461053245331682738}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e6bba10bf6d28484ea0527b02aadcf11, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -230,6 +230,9 @@ MonoBehaviour:
     m_Bits: 8
   _fallKey: 114
   _standKey: 116
+  fallEvent:
+    m_PersistentCalls:
+      m_Calls: []
   standTimer: 0
 --- !u!114 &559091471505643483
 MonoBehaviour:
@@ -328,6 +331,8 @@ MonoBehaviour:
   maxDamage: 100
   minFallSpeed: 5
   damageMultiplier: 1.5
+  fallDamageDelay: 0.05
+  fallDamageCooldown: 0.5
   ground:
     serializedVersion: 2
     m_Bits: 8
@@ -345,6 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa59f552e2aff7cb48e73ccaad629dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  strongSlapSpeed: 13
 --- !u!114 &6415432060698994959
 MonoBehaviour:
   m_ObjectHideFlags: 0

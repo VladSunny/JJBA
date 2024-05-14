@@ -6,7 +6,8 @@ namespace JJBA.Combat
     {
         NONE,
         SLAP,
-        BASE
+        BASE,
+        PUNCH_FINISHER,
     }
 
     public class Damage

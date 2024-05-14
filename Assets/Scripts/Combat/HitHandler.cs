@@ -4,8 +4,7 @@ using UnityEngine;
 
 using JJBA.Audio;
 using JJBA.VFX;
-using UnityEngine.Animations;
-
+using JJBA.Ragdoll;
 namespace JJBA.Combat
 {
     [RequireComponent(typeof(Health))]
@@ -22,6 +21,9 @@ namespace JJBA.Combat
         private Rigidbody _rb;
         private AudioManager _audioManager;
         private ParticleManager _particleManager;
+        private RagdollSystem _ragdollSystem;
+
+        private Rigidbody _hipsRb;
 
         public void Initialize()
         {
@@ -30,9 +32,12 @@ namespace JJBA.Combat
             _audioManager = GetComponentInChildren<AudioManager>();
             _particleManager = GetComponentInChildren<ParticleManager>();
             _rb = GetComponent<Rigidbody>();
+            _ragdollSystem = GetComponent<RagdollSystem>();
 
             _health.onHealthDamaged.AddListener(Hitted);
             _health.onDied.AddListener(OnDeath);
+
+            _hipsRb = _ragdollSystem.hipsBone.GetComponent<Rigidbody>();
         }
 
         private void Hitted(Damage damage)
@@ -43,6 +48,14 @@ namespace JJBA.Combat
                 _animator.SetTrigger(damagedAV);
                 _rb.AddForce(damage.forse, ForceMode.Impulse);
                 _particleManager.Play("Hitted", damage.forse.normalized);
+            }
+
+            if (damage.type == DamageType.PUNCH_FINISHER)
+            {
+                _audioManager.Play("Hitted_" + Random.Range(1, 4));
+                _particleManager.Play("Hitted", damage.forse.normalized);
+                _ragdollSystem.Fall();
+                _hipsRb.AddForce(damage.forse, ForceMode.Impulse);
             }
 
             if (damage.type == DamageType.SLAP)

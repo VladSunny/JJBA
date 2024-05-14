@@ -103,14 +103,27 @@ namespace JJBA.Combat
 
                 Health enemyHealth = collider.transform.GetComponent<Health>();
                 Rigidbody enemyRigidbody = collider.transform.GetComponent<Rigidbody>();
+                Damage damage;
 
-                Damage damage = new()
+                if (_basePunchCounter == basePunchesConfig.basePunchesNumber)
                 {
-                    damageValue = basePunchesConfig.basePunchDamage,
-                    from = characterTransform.position,
-                    forse = characterTransform.forward * basePunchesConfig.basePunchForce,
-                    type = DamageType.BASE
-                };
+                    damage = new()
+                    {
+                        damageValue = basePunchesConfig.finisherBasePunchDamage,
+                        from = characterTransform.position,
+                        forse = characterTransform.forward * basePunchesConfig.finisherBasePunchForce,
+                        type = DamageType.PUNCH_FINISHER
+                    };
+                }
+                else{
+                    damage = new()
+                    {
+                        damageValue = basePunchesConfig.basePunchDamage,
+                        from = characterTransform.position,
+                        forse = characterTransform.forward * basePunchesConfig.basePunchForce,
+                        type = DamageType.BASE
+                    };
+                }
 
                 if (enemyHealth != null)
                     collider.transform.GetComponent<Health>().GetDamage(damage);
