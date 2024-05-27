@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657832, g: 0.49641222, b: 0.57481664, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1252,6 +1252,8 @@ MonoBehaviour:
   playerObj: {fileID: 0}
   combatLookAt: {fileID: 0}
   ragdollSystem: {fileID: 0}
+  hipsBoneTransform: {fileID: 0}
+  playerTransform: {fileID: 0}
   CombatCamera: {fileID: 0}
   DeathCamera: {fileID: 0}
 --- !u!114 &377096515
@@ -3145,7 +3147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20928484, y: 0.03303046, z: -0.00707355, w: 0.97727114}
+  m_LocalRotation: {x: 0.20928484, y: 0.03303046, z: -0.0070735496, w: 0.97727114}
   m_LocalPosition: {x: 0, y: 3.903543, z: -3.5309715}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3202,6 +3204,8 @@ MonoBehaviour:
   playerObj: {fileID: 438537117}
   combatLookAt: {fileID: 633605217}
   ragdollSystem: {fileID: 7100666901935731057}
+  hipsBoneTransform: {fileID: 250535942}
+  playerTransform: {fileID: 153019372}
   CombatCamera: {fileID: 678259620}
   DeathCamera: {fileID: 45780558}
 --- !u!114 &963194231
@@ -3545,7 +3549,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162621862}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.19713195, y: 0.03311581, z: -0.0066628084, w: 0.97979486}
+  m_LocalRotation: {x: 0.19713195, y: 0.033115808, z: -0.0066628074, w: 0.97979486}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
