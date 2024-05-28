@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using DG.Tweening;
+using UnityEngine;
+
+namespace JJBA.Stands.Movement
+{
+    public class Mover : MonoBehaviour
+    {
+        private Transform _target;
+        private Transform _playerOrientation;
+        [SerializeField] private float duration = 0.3f;
+        [SerializeField] private float followDistance = 0.01f;
+
+        public void SetTarget(Transform target)
+        {
+            _target = target;
+        }
+
+        public void Initialize(Transform playerOrientation)
+        {
+            _playerOrientation = playerOrientation;
+        }
+
+        private void Update()
+        {
+            if (_target != null && Vector3.Distance(transform.position, _target.position) > followDistance)
+            {
+                transform.DOMove(_target.position, duration);
+            }
+
+            if (_playerOrientation != null) transform.forward = _playerOrientation.forward;
+        }
+
+    }
+}

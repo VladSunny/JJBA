@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace JJBA.Bootstrap
+using JJBA.Stands.StarPlatinum.Bootstrap;
+namespace JJBA.Stands.Bootstrap
 {
     public class StandBootstrap : MonoBehaviour
     {
@@ -13,13 +14,9 @@ namespace JJBA.Bootstrap
         private void Awake()
         {
             _stand = Instantiate(standPrefab);
-            _stand.GetComponent<DOTweenTest>().target = transform;
-
             _playerOrientation = transform.parent;
-        }
 
-        private void Update() {
-            _stand.transform.forward = _playerOrientation.forward;
+            _stand.GetComponent<StarPlatinumBootstrap>().Initialize(_playerOrientation, transform);
         }
     }
 }

@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8407775774842101719}
-  - component: {fileID: 5273079785789851581}
   - component: {fileID: 8765999147060352561}
+  - component: {fileID: 1764661068517673452}
+  - component: {fileID: 4332733828821428564}
   m_Layer: 0
   m_Name: StarPlatinum
   m_TagString: Untagged
@@ -34,21 +35,6 @@ Transform:
   - {fileID: 7921865769737692507}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5273079785789851581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7281974429905164320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 047a674ea38ba884895bf0a5d8604b46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  duration: 0.3
-  followDistance: 0.01
 --- !u!136 &8765999147060352561
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -72,6 +58,32 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1764661068517673452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281974429905164320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58cc19402e583d5b5924a746656ec309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4332733828821428564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281974429905164320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4627a2099fd3442b99115e1085b35e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.3
+  followDistance: 0.01
 --- !u!1001 &7672629149499376304
 PrefabInstance:
   m_ObjectHideFlags: 0
