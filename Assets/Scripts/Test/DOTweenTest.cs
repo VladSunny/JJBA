@@ -14,7 +14,7 @@ namespace JJBA
         void Update()
         {
             // Проверяем расстояние до цели
-            if (Vector3.Distance(transform.position, target.position) > followDistance)
+            if (target != null && Vector3.Distance(transform.position, target.position) > followDistance)
             {
                 // Плавно перемещаем объект к цели с помощью DOTween
                 transform.DOMove(target.position, duration);
