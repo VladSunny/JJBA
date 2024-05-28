@@ -11,13 +11,14 @@ namespace JJBA.UI
     public class ShowDamagePopup : MonoBehaviour
     {
         [SerializeField] private GameObject damagePopupPrefab;
+        [SerializeField] private Transform popupParent;
         [SerializeField] private bool drawGizmos;
 
         private Health _health;
 
         public void Initialize()
         {
-            _health = GetComponent<Health>();
+            _health = GetComponentInParent<Health>();
             _health.onHealthDamaged.AddListener(createPopup);
         }
 
@@ -35,7 +36,7 @@ namespace JJBA.UI
             GameObject popup = Instantiate(damagePopupPrefab, Vector3.zero, Quaternion.identity);
             popup.GetComponent<DamagePopup>().Setup(roundedDamage);
             popup.GetComponent<LookAtConstraint>().AddSource(source);
-            popup.transform.SetParent(transform, false);
+            popup.transform.SetParent(popupParent, false);
         }
 
 #if UNITY_EDITOR
