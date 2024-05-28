@@ -1,8 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 using JJBA.Stands.StarPlatinum.Bootstrap;
+using JJBA.Stands.StarPlatinum.Input;
+using JJBA.Stands.StarPlatinum.Controller;
+
 namespace JJBA.Stands.Bootstrap
 {
     public class StandBootstrap : MonoBehaviour
@@ -16,7 +20,13 @@ namespace JJBA.Stands.Bootstrap
             _stand = Instantiate(standPrefab);
             _playerOrientation = transform.parent;
 
-            _stand.GetComponent<StarPlatinumBootstrap>().Initialize(_playerOrientation, transform);
+            _stand.GetComponent<SPBootstrap>().Initialize(_playerOrientation, transform);
+
+            if (transform.GetComponent<PlayerInput>() != null)
+            {
+                gameObject.AddComponent<SPInput>();
+                GetComponent<SPInput>().Initialize(_stand.GetComponent<SPController>());
+            }
         }
     }
 }

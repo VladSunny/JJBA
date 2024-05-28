@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using JJBA.Stands.Movement;
+using JJBA.Stands.StarPlatinum.Controller;
 
 namespace JJBA.Stands.StarPlatinum.Bootstrap
 {
     [RequireComponent(typeof(Mover))]
-    public class StarPlatinumBootstrap : MonoBehaviour
+    [RequireComponent(typeof(SPController))]
+    public class SPBootstrap : MonoBehaviour
     {
         private Transform _playerOrientation;
         private Transform _idlePosition;
