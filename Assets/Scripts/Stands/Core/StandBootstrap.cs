@@ -17,9 +17,9 @@ namespace JJBA.Stands.Bootstrap
 
         private void Awake()
         {
-            _stand = Instantiate(standPrefab);
             _playerOrientation = transform.parent;
 
+            _stand = Instantiate(standPrefab, _playerOrientation.position, _playerOrientation.rotation);
             _stand.GetComponent<SPBootstrap>().Initialize(_playerOrientation, transform);
 
             if (transform.GetComponent<PlayerInput>() != null)
