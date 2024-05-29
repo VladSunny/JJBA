@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 namespace JJBA.Stands.StarPlatinum.Controller
 {
     public class SPController : MonoBehaviour
@@ -14,7 +16,7 @@ namespace JJBA.Stands.StarPlatinum.Controller
             _isActive = isActive;
         }
 
-        public bool GetActive()
+        public bool IsActive()
         {
             return _isActive;
         }

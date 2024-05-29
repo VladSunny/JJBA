@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
+using JJBA.Stands.StarPlatinum.Controller;
 namespace JJBA.Stands.Movement
 {
     public class Mover : MonoBehaviour
     {
         private Transform _target;
         private Transform _playerOrientation;
+        private Transform _idlePosition;
+        private SPController _standController;
         [SerializeField] private float duration = 0.3f;
         [SerializeField] private float followDistance = 0.01f;
 
@@ -17,9 +20,11 @@ namespace JJBA.Stands.Movement
             _target = target;
         }
 
-        public void Initialize(Transform playerOrientation)
+        public void Initialize(Transform playerOrientation, Transform idlePosition)
         {
             _playerOrientation = playerOrientation;
+            _idlePosition = idlePosition;
+            _standController = GetComponentInParent<SPController>();
         }
 
         private void Update()
@@ -30,6 +35,11 @@ namespace JJBA.Stands.Movement
             }
 
             if (_playerOrientation != null) transform.forward = _playerOrientation.forward;
+
+            if (_standController != null) {
+                if (_standController.IsActive()) _target = _idlePosition;
+                else _target = _playerOrientation;
+            }
         }
 
     }

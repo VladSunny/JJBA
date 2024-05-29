@@ -31,7 +31,7 @@ namespace JJBA.Stands.StarPlatinum.Input
         {
             if (_summonAction.triggered)
             {
-                _standController.SetActive(!_standController.GetActive());
+                _standController.SetActive(!_standController.IsActive());
             }
         }
     }

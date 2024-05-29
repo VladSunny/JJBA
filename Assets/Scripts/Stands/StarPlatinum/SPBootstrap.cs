@@ -19,8 +19,7 @@ namespace JJBA.Stands.StarPlatinum.Bootstrap
             _playerOrientation = playerOrientation;
             _idlePosition = idlePosition;
 
-            GetComponent<Mover>().Initialize(_playerOrientation);
-            GetComponent<Mover>().SetTarget(_idlePosition);
+            GetComponent<Mover>().Initialize(_playerOrientation, _idlePosition);
         }
     }
 }
