@@ -4,6 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 
 using JJBA.Stands.StarPlatinum.Controller;
+using Cysharp.Threading.Tasks;
 namespace JJBA.Stands.Movement
 {
     public class Mover : MonoBehaviour
@@ -40,6 +41,10 @@ namespace JJBA.Stands.Movement
                 if (_standController.IsActive()) _target = _idlePosition;
                 else _target = _playerOrientation;
             }
+        }
+
+        public async UniTask Hide() {
+            await transform.DOMove(_playerOrientation.position, duration).AsyncWaitForCompletion();
         }
 
     }

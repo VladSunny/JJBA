@@ -4,6 +4,7 @@ using UnityEngine;
 
 using JJBA.Stands.Movement;
 using JJBA.Stands.StarPlatinum.Controller;
+using JJBA.Stands.StarPlatinum.Input;
 
 namespace JJBA.Stands.StarPlatinum.Bootstrap
 {
@@ -20,6 +21,7 @@ namespace JJBA.Stands.StarPlatinum.Bootstrap
             _idlePosition = idlePosition;
 
             GetComponent<Mover>().Initialize(_playerOrientation, _idlePosition);
+            GetComponent<SPController>().Initialize();
         }
     }
 }
