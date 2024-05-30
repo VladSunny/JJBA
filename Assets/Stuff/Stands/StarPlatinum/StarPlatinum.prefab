@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8553845270171792309}
   - component: {fileID: 2918306697278859247}
+  - component: {fileID: 7159684579639560211}
   m_Layer: 0
   m_Name: EffectsManager
   m_TagString: Untagged
@@ -55,7 +56,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Summon1
     clip: {fileID: 8300000, guid: c8f16625978598414a9d9a2f9c0ba292, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     spatialBlend: 1
     loop: 0
@@ -63,7 +64,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Summon2
     clip: {fileID: 8300000, guid: f1052db4c8386c519a81a19abf95ac5d, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     spatialBlend: 1
     loop: 0
@@ -71,12 +72,32 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Summon3
     clip: {fileID: 8300000, guid: 5f9b14c02118abd2c990e1455e78c93d, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     spatialBlend: 1
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
+--- !u!114 &7159684579639560211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835565520221559360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43a4d31eb0c86b8468b2d4c8afb2d28f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleEffect:
+  - name: Summon
+    particleEffect: {fileID: 7574417628130248997, guid: 4a61bfdf730073427aa68ed06aa10f48, type: 3}
+    parent: {fileID: 377374019317455869}
+    attachToParent: 0
+    instance: {fileID: 0}
+  debugKeys: 0
+  debugPlayName: 
 --- !u!1 &7281974429905164320
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d32c3bdc85d24b48980f21b8d831cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _summonCooldown: 1
   _standModel: {fileID: 7402737317803917281}
 --- !u!1001 &7672629149499376304
 PrefabInstance:
@@ -253,6 +275,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3865722961245369204}
   m_SourcePrefab: {fileID: 100100000, guid: 4b30631d045463f48a52e3549bfa1417, type: 3}
+--- !u!4 &377374019317455869 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8018118334481897805, guid: 4b30631d045463f48a52e3549bfa1417, type: 3}
+  m_PrefabInstance: {fileID: 7672629149499376304}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6543115896260951898 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5712967092099105302, guid: 4b30631d045463f48a52e3549bfa1417, type: 3}

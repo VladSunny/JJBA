@@ -14,14 +14,25 @@ namespace JJBA.VFX
         {
             foreach (ParticleEffect pe in particleEffect)
             {
-                GameObject instance = Instantiate(pe.particleEffect);
-                instance.transform.position = pe.parent.position;
+                GameObject instance;
+
+                if (pe.attachToParent)
+                {
+                    instance = Instantiate(pe.particleEffect, pe.parent);
+                    instance.transform.localPosition = Vector3.zero;
+                }
+                else
+                {
+                    instance = Instantiate(pe.particleEffect);
+                    instance.transform.position = pe.parent.position;
+                }
                 pe.instance = instance;
             }
         }
 
         public void Play(string name, Vector3 forward = default, Vector3 positionOffset = default)
         {
+            if (forward == default) forward = transform.forward;
             foreach (ParticleEffect pe in particleEffect)
             {
                 if (pe.name == name)

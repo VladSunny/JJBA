@@ -4,7 +4,8 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
-
+using JJBA.Audio;
+using JJBA.VFX;
 using JJBA.Stands.Movement;
 namespace JJBA.Stands.StarPlatinum.Controller
 {
@@ -14,6 +15,8 @@ namespace JJBA.Stands.StarPlatinum.Controller
 
         [SerializeField] private GameObject _standModel;
         private Mover _mover;
+        private AudioManager _audioManager;
+        private ParticleManager _particleManager;
 
         private bool _isActive;
         private float _summonTimer;
@@ -23,7 +26,15 @@ namespace JJBA.Stands.StarPlatinum.Controller
             if (_summonTimer <= _summonCooldown) return;
 
             _isActive = isActive;
-            if (!_isActive) Hide();
+            if (!_isActive) {
+                _audioManager.Play("Hide");
+                Hide();
+            }
+            else
+            {
+                _audioManager.Play("Summon"+ Random.Range(1, 4));
+                _particleManager.Play("Summon");
+            }
             _summonTimer = 0f;
         }
 
@@ -35,7 +46,11 @@ namespace JJBA.Stands.StarPlatinum.Controller
         public void Initialize()
         {
             _mover = GetComponent<Mover>();
+            _audioManager = GetComponentInChildren<AudioManager>();
+            _particleManager = GetComponentInChildren<ParticleManager>();
+
             _summonTimer = _summonCooldown + 1f;
+
             SetActive(false);
         }
 

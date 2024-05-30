@@ -10,6 +10,7 @@ namespace JJBA.VFX
         public string name;
         public GameObject particleEffect;
         public Transform parent;
+        public bool attachToParent = false;
 
         [HideInInspector]
         public GameObject instance;

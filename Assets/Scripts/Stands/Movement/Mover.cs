@@ -35,7 +35,8 @@ namespace JJBA.Stands.Movement
                 transform.DOMove(_target.position, duration);
             }
 
-            if (_playerOrientation != null) transform.forward = _playerOrientation.forward;
+            if (_playerOrientation != null)
+                transform.forward = _playerOrientation.forward;
 
             if (_standController != null) {
                 if (_standController.IsActive()) _target = _idlePosition;
