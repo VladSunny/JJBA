@@ -6,6 +6,7 @@ using UnityEngine;
 using JJBA.Movement;
 using JJBA.Combat;
 using UnityEngine.InputSystem;
+using JJBA.Stands.Bootstrap;
 
 namespace JJBA.Control
 {
@@ -18,6 +19,7 @@ namespace JJBA.Control
         private PlayerInput _playerInput;
         private Mover _mover;
         private StandlessFighter _fighter;
+        private StandBootstrap _standBootstrap;
 
         private InputAction _moveAction;
         private InputAction _jumpAction;
@@ -30,16 +32,12 @@ namespace JJBA.Control
             _mover = GetComponent<Mover>();
             _fighter = GetComponent<StandlessFighter>();
             _playerInput = GetComponent<PlayerInput>();
+            _standBootstrap = GetComponentInChildren<StandBootstrap>();
 
             _moveAction = _playerInput.actions["Movement"];
             _jumpAction = _playerInput.actions["Jump"];
             _basePunchAction = _playerInput.actions["BasePunch"];
             _runningAction = _playerInput.actions["Run"];
-        }
-        
-        private void Start()
-        {
-            // Initialize();
         }
 
         private void Update()
@@ -62,7 +60,7 @@ namespace JJBA.Control
             {
                 _mover.Jump();
             }
-            if (_basePunchAction.triggered)
+            if (_basePunchAction.triggered && !_standBootstrap.isActive())
             {
                 _fighter.BasePunch();
             }

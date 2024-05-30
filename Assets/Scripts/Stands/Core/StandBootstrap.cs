@@ -14,19 +14,25 @@ namespace JJBA.Stands.Bootstrap
         public GameObject standPrefab;
         private GameObject _stand;
         private Transform _playerOrientation;
+        [SerializeField] private Transform _skillPosition;
 
         private void Awake()
         {
             _playerOrientation = transform.parent;
 
             _stand = Instantiate(standPrefab, _playerOrientation.position, _playerOrientation.rotation);
-            _stand.GetComponent<SPBootstrap>().Initialize(_playerOrientation, transform);
+            _stand.GetComponent<SPBootstrap>().Initialize(_playerOrientation, transform, _skillPosition);
 
             if (transform.GetComponent<PlayerInput>() != null)
             {
                 gameObject.AddComponent<SPInput>();
-                GetComponent<SPInput>().Initialize(_stand.GetComponent<SPController>());
+                GetComponent<SPInput>().Initialize(_stand.GetComponent<SPController>(), _stand);
             }
+        }
+
+        public bool isActive()
+        {
+            return _stand.GetComponent<SPController>().IsActive();
         }
     }
 }

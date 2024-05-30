@@ -5,8 +5,15 @@ using UnityEngine;
 
 using JJBA.Stands.StarPlatinum.Controller;
 using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 namespace JJBA.Stands.Movement
 {
+    enum MoveState
+    {
+        Idle,
+        Moving
+    }
+
     public class Mover : MonoBehaviour
     {
         private Transform _target;
@@ -16,9 +23,14 @@ namespace JJBA.Stands.Movement
         [SerializeField] private float duration = 0.3f;
         [SerializeField] private float followDistance = 0.01f;
 
-        public void SetTarget(Transform target)
+        private MoveState _currentState = MoveState.Idle;
+
+        public async void SetTarget(Transform target)
         {
             _target = target;
+            _currentState = MoveState.Moving;
+            await Task.Delay(1000);
+            _currentState = MoveState.Idle;
         }
 
         public void Initialize(Transform playerOrientation, Transform idlePosition)
@@ -38,7 +50,7 @@ namespace JJBA.Stands.Movement
             if (_playerOrientation != null)
                 transform.forward = _playerOrientation.forward;
 
-            if (_standController != null) {
+            if (_standController != null && _currentState == MoveState.Idle) {
                 if (_standController.IsActive()) _target = _idlePosition;
                 else _target = _playerOrientation;
             }
