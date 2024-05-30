@@ -47,7 +47,7 @@ namespace JJBA.Combat
         {
             if (damage.type == DamageType.BASE)
             {
-                _audioManager.Play("Hitted_" + Random.Range(1, 4));
+                _audioManager.Play("Hitted_" + Random.Range(1, 5));
                 _animator.SetTrigger(damagedAV);
                 _rb.AddForce(damage.forse, ForceMode.Impulse);
                 _particleManager.Play("Hitted", damage.forse.normalized);
@@ -55,7 +55,7 @@ namespace JJBA.Combat
 
             if (damage.type == DamageType.PUNCH_FINISHER)
             {
-                _audioManager.Play("Hitted_" + Random.Range(1, 4));
+                _audioManager.Play("Hitted_" + Random.Range(1, 5));
                 _particleManager.Play("Hitted", damage.forse.normalized);
                 _ragdollSystem.Fall();
                 _hipsRb.AddForce(damage.forse, ForceMode.Impulse);
@@ -63,7 +63,7 @@ namespace JJBA.Combat
 
             if (damage.type == DamageType.SLAP)
             {
-                _audioManager.Play("Hitted_" + Random.Range(1, 4));
+                _audioManager.Play("Hitted_" + Random.Range(1, 5));
                 if (damage.forse.magnitude >= strongSlapSpeed)
                 {
                     _particleManager.Play("Slapped", Vector3.up, new Vector3(0, 0.2f, 0));
@@ -73,7 +73,7 @@ namespace JJBA.Combat
 
             if (damage.type == DamageType.NONE)
             {
-                _audioManager.Play("Hitted_" + Random.Range(1, 4));
+                _audioManager.Play("Hitted_" + Random.Range(1, 5));
             }
         }
 
