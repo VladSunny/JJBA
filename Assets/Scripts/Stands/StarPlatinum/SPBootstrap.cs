@@ -9,7 +9,7 @@ using JJBA.Stands.StarPlatinum.Skill;
 
 namespace JJBA.Stands.StarPlatinum.Bootstrap
 {
-    [RequireComponent(typeof(Mover))]
+    [RequireComponent(typeof(StandMover))]
     [RequireComponent(typeof(SPController))]
     [RequireComponent(typeof(BasePunchSkill))]
     public class SPBootstrap : MonoBehaviour
@@ -24,9 +24,9 @@ namespace JJBA.Stands.StarPlatinum.Bootstrap
             _idlePosition = idlePosition;
             _skillPosition = skillPosition;
 
-            GetComponent<Mover>().Initialize(_playerOrientation, _idlePosition);
+            GetComponent<StandMover>().Initialize(_playerOrientation, _idlePosition, _skillPosition);
             GetComponent<SPController>().Initialize();
-            GetComponent<BasePunchSkill>().Initialize(_skillPosition);
+            GetComponent<BasePunchSkill>().Initialize();
         }
     }
 }

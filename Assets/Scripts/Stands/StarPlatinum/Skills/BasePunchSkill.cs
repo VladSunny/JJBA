@@ -7,18 +7,16 @@ namespace JJBA.Stands.StarPlatinum.Skill
 {
     public class BasePunchSkill : MonoBehaviour
     {
-        private Mover _mover;
-        private Transform _skillPosition;
+        private StandMover _mover;
 
-        public void Initialize(Transform skillPosition)
+        public void Initialize()
         {
-            _mover = GetComponent<Mover>();
-            _skillPosition = skillPosition;
+            _mover = GetComponent<StandMover>();
         }
 
         public void Use()
         {
-            _mover.SetTarget(_skillPosition);
+            _mover.UsingSkill();
         }
     }
 }

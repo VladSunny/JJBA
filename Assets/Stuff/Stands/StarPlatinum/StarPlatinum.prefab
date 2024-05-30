@@ -94,7 +94,7 @@ MonoBehaviour:
   - name: Summon
     particleEffect: {fileID: 7574417628130248997, guid: 4a61bfdf730073427aa68ed06aa10f48, type: 3}
     parent: {fileID: 377374019317455869}
-    attachToParent: 0
+    attachToParent: 1
     instance: {fileID: 0}
   debugKeys: 0
   debugPlayName: 
@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 1764661068517673452}
   - component: {fileID: 4332733828821428564}
   - component: {fileID: 4274361479770065143}
+  - component: {fileID: 1336173352530177456}
   m_Layer: 0
   m_Name: StarPlatinum
   m_TagString: Untagged
@@ -198,6 +199,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _summonCooldown: 1
   _standModel: {fileID: 7402737317803917281}
+--- !u!114 &1336173352530177456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7281974429905164320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45455b425b1b914aeb4f3f85a4df9644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7672629149499376304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -259,6 +272,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4b30631d045463f48a52e3549bfa1417, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8597116871712663540}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4b30631d045463f48a52e3549bfa1417, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1082449040721894941}
     - targetCorrespondingSourceObject: {fileID: -7719985009349672818, guid: 4b30631d045463f48a52e3549bfa1417, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6499309034011991217}
@@ -568,6 +584,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1082449040721894941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7402737317803917281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f3fd71d68199e6449c9a3a6bb9d4ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7921865769737692507 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4b30631d045463f48a52e3549bfa1417, type: 3}
