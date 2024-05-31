@@ -8,6 +8,7 @@ using JJBA.Audio;
 using JJBA.VFX;
 using JJBA.Stands.Movement;
 using JJBA.Core;
+using JJBA.UI;
 
 namespace JJBA.Stands.StarPlatinum.Controller
 {
@@ -22,16 +23,19 @@ namespace JJBA.Stands.StarPlatinum.Controller
         private AudioManager _audioManager;
         private ParticleManager _particleManager;
         private ToggleVisibility _toggleVisibility;
+        private CooldownUIManager _cooldownUIManager;
 
         private bool _isActive;
         private float _summonTimer;
 
-        public void Initialize()
+        public void Initialize(CooldownUIManager cooldownUIManager)
         {
             _mover = GetComponent<StandMover>();
             _audioManager = GetComponentInChildren<AudioManager>();
             _particleManager = GetComponentInChildren<ParticleManager>();
             _toggleVisibility = GetComponentInChildren<ToggleVisibility>();
+
+            _cooldownUIManager = cooldownUIManager;
 
             _summonTimer = _summonCooldown + 1f;
 
@@ -48,6 +52,9 @@ namespace JJBA.Stands.StarPlatinum.Controller
             else Summon();
 
             _summonTimer = 0f;
+
+            if (_cooldownUIManager != null)
+                _cooldownUIManager.AddCooldownTimer(_summonCooldown, "Summon");
         }
 
         public bool IsActive()

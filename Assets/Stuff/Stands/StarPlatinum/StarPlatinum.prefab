@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d32c3bdc85d24b48980f21b8d831cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _summonCooldown: 1
+  _summonCooldown: 2
   _standModel: {fileID: 7402737317803917281}
 --- !u!114 &1336173352530177456
 MonoBehaviour:
@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45455b425b1b914aeb4f3f85a4df9644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cooldown: 2
 --- !u!1001 &7672629149499376304
 PrefabInstance:
   m_ObjectHideFlags: 0

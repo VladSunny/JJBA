@@ -86,6 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7576032334534356615}
+  - component: {fileID: 3027905663870474330}
   - component: {fileID: 3342817729863405261}
   - component: {fileID: 7164273182770135546}
   - component: {fileID: 5951649332799741484}
@@ -99,6 +100,7 @@ GameObject:
   - component: {fileID: 4540500637797582810}
   - component: {fileID: 320110782394874824}
   - component: {fileID: 6415432060698994959}
+  - component: {fileID: 697378093229005483}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -125,6 +127,18 @@ Transform:
   - {fileID: 18204750017158165}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3027905663870474330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461053245331682738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f29a453d5882b4abb8c5bdb54152f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &3342817729863405261
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -389,6 +403,20 @@ MonoBehaviour:
   damagePopupPrefab: {fileID: 4255436815127969719, guid: 2f98d01073d3d1ec6b7e9891231ce263, type: 3}
   popupParent: {fileID: 2318344153752071782}
   drawGizmos: 0
+--- !u!114 &697378093229005483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461053245331682738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f441ab6ba7858b940b042d19b1b0c7fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cooldownTimerPrefab: {fileID: 7475369197511070750, guid: 84ae0b7bd8565f6c880bb0d29f90fcb1, type: 3}
+  _cooldownTimerParent: {fileID: 0}
 --- !u!1 &1768386003565611041
 GameObject:
   m_ObjectHideFlags: 0

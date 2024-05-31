@@ -69,7 +69,7 @@ namespace JJBA.Combat
                     _readyToPunch = false;
                     Invoke(nameof(ResetPunch), basePunchesConfig.basePunchComboCooldown);
                     if (_cooldownUIManager != null)
-                        _cooldownUIManager.AddCooldownTimer(basePunchesConfig.basePunchComboCooldown);
+                        _cooldownUIManager.AddCooldownTimer(basePunchesConfig.basePunchComboCooldown, "Base Punch");
                 }
             }
         }
@@ -135,7 +135,7 @@ namespace JJBA.Combat
             if (_basePunchCounter >= basePunchesConfig.basePunchesNumber)
             {
                 if (_cooldownUIManager != null)
-                    _cooldownUIManager.AddCooldownTimer(basePunchesConfig.basePunchComboCooldown);
+                    _cooldownUIManager.AddCooldownTimer(basePunchesConfig.basePunchComboCooldown, "Base Punch");
                 _basePunchCounter = 0;
                 Invoke(nameof(ResetPunch), basePunchesConfig.basePunchComboCooldown);
             }

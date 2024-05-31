@@ -2,6 +2,7 @@ using DG.Tweening;
 using Cysharp.Threading.Tasks;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 namespace JJBA.UI
 {
@@ -13,13 +14,14 @@ namespace JJBA.UI
 
         private Image _image;
         private RectTransform _rectTransform;
+        private TextMeshProUGUI _text;
 
         private Vector3 _startScale = Vector3.zero;
         private Vector3 _endScale;
         private float _timer = 0f;
         private bool _isCoolingDown = false;
 
-        public void Initialize(float cooldown)
+        public void Initialize(float cooldown, string text)
         {
             _cooldownTime = cooldown;
             _isCoolingDown = true;
@@ -27,6 +29,8 @@ namespace JJBA.UI
 
             _image = GetComponent<Image>();
             _rectTransform = GetComponent<RectTransform>();
+            _text = GetComponentInChildren<TextMeshProUGUI>();
+            _text.text = text;
 
             _endScale = _rectTransform.localScale;
 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 using JJBA.Stands.Movement;
 using JJBA.Stands.StarPlatinum.Controller;
-using JJBA.Stands.StarPlatinum.Input;
 using JJBA.Stands.StarPlatinum.Skill;
+using JJBA.UI;
 
 namespace JJBA.Stands.StarPlatinum.Bootstrap
 {
@@ -17,16 +17,18 @@ namespace JJBA.Stands.StarPlatinum.Bootstrap
         private Transform _playerOrientation;
         private Transform _idlePosition;
         private Transform _skillPosition;
+        private GameObject _user;
 
-        public void Initialize(Transform playerOrientation, Transform idlePosition, Transform skillPosition)
+        public void Initialize(Transform playerOrientation, Transform idlePosition, Transform skillPosition, GameObject user)
         {
             _playerOrientation = playerOrientation;
             _idlePosition = idlePosition;
             _skillPosition = skillPosition;
+            _user = user;
 
             GetComponent<StandMover>().Initialize(_playerOrientation, _idlePosition, _skillPosition);
-            GetComponent<SPController>().Initialize();
-            GetComponent<BasePunchSkill>().Initialize();
+            GetComponent<SPController>().Initialize(_user.GetComponent<CooldownUIManager>());
+            GetComponent<BasePunchSkill>().Initialize(_user.GetComponent<CooldownUIManager>(), GetComponent<SPController>());
         }
     }
 }

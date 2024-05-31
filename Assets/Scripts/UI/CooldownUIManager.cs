@@ -9,10 +9,10 @@ namespace JJBA.UI
         [SerializeField] private GameObject _cooldownTimerPrefab;
         [SerializeField] private Transform _cooldownTimerParent;
 
-        public void AddCooldownTimer(float cooldown)
+        public void AddCooldownTimer(float cooldown, string text)
         {
             GameObject timerGO = Instantiate(_cooldownTimerPrefab, _cooldownTimerParent);
-            timerGO.GetComponent<CooldownTimer>().Initialize(cooldown);
+            timerGO.GetComponent<CooldownTimer>().Initialize(cooldown, text);
         }
     }
 }
