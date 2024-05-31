@@ -1,11 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
-using UnityEngine;
 using Cysharp.Threading.Tasks;
-using System.Threading.Tasks;
-
-using JJBA.Stands.StarPlatinum.Controller;
+using UnityEngine;
 
 namespace JJBA.Stands.Movement
 {
