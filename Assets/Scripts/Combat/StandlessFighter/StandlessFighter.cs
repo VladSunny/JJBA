@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine.InputSystem;
+using JJBA.UI;
 using JJBA.Core;
 using JJBA.Combat.Events;
 using JJBA.Movement;
@@ -34,6 +34,7 @@ namespace JJBA.Combat
         private StandlessEvents _standlessEvents;
         private AudioManager _audioManager;
         private Mover _mover;
+        private CooldownUIManager _cooldownUIManager;
 
         private static readonly int basePunchesNumberAV = Animator.StringToHash("basePunchesNumber");
         private static readonly int punchAV = Animator.StringToHash("basePunch");
@@ -50,6 +51,7 @@ namespace JJBA.Combat
             _mover = GetComponent<Mover>();
             _standlessEvents.onBasePunch.AddListener(DoPunch);
             _audioManager = GetComponentInChildren<AudioManager>();
+            _cooldownUIManager = GetComponent<CooldownUIManager>();
         }
 
         private void Update()
@@ -66,6 +68,8 @@ namespace JJBA.Combat
                     _basePunchComboTimer = 0f;
                     _readyToPunch = false;
                     Invoke(nameof(ResetPunch), basePunchesConfig.basePunchComboCooldown);
+                    if (_cooldownUIManager != null)
+                        _cooldownUIManager.AddCooldownTimer(basePunchesConfig.basePunchComboCooldown);
                 }
             }
         }
@@ -99,8 +103,6 @@ namespace JJBA.Combat
                 if (collider.transform == this.transform || !(collider is CapsuleCollider capsuleCollider))
                     return;
 
-                // Debug.Log(collider);
-
                 Health enemyHealth = collider.transform.GetComponent<Health>();
                 Rigidbody enemyRigidbody = collider.transform.GetComponent<Rigidbody>();
                 Damage damage;
@@ -115,7 +117,8 @@ namespace JJBA.Combat
                         type = DamageType.PUNCH_FINISHER
                     };
                 }
-                else{
+                else
+                {
                     damage = new()
                     {
                         damageValue = basePunchesConfig.basePunchDamage,
@@ -131,6 +134,8 @@ namespace JJBA.Combat
 
             if (_basePunchCounter >= basePunchesConfig.basePunchesNumber)
             {
+                if (_cooldownUIManager != null)
+                    _cooldownUIManager.AddCooldownTimer(basePunchesConfig.basePunchComboCooldown);
                 _basePunchCounter = 0;
                 Invoke(nameof(ResetPunch), basePunchesConfig.basePunchComboCooldown);
             }

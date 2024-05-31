@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine.UI;
 using UnityEngine;
 
-namespace JJBA
+namespace JJBA.UI
 {
     public class CooldownTimer : MonoBehaviour
     {
@@ -17,10 +17,14 @@ namespace JJBA
         private Vector3 _startScale = Vector3.zero;
         private Vector3 _endScale;
         private float _timer = 0f;
-        private bool _isCoolingDown = true;
+        private bool _isCoolingDown = false;
 
-        private void Awake()
+        public void Initialize(float cooldown)
         {
+            _cooldownTime = cooldown;
+            _isCoolingDown = true;
+            _timer = 0f;
+
             _image = GetComponent<Image>();
             _rectTransform = GetComponent<RectTransform>();
 
