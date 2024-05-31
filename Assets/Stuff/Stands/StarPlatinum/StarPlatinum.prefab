@@ -93,7 +93,7 @@ MonoBehaviour:
   particleEffect:
   - name: Summon
     particleEffect: {fileID: 7574417628130248997, guid: 4a61bfdf730073427aa68ed06aa10f48, type: 3}
-    parent: {fileID: 377374019317455869}
+    parent: {fileID: 8407775774842101719}
     attachToParent: 1
     instance: {fileID: 0}
   debugKeys: 0
@@ -291,11 +291,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3865722961245369204}
   m_SourcePrefab: {fileID: 100100000, guid: 4b30631d045463f48a52e3549bfa1417, type: 3}
---- !u!4 &377374019317455869 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8018118334481897805, guid: 4b30631d045463f48a52e3549bfa1417, type: 3}
-  m_PrefabInstance: {fileID: 7672629149499376304}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6543115896260951898 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5712967092099105302, guid: 4b30631d045463f48a52e3549bfa1417, type: 3}

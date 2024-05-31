@@ -76,7 +76,7 @@ namespace JJBA.Stands.StarPlatinum.Controller
             _audioManager.Play("Summon" + Random.Range(1, 4));
             _particleManager.Play("Summon");
             _toggleVisibility.SetVisibility(true);
-            _mover.Idle();
+            _mover.Summon();
         }
     }
 }

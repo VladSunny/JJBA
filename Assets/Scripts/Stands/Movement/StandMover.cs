@@ -21,6 +21,8 @@ namespace JJBA.Stands.Movement
         [SerializeField] private float duration = 0.3f;
         [SerializeField] private float followDistance = 0.01f;
 
+        private Animator _animator;
+
         private Transform _target;
         private Transform _playerOrientation;
         private Transform _idlePosition;
@@ -32,6 +34,7 @@ namespace JJBA.Stands.Movement
             _playerOrientation = playerOrientation;
             _idlePosition = idlePosition;
             _usingSkillPosition = usingSkillPosition;
+            _animator = GetComponentInChildren<Animator>();
 
             Idle();
         }
@@ -55,6 +58,12 @@ namespace JJBA.Stands.Movement
 
         public void Idle()
         {
+            ChangeState(MoveState.Idle);
+        }
+
+        public void Summon()
+        {
+            _animator.SetTrigger("Spawn");
             ChangeState(MoveState.Idle);
         }
 
