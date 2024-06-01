@@ -272,7 +272,7 @@ MonoBehaviour:
   onDied:
     m_PersistentCalls:
       m_Calls: []
-  maxHealth: 100
+  maxHealth: 500
   debugDamage: 10
   debugHeal: 5
   decreaseHealth: 49

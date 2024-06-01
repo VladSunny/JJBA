@@ -28,7 +28,7 @@ namespace JJBA.UI
             damageText.text = "-" + damageAmount.ToString();
             _endScale = transform.localScale;
 
-            StartPopup().Forget();
+            // StartPopup().Forget();
         }
 
         public void DestroyPopup()
