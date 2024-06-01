@@ -111,7 +111,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2504723242925667246}
-  - component: {fileID: 4718322209968048724}
   - component: {fileID: 3393703151061402424}
   - component: {fileID: 1411565956735358814}
   m_Layer: 6
@@ -137,27 +136,6 @@ Transform:
   - {fileID: 3773758166623953043}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &4718322209968048724
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4255436815127969719}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d1b29f91a6de7180083dbf23a90ce4f8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &3393703151061402424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d1daa7eb960ce8096985ad4f0de82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animationDuration: 1
+  _stayDuration: 1
+  startRotation: 90
   randomizePositionFrom: {x: -1, y: 0.3, z: -0.5}
   randomizePositionTo: {x: 1, y: 1.5, z: 0.5}
 --- !u!1183024399 &1411565956735358814

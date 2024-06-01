@@ -34,7 +34,7 @@ namespace JJBA.UI
 
             ConstraintSource source = new ConstraintSource { sourceTransform = Camera.main.transform, weight = 1f };
             GameObject popup = Instantiate(damagePopupPrefab, Vector3.zero, Quaternion.identity);
-            popup.GetComponent<DamagePopup>().Setup(roundedDamage);
+            popup.GetComponent<DamagePopup>().Initialize(roundedDamage);
             popup.GetComponent<LookAtConstraint>().AddSource(source);
             popup.transform.SetParent(popupParent, false);
         }
