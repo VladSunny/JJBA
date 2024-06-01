@@ -11,7 +11,7 @@ namespace JJBA.Stands.StarPlatinum.Input
     {
         private SPController _standController;
         private PlayerInput _playerInput;
-        private BasePunchSkill _basePunchSkill;
+        private FinisherPunchSkill _basePunchSkill;
         private GameObject _stand;
 
         private InputAction _summonAction;
@@ -23,7 +23,7 @@ namespace JJBA.Stands.StarPlatinum.Input
             _stand = stand;
 
             _playerInput = GetComponent<PlayerInput>();
-            _basePunchSkill = _stand.GetComponent<BasePunchSkill>();
+            _basePunchSkill = _stand.GetComponent<FinisherPunchSkill>();
 
             _summonAction = _playerInput.actions["Summon"];
             _basePunchAction = _playerInput.actions["BasePunch"];

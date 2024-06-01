@@ -13,8 +13,9 @@ namespace JJBA.Stands.Movement
 
     public class StandMover : MonoBehaviour
     {
-        [SerializeField] private float duration = 0.3f;
-        [SerializeField] private float followDistance = 0.01f;
+        [SerializeField] private float _followDuration = 0.3f;
+        [SerializeField] private float _usingSkillDuration = 0.15f;
+        [SerializeField] private float _followDistance = 0.01f;
 
         private Animator _animator;
 
@@ -38,8 +39,15 @@ namespace JJBA.Stands.Movement
         {
             if (_target == null) return;
 
-            if (Vector3.Distance(transform.position, _target.position) > followDistance)
+            if (Vector3.Distance(transform.position, _target.position) > _followDistance)
+            {
+                float duration;
+
+                if (_currentState == MoveState.UsingSkill) duration = _usingSkillDuration;
+                else duration = _followDuration;
+
                 transform.DOMove(_target.position, duration);
+            }
 
             if (_playerOrientation != null)
                 transform.forward = _playerOrientation.forward;
@@ -48,7 +56,7 @@ namespace JJBA.Stands.Movement
         public async UniTask Hide()
         {
             ChangeState(MoveState.Hide);
-            await transform.DOMove(_playerOrientation.position, duration).AsyncWaitForCompletion();
+            await transform.DOMove(_playerOrientation.position, _followDuration).AsyncWaitForCompletion();
         }
 
         public void Idle()

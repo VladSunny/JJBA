@@ -11,7 +11,7 @@ namespace JJBA.Stands.StarPlatinum.Bootstrap
 {
     [RequireComponent(typeof(StandMover))]
     [RequireComponent(typeof(SPController))]
-    [RequireComponent(typeof(BasePunchSkill))]
+    [RequireComponent(typeof(FinisherPunchSkill))]
     public class SPBootstrap : MonoBehaviour
     {
         private Transform _playerOrientation;
@@ -28,7 +28,7 @@ namespace JJBA.Stands.StarPlatinum.Bootstrap
 
             GetComponent<StandMover>().Initialize(_playerOrientation, _idlePosition, _skillPosition);
             GetComponent<SPController>().Initialize(_user.GetComponent<CooldownUIManager>());
-            GetComponent<BasePunchSkill>().Initialize(_user.GetComponent<CooldownUIManager>(), GetComponent<SPController>());
+            GetComponent<FinisherPunchSkill>().Initialize(_user.GetComponent<CooldownUIManager>(), GetComponent<SPController>());
         }
     }
 }
