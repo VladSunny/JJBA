@@ -80,7 +80,7 @@ namespace JJBA.Stands.StarPlatinum.Controller
 
         private void Summon()
         {
-            _audioManager.Play("Summon" + Random.Range(1, 4));
+            _audioManager.Play("Summon" + Random.Range(1, 6));
             _particleManager.Play("Summon");
             _toggleVisibility.SetVisibility(true);
             _mover.Summon();

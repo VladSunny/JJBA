@@ -78,6 +78,38 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
+  - name: Summon4
+    clip: {fileID: 8300000, guid: b71b6d4908a424409adf37632bd95abe, type: 3}
+    volume: 0.5
+    pitch: 1
+    spatialBlend: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Summon5
+    clip: {fileID: 8300000, guid: 4d4b9dac541f9dcd285cae5704e8562b, type: 3}
+    volume: 0.5
+    pitch: 1
+    spatialBlend: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: FinisherPunch1
+    clip: {fileID: 8300000, guid: 32014bfeaf46decce8aa303c607cf7c3, type: 3}
+    volume: 0.5
+    pitch: 1
+    spatialBlend: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: FinisherPunch2
+    clip: {fileID: 8300000, guid: 750a0dfc683a4614db1529fa66bb4ed3, type: 3}
+    volume: 0.5
+    pitch: 1
+    spatialBlend: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!114 &7159684579639560211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45455b425b1b914aeb4f3f85a4df9644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cooldown: 2
+  _cooldown: 4
 --- !u!114 &836231957890603846
 MonoBehaviour:
   m_ObjectHideFlags: 0

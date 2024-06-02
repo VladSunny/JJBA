@@ -20,6 +20,7 @@ namespace JJBA.Ragdoll
         [SerializeField] private LayerMask groundLayer;
 
         [Header("Debug Keys")]
+        [SerializeField] private bool debugMode = false;
         [SerializeField] private KeyCode _fallKey = KeyCode.R;
         [SerializeField] private KeyCode _standKey = KeyCode.T;
 
@@ -69,9 +70,12 @@ namespace JJBA.Ragdoll
 
                 if (standTimer >= standDelay) Stand();
             }
-
-            if (Input.GetKeyDown(_fallKey)) Fall();
-            if (Input.GetKeyDown(_standKey)) Stand();
+            
+            if (debugMode)
+            {
+                if (Input.GetKeyDown(_fallKey)) Fall();
+                if (Input.GetKeyDown(_standKey)) Stand();
+            }
         }
 
         public void Fall()

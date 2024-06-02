@@ -8,6 +8,7 @@ using JJBA.UI;
 using System.Threading.Tasks;
 using JJBA.Core;
 using JJBA.Combat;
+using JJBA.Audio;
 
 namespace JJBA.Stands.StarPlatinum.Skill
 {
@@ -20,6 +21,7 @@ namespace JJBA.Stands.StarPlatinum.Skill
         private SPController _standController;
         private Animator _animator;
         private PunchEvent _punchEvent;
+        private AudioManager _audioManager;
         private DynamicHitBox _dynamicHitBox;
         private GameObject _user;
 
@@ -33,6 +35,7 @@ namespace JJBA.Stands.StarPlatinum.Skill
             _punchEvent = GetComponentInChildren<PunchEvent>();
             _dynamicHitBox = GetComponentInChildren<DynamicHitBox>();
             _cooldownUIManager = _user.GetComponent<CooldownUIManager>();
+            _audioManager = GetComponentInChildren<AudioManager>();
 
             _punchEvent.punchEvent.AddListener(Punch);
         }
@@ -47,6 +50,10 @@ namespace JJBA.Stands.StarPlatinum.Skill
             if (!_standController.IsActive() || _cooldownTimer > 0) return;
 
             _cooldownTimer = _cooldown;
+
+            string soundName = "FinisherPunch" + Random.Range(1, 3);
+            Debug.Log(soundName);
+            _audioManager.Play(soundName);
 
             _animator.SetTrigger("FinisherPunch");
 
