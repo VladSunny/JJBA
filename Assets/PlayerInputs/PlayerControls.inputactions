@@ -308,6 +308,17 @@
                     "action": "FinisherPunch",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "32610e92-f345-4a73-ab21-e9e5ddca7e70",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FinisherPunch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

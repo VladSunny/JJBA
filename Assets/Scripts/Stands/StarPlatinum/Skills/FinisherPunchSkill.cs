@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using JJBA.Core;
 using JJBA.Combat;
 using JJBA.Audio;
+using JJBA.Movement;
 
 namespace JJBA.Stands.StarPlatinum.Skill
 {
@@ -24,6 +25,7 @@ namespace JJBA.Stands.StarPlatinum.Skill
         private AudioManager _audioManager;
         private DynamicHitBox _dynamicHitBox;
         private GameObject _user;
+        private Mover _userMover;
 
         public void Initialize(SPController standController, GameObject user)
         {
@@ -36,6 +38,7 @@ namespace JJBA.Stands.StarPlatinum.Skill
             _dynamicHitBox = GetComponentInChildren<DynamicHitBox>();
             _cooldownUIManager = _user.GetComponent<CooldownUIManager>();
             _audioManager = GetComponentInChildren<AudioManager>();
+            _userMover = _user.GetComponent<Mover>();
 
             _punchEvent.punchEvent.AddListener(Punch);
         }
@@ -48,6 +51,8 @@ namespace JJBA.Stands.StarPlatinum.Skill
         public void Use()
         {
             if (!_standController.IsActive() || _cooldownTimer > 0) return;
+
+            _userMover.SetRunning(false);
 
             _cooldownTimer = _cooldown;
 
