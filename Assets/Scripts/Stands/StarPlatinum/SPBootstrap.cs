@@ -26,7 +26,7 @@ namespace JJBA.Stands.StarPlatinum.Bootstrap
             _skillPosition = skillPosition;
             _user = user;
 
-            GetComponent<StandMover>().Initialize(_playerOrientation, _idlePosition, _skillPosition);
+            GetComponent<StandMover>().Initialize(_playerOrientation, _idlePosition, _skillPosition, _user);
             GetComponent<SPController>().Initialize(_user.GetComponent<CooldownUIManager>());
             GetComponent<FinisherPunchSkill>().Initialize(
                 GetComponent<SPController>(),

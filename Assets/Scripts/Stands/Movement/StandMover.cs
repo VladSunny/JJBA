@@ -21,15 +21,18 @@ namespace JJBA.Stands.Movement
 
         private Transform _target;
         private Transform _playerOrientation;
+        private GameObject _user;
         private Transform _idlePosition;
         private Transform _usingSkillPosition;
         private MoveState _currentState = MoveState.Idle;
 
-        public void Initialize(Transform playerOrientation, Transform idlePosition, Transform usingSkillPosition)
+        public void Initialize(Transform playerOrientation, Transform idlePosition, Transform usingSkillPosition, GameObject user)
         {
             _playerOrientation = playerOrientation;
             _idlePosition = idlePosition;
             _usingSkillPosition = usingSkillPosition;
+            _user = user;
+
             _animator = GetComponentInChildren<Animator>();
 
             Idle();
@@ -48,6 +51,11 @@ namespace JJBA.Stands.Movement
 
                 transform.DOMove(_target.position, duration);
             }
+
+            if (_user.GetComponent<Rigidbody>().velocity.magnitude > 1f)
+                _animator.SetBool("Moving", true);
+            else
+                _animator.SetBool("Moving", false);
 
             if (_playerOrientation != null)
                 transform.forward = _playerOrientation.forward;
