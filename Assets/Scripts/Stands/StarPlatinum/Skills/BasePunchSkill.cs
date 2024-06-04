@@ -15,12 +15,14 @@ namespace JJBA.Stands.StarPlatinum.Skill
         [SerializeField] private int _maxPunches = 5;
         [SerializeField] private float _comboCooldown = 2f;
         [SerializeField] private float _timeForCombo = 1f;
+        [SerializeField] private float _finisherFroce = 10f;
 
         private Animator _animator;
         private CooldownUIManager _cooldownUIManager;
 
         private int _punchCounter = 0;
         private float _punchCooldown;
+        private float _baseForce;
         private float _comboTimer = -1f;
 
 
@@ -34,6 +36,7 @@ namespace JJBA.Stands.StarPlatinum.Skill
             _skillName = "Base Punch";
             _damageType = DamageType.BASE;
             _punchCooldown = _cooldown;
+            _baseForce = _force;
         }
 
         protected override void Update()
@@ -61,12 +64,18 @@ namespace JJBA.Stands.StarPlatinum.Skill
             {
                 _punchCounter = 0;
                 _cooldown = _comboCooldown;
+                _damageType = DamageType.PUNCH_FINISHER;
+                _force = _finisherFroce;
 
                 if (_cooldownUIManager != null)
                     _cooldownUIManager.AddCooldownTimer(_cooldown, _skillName);
             }
-
-            else _cooldown = _punchCooldown;
+            else
+            {
+                _cooldown = _punchCooldown;
+                _force = _baseForce;
+                _damageType = DamageType.BASE;
+            }
 
             base.Use();
 

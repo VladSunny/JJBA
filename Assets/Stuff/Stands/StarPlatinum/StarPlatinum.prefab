@@ -288,11 +288,13 @@ MonoBehaviour:
   _cooldown: 0.5
   _damage: 10
   _force: 1
-  _hitBoxSize: {x: 1, y: 1, z: 1}
+  _hitBoxSize: {x: 1, y: 1, z: 1.5}
   _forwardBoxOffset: 0.5
   _afterSkillDelay: 1
   _maxPunches: 5
   _comboCooldown: 4
+  _timeForCombo: 1
+  _finisherFroce: 7
 --- !u!1001 &7672629149499376304
 PrefabInstance:
   m_ObjectHideFlags: 0

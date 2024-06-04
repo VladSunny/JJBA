@@ -13,7 +13,7 @@ namespace JJBA.Stands.Core
     {
         [SerializeField] protected float _cooldown = 0.5f;
         [SerializeField] private float _damage = 10f;
-        [SerializeField] private float _force = 0f;
+        [SerializeField] protected float _force = 0f;
         [SerializeField] private Vector3 _hitBoxSize = new Vector3(1f, 1f, 1f);
         [SerializeField] private float _forwardBoxOffset = 1f;
         [SerializeField] private float _afterSkillDelay = 0.5f;
