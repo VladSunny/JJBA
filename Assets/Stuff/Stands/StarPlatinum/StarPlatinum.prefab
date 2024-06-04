@@ -246,6 +246,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldown: 4
+  _damage: 25
+  _force: 10
+  _hitBoxSize: {x: 1, y: 1, z: 2}
+  _forwardBoxOffset: 0.5
 --- !u!114 &836231957890603846
 MonoBehaviour:
   m_ObjectHideFlags: 0
