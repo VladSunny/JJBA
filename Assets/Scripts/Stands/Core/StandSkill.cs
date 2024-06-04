@@ -13,11 +13,11 @@ namespace JJBA.Stands.Core
     public abstract class StandSkill : MonoBehaviour
     {
         [SerializeField] private float _cooldown = 0.5f;
-
-        [SerializeField] protected float _damage = 10f;
-        [SerializeField] protected float _force = 0f;
-        [SerializeField] protected Vector3 _hitBoxSize = new Vector3(1f, 1f, 1f);
-        [SerializeField] protected float _forwardBoxOffset = 1f;
+        [SerializeField] private float _damage = 10f;
+        [SerializeField] private float _force = 0f;
+        [SerializeField] private Vector3 _hitBoxSize = new Vector3(1f, 1f, 1f);
+        [SerializeField] private float _forwardBoxOffset = 1f;
+        [SerializeField] private float _afterSkillDelay = 0.5f;
 
         protected string _skillName = "Skill";
         protected DamageType _damageType = DamageType.BASE;
@@ -31,6 +31,7 @@ namespace JJBA.Stands.Core
         private DynamicHitBox _dynamicHitBox;
 
         private float _cooldownTimer = 0f;
+        private bool _usingSkill = false;
 
         public virtual void Initialize(SPController standController, GameObject user)
         {
@@ -53,7 +54,8 @@ namespace JJBA.Stands.Core
 
         public virtual bool Use()
         {
-            if (!_standController.IsActive() || _cooldownTimer > 0) return false;
+            if (!_standController.IsActive() || _cooldownTimer > 0 || _standController._usingSkill)
+                return false;
 
             _userMover.SetRunning(false);
 
@@ -64,6 +66,9 @@ namespace JJBA.Stands.Core
             if (_cooldownUIManager != null)
                 _cooldownUIManager.AddCooldownTimer(_cooldown, _skillName);
 
+            _usingSkill = true;
+            _standController._usingSkill = true;
+
             return true;
 
             // string soundName = "FinisherPunch" + Random.Range(1, 3);
@@ -73,8 +78,10 @@ namespace JJBA.Stands.Core
             // _animator.SetTrigger("FinisherPunch");
         }
 
-        protected virtual async void Punch()
+        protected virtual void Punch()
         {
+            if (!_usingSkill) return;
+
             _dynamicHitBox.CreateHitBox(
                 Vector3.forward * _forwardBoxOffset,
                 _hitBoxSize,
@@ -82,8 +89,11 @@ namespace JJBA.Stands.Core
                 true
             );
 
-            await Task.Delay((int)(0.5f * 1000));
-            _mover.Idle();
+            _standController.EndSkillWithComboTime(_afterSkillDelay);
+            _usingSkill = false;
+            _standController._usingSkill = false;
+            // await Task.Delay((int)(_afterSkillDelay * 1000));
+            // _mover.Idle();
         }
 
         protected virtual void HitFunction(Collider collider)

@@ -52,11 +52,6 @@ namespace JJBA.Stands.Movement
                 transform.DOMove(_target.position, duration);
             }
 
-            // if (_user.GetComponent<Rigidbody>().velocity.magnitude > 1f)
-            //     _animator.SetBool("Moving", true);
-            // else
-            //     _animator.SetBool("Moving", false);
-
             if (_playerOrientation != null)
                 transform.forward = _playerOrientation.forward;
         }

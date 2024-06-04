@@ -18,24 +18,29 @@ namespace JJBA.Stands.StarPlatinum.Controller
     {
         [SerializeField] private float _summonCooldown = 1f;
 
+        public bool _usingSkill = false;
+
         [SerializeField] private GameObject _standModel;
         private StandMover _mover;
         private AudioManager _audioManager;
         private ParticleManager _particleManager;
         private ToggleVisibility _toggleVisibility;
         private CooldownUIManager _cooldownUIManager;
+        private GameObject _user;
 
         private bool _isActive;
         private float _summonTimer;
+        private float _comboTimer = -1f;
 
-        public void Initialize(CooldownUIManager cooldownUIManager)
+        public void Initialize(GameObject user)
         {
+            _user = user;
+
             _mover = GetComponent<StandMover>();
             _audioManager = GetComponentInChildren<AudioManager>();
             _particleManager = GetComponentInChildren<ParticleManager>();
             _toggleVisibility = GetComponentInChildren<ToggleVisibility>();
-
-            _cooldownUIManager = cooldownUIManager;
+            _cooldownUIManager = _user.GetComponent<CooldownUIManager>();
 
             _summonTimer = _summonCooldown + 1f;
 
@@ -69,6 +74,13 @@ namespace JJBA.Stands.StarPlatinum.Controller
 
             if (_summonTimer <= _summonCooldown)
                 _summonTimer += Time.deltaTime;
+
+            if (_comboTimer >= 0)
+            {
+                _comboTimer -= Time.deltaTime;
+                if (_comboTimer <= 0 && _usingSkill == false)
+                    _mover.Idle();
+            }
         }
 
         private async void Hide()
@@ -84,6 +96,11 @@ namespace JJBA.Stands.StarPlatinum.Controller
             _particleManager.Play("Summon");
             _toggleVisibility.SetVisibility(true);
             _mover.Summon();
+        }
+
+        public void EndSkillWithComboTime(float time)
+        {
+            _comboTimer = time;
         }
     }
 }
