@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 
 using JJBA.Stands.Movement;
 using JJBA.Stands.StarPlatinum.Controller;
-using JJBA.UI;
 using JJBA.Combat;
 using JJBA.Movement;
 using JJBA.Core;
@@ -12,7 +11,7 @@ namespace JJBA.Stands.Core
 {
     public abstract class StandSkill : MonoBehaviour
     {
-        [SerializeField] private float _cooldown = 0.5f;
+        [SerializeField] protected float _cooldown = 0.5f;
         [SerializeField] private float _damage = 10f;
         [SerializeField] private float _force = 0f;
         [SerializeField] private Vector3 _hitBoxSize = new Vector3(1f, 1f, 1f);
@@ -25,12 +24,11 @@ namespace JJBA.Stands.Core
 
         private Mover _userMover;
         private PunchEvent _punchEvent;
-        private CooldownUIManager _cooldownUIManager;
         private SPController _standController;
         private StandMover _mover;
         private DynamicHitBox _dynamicHitBox;
 
-        private float _cooldownTimer = 0f;
+        protected float _cooldownTimer = 0f;
         private bool _usingSkill = false;
 
         public virtual void Initialize(SPController standController, GameObject user)
@@ -41,7 +39,6 @@ namespace JJBA.Stands.Core
             _mover = GetComponent<StandMover>();
             _dynamicHitBox = GetComponent<DynamicHitBox>();
             _punchEvent = GetComponentInChildren<PunchEvent>();
-            _cooldownUIManager = _user.GetComponent<CooldownUIManager>();
             _userMover = _user.GetComponent<Mover>();
 
             _punchEvent.punchEvent.AddListener(Punch);
@@ -52,9 +49,14 @@ namespace JJBA.Stands.Core
             if (_cooldownTimer > 0) _cooldownTimer -= Time.deltaTime;
         }
 
+        protected virtual bool CantUseSkill()
+        {
+            return !_standController.IsActive() || _cooldownTimer > 0 || _standController._usingSkill;
+        }
+
         public virtual bool Use()
         {
-            if (!_standController.IsActive() || _cooldownTimer > 0 || _standController._usingSkill)
+            if (CantUseSkill())
                 return false;
 
             _userMover.SetRunning(false);
@@ -63,19 +65,10 @@ namespace JJBA.Stands.Core
 
             _mover.UsingSkill();
 
-            if (_cooldownUIManager != null)
-                _cooldownUIManager.AddCooldownTimer(_cooldown, _skillName);
-
             _usingSkill = true;
             _standController._usingSkill = true;
 
             return true;
-
-            // string soundName = "FinisherPunch" + Random.Range(1, 3);
-            // Debug.Log(soundName);
-            // _audioManager.Play(soundName);
-
-            // _animator.SetTrigger("FinisherPunch");
         }
 
         protected virtual void Punch()
@@ -92,8 +85,6 @@ namespace JJBA.Stands.Core
             _standController.EndSkillWithComboTime(_afterSkillDelay);
             _usingSkill = false;
             _standController._usingSkill = false;
-            // await Task.Delay((int)(_afterSkillDelay * 1000));
-            // _mover.Idle();
         }
 
         protected virtual void HitFunction(Collider collider)

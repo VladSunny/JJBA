@@ -4,6 +4,7 @@ using JJBA.Stands.StarPlatinum.Controller;
 using JJBA.Combat;
 using JJBA.Audio;
 using JJBA.Stands.Core;
+using JJBA.UI;
 
 namespace JJBA.Stands.StarPlatinum.Skill
 {
@@ -11,6 +12,7 @@ namespace JJBA.Stands.StarPlatinum.Skill
     {
         private Animator _animator;
         private AudioManager _audioManager;
+        private CooldownUIManager _cooldownUIManager;
 
         public override void Initialize(SPController standController, GameObject user)
         {
@@ -18,6 +20,7 @@ namespace JJBA.Stands.StarPlatinum.Skill
 
             _audioManager = GetComponentInChildren<AudioManager>();
             _animator = GetComponentInChildren<Animator>();
+            _cooldownUIManager = _user.GetComponent<CooldownUIManager>();
             _skillName = "Star Finisher Punch";
             _damageType = DamageType.PUNCH_FINISHER;
         }
@@ -30,6 +33,9 @@ namespace JJBA.Stands.StarPlatinum.Skill
             _audioManager.Play(soundName);
 
             _animator.SetTrigger("FinisherPunch");
+
+            if (_cooldownUIManager != null)
+                _cooldownUIManager.AddCooldownTimer(_cooldown, _skillName);
 
             return true;
         }
