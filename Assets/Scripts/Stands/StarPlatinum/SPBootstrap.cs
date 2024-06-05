@@ -42,6 +42,10 @@ namespace JJBA.Stands.StarPlatinum.Bootstrap
                 GetComponent<SPController>(),
                 _user
             );
+            GetComponent<BarrageSkill>().Initialize(
+                GetComponent<SPController>(),
+                _user
+            );
         }
     }
 }

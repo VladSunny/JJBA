@@ -282,6 +282,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Barrage",
+                    "type": "Button",
+                    "id": "bab83cb3-4139-4551-b195-d88d4badd750",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -337,6 +346,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "BasePunch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca2dd9e6-47e1-4bc6-9109-01018ab5fe84",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Barrage",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
