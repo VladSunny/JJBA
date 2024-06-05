@@ -66,9 +66,6 @@ namespace JJBA.Stands.StarPlatinum.Skill
                 _cooldown = _comboCooldown;
                 _damageType = DamageType.PUNCH_FINISHER;
                 _force = _finisherFroce;
-
-                if (_cooldownUIManager != null)
-                    _cooldownUIManager.AddCooldownTimer(_cooldown, _skillName);
             }
             else
             {
@@ -84,6 +81,11 @@ namespace JJBA.Stands.StarPlatinum.Skill
 
         protected override void Punch()
         {
+            if (!_usingSkill) return;
+
+            if (_cooldownUIManager != null && _cooldown == _comboCooldown)
+                _cooldownUIManager.AddCooldownTimer(_cooldownTimer, _skillName);
+            
             base.Punch();
         }
     }

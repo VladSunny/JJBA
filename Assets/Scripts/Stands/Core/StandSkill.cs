@@ -29,7 +29,7 @@ namespace JJBA.Stands.Core
         private DynamicHitBox _dynamicHitBox;
 
         protected float _cooldownTimer = 0f;
-        private bool _usingSkill = false;
+        protected bool _usingSkill = false;
 
         public virtual void Initialize(SPController standController, GameObject user)
         {

@@ -287,7 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cooldown: 0.5
   _damage: 10
-  _force: 1
+  _force: 3
   _hitBoxSize: {x: 1, y: 1, z: 1.5}
   _forwardBoxOffset: 0.5
   _afterSkillDelay: 1

@@ -34,14 +34,16 @@ namespace JJBA.Stands.StarPlatinum.Skill
 
             _animator.SetTrigger("FinisherPunch");
 
-            if (_cooldownUIManager != null)
-                _cooldownUIManager.AddCooldownTimer(_cooldown, _skillName);
-
             return true;
         }
 
         protected override void Punch()
         {
+            if (!_usingSkill) return;
+
+            if (_cooldownUIManager != null)
+                _cooldownUIManager.AddCooldownTimer(_cooldownTimer, _skillName);
+                
             base.Punch();
         }
     }
