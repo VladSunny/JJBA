@@ -14,7 +14,6 @@ namespace JJBA
     public class BarrageSkill : StandSkill
     {
         private ParticleManager _particleManager;
-        private bool _isPunching = false;
 
         public override void Initialize(SPController standController, GameObject user)
         {
@@ -33,6 +32,7 @@ namespace JJBA
         public override bool Use()
         {
             _particleManager.Play(_skillName);
+            _mover.UsingSkill();
 
             return true;
         }
@@ -40,6 +40,7 @@ namespace JJBA
         public void Stop()
         {
             _particleManager.Stop(_skillName);
+            _mover.Idle();
         }
 
         protected override void Punch()

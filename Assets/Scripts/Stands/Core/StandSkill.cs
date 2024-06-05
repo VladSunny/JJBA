@@ -25,7 +25,7 @@ namespace JJBA.Stands.Core
         private Mover _userMover;
         private PunchEvent _punchEvent;
         private SPController _standController;
-        private StandMover _mover;
+        protected StandMover _mover;
         private DynamicHitBox _dynamicHitBox;
 
         protected float _cooldownTimer = 0f;
