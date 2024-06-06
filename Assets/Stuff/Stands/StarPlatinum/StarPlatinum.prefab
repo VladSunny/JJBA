@@ -345,8 +345,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c148b6961baec8b4da8765b3b6b8b210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cooldown: 5
-  _duration: 4
+  _cooldown: 10
+  _duration: 5
+  _punchTime: 0.2
+  _force: 0.6
 --- !u!1001 &7672629149499376304
 PrefabInstance:
   m_ObjectHideFlags: 0

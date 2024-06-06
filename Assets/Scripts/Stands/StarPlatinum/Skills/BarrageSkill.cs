@@ -32,6 +32,7 @@ namespace JJBA
         private SPController _standController;
         private GameObject _user;
         private DynamicHitBox _dynamicHitBox;
+        private Animator _animator;
 
         public void Initialize(SPController standController, GameObject user)
         {
@@ -42,6 +43,7 @@ namespace JJBA
             _mover = GetComponent<StandMover>();
             _cooldownUIManager = _user.GetComponent<CooldownUIManager>();
             _dynamicHitBox = GetComponent<DynamicHitBox>();
+            _animator = GetComponentInChildren<Animator>();
         }
 
         protected void Update()
@@ -78,6 +80,8 @@ namespace JJBA
 
             _punchTimer = _punchTime;
 
+            _animator.SetBool("Barraging", true);
+
             return true;
         }
 
@@ -91,6 +95,8 @@ namespace JJBA
             _inProcess = false;
             _cooldownUIManager.AddCooldownTimer(_cooldownTimer, _skillName);
             _standController._usingSkill = false;
+
+            _animator.SetBool("Barraging", false);
         }
 
         protected void Punch()
