@@ -9,7 +9,7 @@ using JJBA.Core;
 
 namespace JJBA.Stands.Core
 {
-    public abstract class StandSkill : MonoBehaviour
+    public abstract class PunchStandSkill : MonoBehaviour
     {
         [SerializeField] protected float _cooldown = 0.5f;
         [SerializeField] private float _damage = 10f;

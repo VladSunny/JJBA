@@ -345,12 +345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c148b6961baec8b4da8765b3b6b8b210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cooldown: 0.5
-  _damage: 10
-  _force: 0
-  _hitBoxSize: {x: 1, y: 1, z: 1}
-  _forwardBoxOffset: 1
-  _afterSkillDelay: 0.5
+  _cooldown: 5
+  _duration: 4
 --- !u!1001 &7672629149499376304
 PrefabInstance:
   m_ObjectHideFlags: 0

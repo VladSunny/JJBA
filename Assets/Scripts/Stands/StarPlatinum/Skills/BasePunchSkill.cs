@@ -10,7 +10,7 @@ using JJBA.UI;
 
 namespace JJBA.Stands.StarPlatinum.Skill
 {
-    public class BasePunchSkill : StandSkill
+    public class BasePunchSkill : PunchStandSkill
     {
         [SerializeField] private int _maxPunches = 5;
         [SerializeField] private float _comboCooldown = 2f;
@@ -85,7 +85,7 @@ namespace JJBA.Stands.StarPlatinum.Skill
 
             if (_cooldownUIManager != null && _cooldown == _comboCooldown)
                 _cooldownUIManager.AddCooldownTimer(_cooldownTimer, _skillName);
-            
+
             base.Punch();
         }
     }

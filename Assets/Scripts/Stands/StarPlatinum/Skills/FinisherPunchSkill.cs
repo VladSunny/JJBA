@@ -8,7 +8,7 @@ using JJBA.UI;
 
 namespace JJBA.Stands.StarPlatinum.Skill
 {
-    public class FinisherPunchSkill : StandSkill
+    public class FinisherPunchSkill : PunchStandSkill
     {
         private Animator _animator;
         private AudioManager _audioManager;
@@ -43,7 +43,7 @@ namespace JJBA.Stands.StarPlatinum.Skill
 
             if (_cooldownUIManager != null)
                 _cooldownUIManager.AddCooldownTimer(_cooldownTimer, _skillName);
-                
+
             base.Punch();
         }
     }

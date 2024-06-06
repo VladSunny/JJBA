@@ -8,43 +8,119 @@ using JJBA.Audio;
 using JJBA.Stands.Core;
 using JJBA.UI;
 using JJBA.VFX;
+using JJBA.Movement;
+using JJBA.Stands.Movement;
+using JJBA.Core;
 
 namespace JJBA
 {
-    public class BarrageSkill : StandSkill
+    public class BarrageSkill : MonoBehaviour
     {
-        private ParticleManager _particleManager;
+        [SerializeField] private float _cooldown = 3f;
+        [SerializeField] private float _duration = 2f;
+        [SerializeField] private float _punchTime = 0.2f;
+        [SerializeField] private float _force = 2f;
 
-        public override void Initialize(SPController standController, GameObject user)
+        private ParticleManager _particleManager;
+        private CooldownUIManager _cooldownUIManager;
+        private StandMover _mover;
+        private string _skillName = "Barrage";
+        private float _cooldownTimer = 0f;
+        private float _barrageTimer = 0f;
+        private float _punchTimer = 0f;
+        private bool _inProcess = false;
+        private SPController _standController;
+        private GameObject _user;
+        private DynamicHitBox _dynamicHitBox;
+
+        public void Initialize(SPController standController, GameObject user)
         {
-            base.Initialize(standController, user);
+            _standController = standController;
+            _user = user;
 
             _particleManager = GetComponentInChildren<ParticleManager>();
-
-            _skillName = "Barrage";
+            _mover = GetComponent<StandMover>();
+            _cooldownUIManager = _user.GetComponent<CooldownUIManager>();
+            _dynamicHitBox = GetComponent<DynamicHitBox>();
         }
 
-        protected override void Update()
+        protected void Update()
         {
+            if (_cooldownTimer > 0) _cooldownTimer -= Time.deltaTime;
+            if (_barrageTimer > 0) _barrageTimer -= Time.deltaTime;
 
+            if (_barrageTimer <= 0 && _inProcess) Stop();
+            if (_punchTimer > 0) _punchTimer -= Time.deltaTime;
+
+            if (_punchTimer <= 0 && _inProcess)
+            {
+                _punchTimer = _punchTime;
+                Punch();
+            }
         }
 
-        public override bool Use()
+        protected virtual bool CantUseSkill()
         {
+            return !_standController.IsActive() || _cooldownTimer > 0 || _standController._usingSkill || _inProcess;
+        }
+
+        public bool Use()
+        {
+            if (CantUseSkill()) return false;
+
             _particleManager.Play(_skillName);
             _mover.UsingSkill();
+
+            _inProcess = true;
+            _barrageTimer = _duration;
+
+            _standController._usingSkill = true;
+
+            _punchTimer = _punchTime;
 
             return true;
         }
 
         public void Stop()
         {
+            if (!_inProcess) return;
+
             _particleManager.Stop(_skillName);
-            _mover.Idle();
+            _standController.EndSkillWithComboTime(1f);
+            _cooldownTimer = _cooldown;
+            _inProcess = false;
+            _cooldownUIManager.AddCooldownTimer(_cooldownTimer, _skillName);
+            _standController._usingSkill = false;
         }
 
-        protected override void Punch()
+        protected void Punch()
         {
+            _dynamicHitBox.CreateHitBox(
+                Vector3.forward * 0.5f,
+                new Vector3(1f, 1f, 2f),
+                HitFunction,
+                true
+            );
+        }
+
+        protected void HitFunction(Collider collider)
+        {
+            if (collider.transform == _user.transform || !(collider is CapsuleCollider capsuleCollider))
+                return;
+
+            Health enemyHealth = collider.transform.GetComponent<Health>();
+            Damage damage;
+
+            damage = new()
+            {
+                damageValue = 5f,
+                from = transform.position,
+                forse = transform.forward * _force,
+                type = DamageType.BASE
+            };
+
+            if (enemyHealth != null)
+                collider.transform.GetComponent<Health>().GetDamage(damage);
         }
     }
 }
