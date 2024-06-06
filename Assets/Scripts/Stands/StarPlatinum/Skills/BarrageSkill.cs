@@ -22,6 +22,7 @@ namespace JJBA
         [SerializeField] private float _force = 2f;
 
         private ParticleManager _particleManager;
+        private AudioManager _audioManager;
         private CooldownUIManager _cooldownUIManager;
         private StandMover _mover;
         private string _skillName = "Barrage";
@@ -44,6 +45,7 @@ namespace JJBA
             _cooldownUIManager = _user.GetComponent<CooldownUIManager>();
             _dynamicHitBox = GetComponent<DynamicHitBox>();
             _animator = GetComponentInChildren<Animator>();
+            _audioManager = GetComponentInChildren<AudioManager>();
         }
 
         protected void Update()
@@ -81,6 +83,7 @@ namespace JJBA
             _punchTimer = _punchTime;
 
             _animator.SetBool("Barraging", true);
+            _audioManager.Play("Barrage");
 
             return true;
         }
@@ -97,6 +100,7 @@ namespace JJBA
             _standController._usingSkill = false;
 
             _animator.SetBool("Barraging", false);
+            _audioManager.Stop("Barrage");
         }
 
         protected void Punch()

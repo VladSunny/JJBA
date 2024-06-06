@@ -111,6 +111,14 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
+  - name: Barrage
+    clip: {fileID: 8300000, guid: 213afb992779498d9980c37b82ecdc57, type: 3}
+    volume: 0.7
+    pitch: 1
+    spatialBlend: 1
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!114 &7159684579639560211
 MonoBehaviour:
   m_ObjectHideFlags: 0
